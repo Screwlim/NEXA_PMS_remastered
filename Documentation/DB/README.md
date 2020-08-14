@@ -1,0 +1,6 @@
+### Database readme
+
+
+Schema Diagram : 
+
+
