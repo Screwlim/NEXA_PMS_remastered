@@ -24,7 +24,7 @@ http.createServer(app).listen(app.get('port'), function () {
 }) //express를 이용해 웹서버 만든다
 
 //routers----------------------------------------------------------------------------------------------------
-var indexrouter = require('./index');
+var indexrouter = require('./');
 var loginrouter = require('./routes/log_in');
 var dashrouter = require('./routes/dashboard');
 var tablerouter = require('./routes/ingprojectlist');
