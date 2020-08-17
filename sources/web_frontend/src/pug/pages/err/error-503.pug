@@ -4,7 +4,7 @@
 
 //- The page layout is set using the Pug `extends` directive with a path to a layout template
 //- All of the layout options are contained in src/pug/layouts
-extends ../layouts/error.pug
+extends ../../layouts/error.pug
 
 //- * * * * * * * *
 //- * * Config  * *
@@ -12,7 +12,7 @@ extends ../layouts/error.pug
 
 //- These are page-level configuration options that should be set for each page
 block config
-    - var pageTitle = '500 Error'
+    - var pageTitle = '503 Error'
 
 //- * * * * * * * * * * *
 //- * * Page Content  * *
@@ -24,8 +24,8 @@ block content
         .row.justify-content-center
             .col-lg-6
                 .text-center.mt-4
-                    img.img-fluid.p-4(src='assets/img/freepik/500-internal-server-error-pana.svg', alt='')
-                    p.lead The server encountered an internal error or misconfiguration and was unable to complete your request.
+                    img.img-fluid.p-4(src='assets/img/freepik/503-error-service-unavailable-pana.svg', alt='')
+                    p.lead The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.
                     a.text-arrow-icon(href='index.html')
                         i.ml-0.mr-1(data-feather='arrow-left')
                         | Return to Dashboard
@@ -39,7 +39,7 @@ block footer
 
     //- Bring in the footer mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
-    include mixins/footer.pug
+    include ../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
     })

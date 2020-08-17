@@ -4,7 +4,7 @@
 
 //- The page layout is set using the Pug `extends` directive with a path to a layout template
 //- All of the layout options are contained in src/pug/layouts
-extends ../layouts/error.pug
+extends ../../layouts/error.pug
 
 //- * * * * * * * *
 //- * * Config  * *
@@ -12,7 +12,7 @@ extends ../layouts/error.pug
 
 //- These are page-level configuration options that should be set for each page
 block config
-    - var pageTitle = '403 Error'
+    - var pageTitle = '400 Error'
 
 //- * * * * * * * * * * *
 //- * * Page Content  * *
@@ -24,8 +24,8 @@ block content
         .row.justify-content-center
             .col-lg-6
                 .text-center.mt-4
-                    img.img-fluid.p-4(src='assets/img/freepik/403-error-forbidden-pana.svg', alt='')
-                    p.lead Your client does not have permission to get this page from the server.
+                    img.img-fluid.p-4(src='assets/img/freepik/400-error-bad-request-pana.svg', alt='')
+                    p.lead Your client has issued a malformed or illegal request.
                     a.text-arrow-icon(href='index.html')
                         i.ml-0.mr-1(data-feather='arrow-left')
                         | Return to Dashboard
@@ -39,7 +39,7 @@ block footer
 
     //- Bring in the footer mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
-    include mixins/footer.pug
+    include ../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
     })
