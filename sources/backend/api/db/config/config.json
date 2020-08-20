@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "pmsDB",
+    "password": "1234",
+    "database": "pms_dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "pmsDB",
+    "password": "1234",
+    "database": "pms_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "distribution": {
+    "username": "pmsDB",
+    "password": "1234",
+    "database": "pms_dist",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
