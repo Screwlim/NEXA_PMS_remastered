@@ -3,8 +3,9 @@ mixin topnav(options)
     nav(class=['topnav', 'navbar', 'navbar-expand', 'shadow'] class=options.topnavStyle)#sidenavAccordion
 
         //- Navbar Brand Image or Text
-        a.navbar-brand(href='index.html')
-            | SB Admin Pro
+        a.navbar-brand(href='/dashboard')
+            image(src='../../assets/img/logo-nexa-short.png', style='width:15%;height:15%;')
+            | NEXA PMS
 
         //- Sidenav Toggle Button
         button#sidebarToggle.btn.btn-icon.btn-transparent-dark.order-1.order-lg-0.mr-lg-2(href='#')

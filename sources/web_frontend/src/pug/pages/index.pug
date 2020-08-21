@@ -30,19 +30,6 @@ include mixins/headers/header-default.pug
 //- Define the main `block content` from the layout
 block content
 
-    //- Bring in the page header mixin and configure
-    include mixins/headers/header-default.pug
-    +header({
-        pageHeaderStyle: 'page-header-dark',
-        pageHeaderBg: 'bg-gradient-primary-to-secondary',
-        pageHeaderSpacing: 'pb-10',
-        pageHeaderContainer: 'container',
-        pageSubtitle: 'Manage your project like a boss!',
-        breadcrumbs: false
-    })
-
-    
-
     // Main page content
 
     .container.mt-n10
@@ -51,17 +38,17 @@ block content
                 h5.card-title Start managing your project with PMS
                 p.card-text
                     | 당신의 프로젝트를 진행하세요!
-                a.btn.btn-primary.btn-sm(href='./user/login', target='_blank')
+                a.btn.btn-primary.btn-sm(href='./user/login')
                     i.mr-1(data-feather='external-link')
                     | Sign in with your account
                 p.card-text
                     | 계정이 없으신가요?    
-                a.btn.btn-primary.btn-sm(href='./user/signup', target='_blank')
+                a.btn.btn-primary.btn-sm(href='./user/signup')
                     i.mr-1(data-feather='external-link')
                     | Sign up for PMS
                 p.card-text
                     | 내 비밀번호가 뭐였지?    
-                a.btn.btn-primary.btn-sm(href='./user/password', target='_blank')
+                a.btn.btn-primary.btn-sm(href='./user/password')
                     i.mr-1(data-feather='external-link')
                     | 비밀번호 찾기
     //image

@@ -13,7 +13,6 @@ extends ../../layouts/authentication.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var pageTitle = 'Login'
-
 //- * * * * * * * * * * *
 //- * * Page Content  * *
 //- * * * * * * * * * * *
@@ -45,11 +44,11 @@ block content
                                     label.custom-control-label(for='rememberPasswordCheck') Remember password
                             // Form Group (login box)
                             .form-group.d-flex.align-items-center.justify-content-between.mt-4.mb-0
-                                a.small(href='auth-password-basic.html') Forgot Password?
-                                a.btn.btn-primary(href='index.html') Login
+                                a.small(href='/user/password') Forgot Password?
+                                a.btn.btn-primary(href='/dashboard') Login
                     .card-footer.text-center
                         .small
-                            a(href='auth-register-basic.html') Need an account? Sign up!
+                            a(href='/user/signup') Need an account? Sign up!
 
 //- * * * * * * * *
 //- * * Footer  * *
