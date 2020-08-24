@@ -8,16 +8,20 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     SEND_USER_ID: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     RECV_USER_ID: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     ISPM: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    ISUSER: {
       type: DataTypes.INTEGER(1),
       allowNull: true
     }

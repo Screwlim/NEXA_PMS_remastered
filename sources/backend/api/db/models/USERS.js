@@ -3,7 +3,8 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('USERS', {
     ID: {
-      type: DataTypes.STRING(50),
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
@@ -25,14 +26,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     DEPARTMENT: {
       type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    SALT: {
-      type: DataTypes.STRING(512),
-      allowNull: true
-    },
-    TOKEN: {
-      type: DataTypes.STRING(512),
       allowNull: true
     }
   }, {

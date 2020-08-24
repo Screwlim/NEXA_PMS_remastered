@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     USER_ID: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {

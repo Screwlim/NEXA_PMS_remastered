@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     WRITER: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: {
