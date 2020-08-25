@@ -11,17 +11,6 @@ extends ../layouts/authentication.pug
 block config
     - var pageTitle = 'Welcome to PMS'
 
-include mixins/headers/header-default.pug
-    +header({
-        pageHeaderStyle: 'page-header-dark',
-        pageHeaderBg: 'bg-gradient-primary-to-secondary',
-        pageHeaderSpacing: 'pb-10',
-        pageHeaderContainer: 'container',
-        pageSubtitle: 'Manage your projects like a boss ;)',
-        pageIcon: 'file',
-        breadcrumbs: false,
-        search: false
-})
 
 //- * * * * * * * * * * *
 //- * * Page Content  * *
@@ -31,6 +20,15 @@ include mixins/headers/header-default.pug
 block content
 
     // Main page content
+    include mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: 'Manage your project like a boss!',
+        breadcrumbs: false
+    })
 
     .container.mt-n10
         .card

@@ -22,34 +22,6 @@ mixin topnav(options)
         //- Navbar Items
         ul.navbar-nav.align-items-center.ml-auto
 
-            //- Documentation Dropdown
-            li.nav-item.dropdown.no-caret.mr-3.d-none.d-md-inline
-                a#navbarDropdownDocs.nav-link.dropdown-toggle(href='javascript:void(0);', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                    .d-none.d-md-inline.font-weight-500
-                        | Documentation
-                    i.fas.fa-chevron-right.dropdown-arrow
-                .dropdown-menu.dropdown-menu-right.py-0.mr-sm-n15.mr-lg-0.o-hidden.animated--fade-in-up(aria-labelledby='navbarDropdownDocs')
-                    a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-admin-pro', target='_blank')
-                        .icon-stack.bg-primary-soft.text-primary.mr-4
-                            i(data-feather='book')
-                        div
-                            .small.text-gray-500 Documentation
-                            | Usage instructions and reference
-                    .dropdown-divider.m-0
-                    a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-admin-pro/components', target='_blank')
-                        .icon-stack.bg-primary-soft.text-primary.mr-4
-                            i(data-feather='code')
-                        div
-                            .small.text-gray-500 Components
-                            | Code snippets and reference
-                    .dropdown-divider.m-0
-                    a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-admin-pro/changelog', target='_blank')
-                        .icon-stack.bg-primary-soft.text-primary.mr-4
-                            i(data-feather='file-text')
-                        div
-                            .small.text-gray-500 Changelog
-                            | Updates and changes
-
             //- Search Dropdown (Visible below md breakpoint)
             li.nav-item.dropdown.no-caret.mr-3.d-md-none
                 a#searchDropdown.btn.btn-icon.btn-transparent-dark.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
