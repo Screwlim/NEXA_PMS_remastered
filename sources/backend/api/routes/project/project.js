@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log("password process");
-  res.render('./user/auth-password.html');
+  console.log("project list process");
+  res.render('project/detail.html');
 });
 
 module.exports = router;

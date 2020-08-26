@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log("signup page");
-  res.render('./user/auth-register.html');
+  res.render('auth/auth-register.html');
 });
 
 router.post('/', function(req, res){
@@ -21,7 +21,7 @@ router.post('/', function(req, res){
 		COMPANY: req.body.company,
 		PASSWORD: bcrypt.hashSync(req.body.password, 8)
 	}).then(user => {
-      res.redirect('/index.html');
+      res.redirect('/index');
 	}).catch(err => {
 		res.status(500).send("Fail! Error -> " + err);
 	})
