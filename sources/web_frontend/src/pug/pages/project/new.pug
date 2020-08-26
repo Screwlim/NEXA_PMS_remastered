@@ -13,7 +13,7 @@ extends ../../layouts/dashboard.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
-    - var pageTitle = 'Wizard'
+    - var pageTitle = '프로젝트 시작하기'
 
 //- * * * * * * * *
 //- * * Topnav  * *
@@ -59,7 +59,7 @@ block content
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
         pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
-        pageSubtitle: 'Wizard examples for step-by-step form submission content to use as part of an application',
+        pageSubtitle: '새로운 프로젝트를 생성합니다.',
         pageIcon: 'arrow-right-circle',
         breadcrumbs: false
     })
@@ -76,29 +76,29 @@ block content
                         .wizard-step-icon
                             | 1
                         .wizard-step-text
-                            .wizard-step-text-name Account Setup
-                            .wizard-step-text-details Basic details and information
+                            .wizard-step-text-name Project Info
+                            .wizard-step-text-details 기본정보를 입력합니다.
                     // Wizard navigation item 2
                     a.nav-item.nav-link#wizard2-tab(href='#wizard2', data-toggle='tab', role='tab', aria-controls='wizard2', aria-selected='true')
                         .wizard-step-icon
                             | 2
                         .wizard-step-text
-                            .wizard-step-text-name Billing Details
-                            .wizard-step-text-details Credit card information
+                            .wizard-step-text-name Project Plan
+                            .wizard-step-text-details 프로젝트 기간을 계획합니다.
                     // Wizard navigation item 3
                     a.nav-item.nav-link#wizard3-tab(href='#wizard3', data-toggle='tab', role='tab', aria-controls='wizard3', aria-selected='true')
                         .wizard-step-icon
                             | 3
                         .wizard-step-text
-                            .wizard-step-text-name Preferences
-                            .wizard-step-text-details Notification and account options
+                            .wizard-step-text-name Project Members
+                            .wizard-step-text-details 함께 프로젝트를 진행할 멤버를 초대합니다.
                     // Wizard navigation item 4
                     a.nav-item.nav-link#wizard4-tab(href='#wizard4', data-toggle='tab', role='tab', aria-controls='wizard4', aria-selected='true')
                         .wizard-step-icon
                             | 4
                         .wizard-step-text
                             .wizard-step-text-name Review &amp; Submit
-                            .wizard-step-text-details Review and submit changes
+                            .wizard-step-text-details 입력한 정보를 검토 및 확인합니다.
             .card-body
                 .tab-content#cardTabContent
                     // Wizard tab pane item 1
@@ -106,7 +106,7 @@ block content
                         .row.justify-content-center
                             .col-xxl-6.col-xl-8
                                 h3.text-primary Step 1
-                                h5.card-title Enter your account information
+                                h5.card-title Enter Project Information
                                 form
                                     .form-group
                                         label.small.mb-1(for='inputUsername') Username (how your name will appear to other users on the site)
@@ -144,7 +144,7 @@ block content
                         .row.justify-content-center
                             .col-xxl-6.col-xl-8
                                 h3.text-primary Step 2
-                                h5.card-title Enter your billing details
+                                h5.card-title Set Project Plan
                                 form
                                     .form-row
                                         .form-group.col-md-6
@@ -172,7 +172,7 @@ block content
                         .row.justify-content-center
                             .col-xxl-6.col-xl-8
                                 h3.text-primary Step 3
-                                h5.card-title Choose when you want to receive email notifications
+                                h5.card-title Invite Project Members
                                 form
                                     .custom-control.custom-checkbox
                                         input#checkAccountChanges.custom-control-input(type='checkbox', checked)
