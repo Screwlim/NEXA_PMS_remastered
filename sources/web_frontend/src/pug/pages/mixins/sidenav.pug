@@ -6,7 +6,7 @@ mixin sidenav(options)
             
             .nav.accordion#accordionSidenav
                 
-                a.nav-link(href='dashboard.html')
+                a.nav-link(href='/dashboard')
                     .nav-link-icon
                         i(data-feather='bar-chart')
                     | Dashboard
@@ -22,11 +22,11 @@ mixin sidenav(options)
                         i.fas.fa-angle-down
                 #collapseDashboards.collapse(data-parent='#accordionSidenav')
                     nav.sidenav-menu-nested.nav.accordion#accordionSidenavPages
-                        a.nav-link(href='index.html')
+                        a.nav-link(href='/project/list')
                             | 프로젝트 조회
-                        a.nav-link(href='./project/create-proj.html')
+                        a.nav-link(href='/project/new')
                             | 프로젝트 생성
-                        a.nav-link(href='dashboard-3.html')
+                        a.nav-link(href='/project/delete')
                             | 프로젝트 삭제
 
         .sidenav-footer

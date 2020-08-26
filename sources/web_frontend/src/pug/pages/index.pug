@@ -19,6 +19,10 @@ block config
 //- Define the main `block content` from the layout
 block content
 
+    script.
+        if(newclinet == true){
+            alert("회원가입에 성공하였습니다!");
+        }
     // Main page content
     include mixins/headers/header-default.pug
     +header({
@@ -36,17 +40,17 @@ block content
                 h5.card-title Start managing your project with PMS
                 p.card-text
                     | 당신의 프로젝트를 진행하세요!
-                a.btn.btn-primary.btn-sm(href='./user/login')
+                a.btn.btn-primary.btn-sm(href='/auth/login')
                     i.mr-1(data-feather='external-link')
                     | Sign in with your account
                 p.card-text
                     | 계정이 없으신가요?    
-                a.btn.btn-primary.btn-sm(href='./user/signup')
+                a.btn.btn-primary.btn-sm(href='/auth/signup')
                     i.mr-1(data-feather='external-link')
                     | Sign up for PMS
                 p.card-text
                     | 내 비밀번호가 뭐였지?    
-                a.btn.btn-primary.btn-sm(href='./user/password')
+                a.btn.btn-primary.btn-sm(href='/auth/password')
                     i.mr-1(data-feather='external-link')
                     | 비밀번호 찾기
     //image
