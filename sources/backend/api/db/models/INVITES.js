@@ -20,10 +20,6 @@ module.exports = function(sequelize, DataTypes) {
     ISPM: {
       type: DataTypes.INTEGER(1),
       allowNull: true
-    },
-    ISUSER: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true
     }
   }, {
     sequelize,

@@ -27,10 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     ISPM: {
       type: DataTypes.INTEGER(1),
       allowNull: true
-    },
-    ROLE: {
-      type: DataTypes.STRING(200),
-      allowNull: true
     }
   }, {
     sequelize,

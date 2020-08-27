@@ -20,11 +20,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: true
     },
+    PHONENUMBER: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    COMPANYNUMBER: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
     COMPANY: {
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    DEPARTMENT: {
+    POSITION: {
       type: DataTypes.STRING(50),
       allowNull: true
     }

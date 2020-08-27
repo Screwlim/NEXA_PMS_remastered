@@ -40,7 +40,6 @@ db.COMMENTS_NOTICES = require('./COMMENT_NOTICES')(sequelize, Sequelize);
 db.COMMENTS_ACTIVITY = require('./COMMENTS_ACTIVITY')(sequelize, Sequelize);
 db.COMMENTS_JOB = require('./COMMENTS_JOB')(sequelize, Sequelize);
 db.COMMENTS_TASK = require('./COMMENTS_TASK')(sequelize, Sequelize);
-db.COMPANYS = require('./COMPANYS')(sequelize, Sequelize);
 db.FILE = require('./FILE')(sequelize, Sequelize);
 db.INVITES = require('./INVITES')(sequelize, Sequelize);
 db.JOBS = require('./JOBS')(sequelize, Sequelize);

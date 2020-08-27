@@ -22,11 +22,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(200),
       allowNull: true
     },
-    START: {
+    START_DATE: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    END: {
+    END_DATE: {
       type: DataTypes.DATE,
       allowNull: true
     },
