@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Wizard - Nexa PMS</title>
+        <title>프로젝트 시작하기 - Nexa PMS</title>
         <link href="/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
@@ -115,11 +115,11 @@
                             </div>
                         </h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#!">
+                        <a class="dropdown-item" href="/user/profile">
                             <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                             Account
                         </a>
-                        <a class="dropdown-item" href="#!">
+                        <a class="dropdown-item" href="/">
                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                             Logout
                         </a>
@@ -132,7 +132,7 @@
                 <nav class="sidenav shadow-right sidenav-light">
                     <div class="sidenav-menu">
                         <div class="nav accordion" id="accordionSidenav">
-                            <a class="nav-link" href="dashboard.html">
+                            <a class="nav-link" href="/dashboard">
                                 <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                                 Dashboard
                             </a>
@@ -144,9 +144,9 @@
                             </a>
                             <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="index.html">프로젝트 조회</a>
-                                    <a class="nav-link" href="./project/create-proj.html">프로젝트 생성</a>
-                                    <a class="nav-link" href="dashboard-3.html">프로젝트 삭제</a>
+                                    <a class="nav-link" href="/project/list">프로젝트 조회</a>
+                                    <a class="nav-link" href="/project/new">프로젝트 생성</a>
+                                    <a class="nav-link" href="/project/delete">프로젝트 삭제</a>
                                 </nav>
                             </div>
                         </div>
@@ -168,9 +168,9 @@
                                     <div class="col-auto mt-4">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="arrow-right-circle"></i></div>
-                                            Wizard
+                                            프로젝트 시작하기
                                         </h1>
-                                        <div class="page-header-subtitle">Wizard examples for step-by-step form submission content to use as part of an application</div>
+                                        <div class="page-header-subtitle">새로운 프로젝트를 생성합니다.</div>
                                     </div>
                                 </div>
                             </div>
@@ -187,32 +187,32 @@
                                     <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1" data-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
                                         <div class="wizard-step-icon">1</div>
                                         <div class="wizard-step-text">
-                                            <div class="wizard-step-text-name">Account Setup</div>
-                                            <div class="wizard-step-text-details">Basic details and information</div>
+                                            <div class="wizard-step-text-name">Project Info</div>
+                                            <div class="wizard-step-text-details">기본정보를 입력합니다.</div>
                                         </div>
                                     </a>
                                     <!-- Wizard navigation item 2-->
                                     <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab" role="tab" aria-controls="wizard2" aria-selected="true">
                                         <div class="wizard-step-icon">2</div>
                                         <div class="wizard-step-text">
-                                            <div class="wizard-step-text-name">Billing Details</div>
-                                            <div class="wizard-step-text-details">Credit card information</div>
+                                            <div class="wizard-step-text-name">Project Plan</div>
+                                            <div class="wizard-step-text-details">프로젝트 기간을 계획합니다.</div>
                                         </div>
                                     </a>
                                     <!-- Wizard navigation item 3-->
                                     <a class="nav-item nav-link" id="wizard3-tab" href="#wizard3" data-toggle="tab" role="tab" aria-controls="wizard3" aria-selected="true">
                                         <div class="wizard-step-icon">3</div>
                                         <div class="wizard-step-text">
-                                            <div class="wizard-step-text-name">Preferences</div>
-                                            <div class="wizard-step-text-details">Notification and account options</div>
+                                            <div class="wizard-step-text-name">Project Members</div>
+                                            <div class="wizard-step-text-details">함께 프로젝트를 진행할 멤버를 초대합니다.</div>
                                         </div>
                                     </a>
                                     <!-- Wizard navigation item 4-->
                                     <a class="nav-item nav-link" id="wizard4-tab" href="#wizard4" data-toggle="tab" role="tab" aria-controls="wizard4" aria-selected="true">
                                         <div class="wizard-step-icon">4</div>
                                         <div class="wizard-step-text">
-                                            <div class="wizard-step-text-name">Review &amp; Submit</div>
-                                            <div class="wizard-step-text-details">Review and submit changes</div>
+                                            <div class="wizard-step-text-name">검토 &amp; 생성</div>
+                                            <div class="wizard-step-text-details">입력한 정보를 검토 및 확인합니다.</div>
                                         </div>
                                     </a>
                                 </div>
@@ -224,44 +224,22 @@
                                         <div class="row justify-content-center">
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Step 1</h3>
-                                                <h5 class="card-title">Enter your account information</h5>
+                                                <h5 class="card-title">Enter Project Information</h5>
                                                 <form>
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                                        <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username" />
+                                                        <label class="small mb-1" for="inputUsername">프로젝트 명</label>
+                                                        <input class="form-control" id="inputProjectname" type="text" name="project_name" placeholder="Enter your username" />
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputFirstName">First name</label>
-                                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie" />
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputLastName">Last name</label>
-                                                            <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna" />
+                                                            <label class="small mb-1" for="PMname">총괄 책임자</label>
+                                                            <input class="form-control" id="inputPMName" type="text" name="pm_name" placeholder="Enter your first name" />
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap" />
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputLocation">Location</label>
-                                                            <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6 mb-md-0">
-                                                            <label class="small mb-1" for="inputPhone">Phone number</label>
-                                                            <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567" />
-                                                        </div>
-                                                        <div class="form-group col-md-6 mb-0">
-                                                            <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                                            <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988" />
+                                                        <div class="form-group col-md-12">
+                                                            <label class="small mb-1" for="Description">요약</label>
+                                                            <input class="form-control" id="inputDesciption" type="textarea" rows="3" placeholder="Enter your last name" value="Description..." />
                                                         </div>
                                                     </div>
                                                     <hr class="my-4" />
@@ -278,36 +256,17 @@
                                         <div class="row justify-content-center">
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Step 2</h3>
-                                                <h5 class="card-title">Enter your billing details</h5>
+                                                <h5 class="card-title">Set Project Plan</h5>
                                                 <form>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputBillingName">Name on card</label>
-                                                            <input class="form-control" id="inputBillingName" type="text" placeholder="Enter the name as it appears on your card" value="Valerie Luna" />
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label class="small mb-1" for="inputBillingCCNumber">Card number</label>
-                                                            <input class="form-control" id="inputBillingCCNumber" type="text" placeholder="Enter your credit card number" value="4444 3333 2222 1111" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-4 mb-4 mb-md-0">
-                                                            <label class="small mb-1" for="inputOrgName">Card expiry month</label>
-                                                            <input class="form-control" id="inputOrgName" type="text" placeholder="Enter expiry month" value="06" />
-                                                        </div>
-                                                        <div class="form-group col-md-4 mb-4 mb-md-0">
-                                                            <label class="small mb-1" for="inputLocation">Card expiry year</label>
-                                                            <input class="form-control" id="inputLocation" type="text" placeholder="Enter expiry year" value="2024" />
-                                                        </div>
-                                                        <div class="form-group col-md-4 mb-0">
-                                                            <label class="small mb-1" for="inputLocation">CVV Number</label>
-                                                            <input class="form-control" id="inputLocation" type="password" placeholder="Enter CVV number" value="111" />
-                                                        </div>
-                                                    </div>
+                                                    <button class="btn btn-white btn-sm line-height-normal p-3" id="reportrange">
+                                                        <i class="mr-2 text-primary" data-feather="calendar"></i>
+                                                        <span></span>
+                                                        <i class="ml-1" data-feather="chevron-down"></i>
+                                                    </button>
                                                     <hr class="my-4" />
                                                     <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light" type="button">Previous</button>
-                                                        <button class="btn btn-primary" type="button">Next</button>
+                                                        <button class="btn btn-light" type="button">이전 단계로</button>
+                                                        <button class="btn btn-primary" type="button">다음 단계로</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -318,36 +277,141 @@
                                         <div class="row justify-content-center">
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Step 3</h3>
-                                                <h5 class="card-title">Choose when you want to receive email notifications</h5>
+                                                <h5 class="card-title">Invite Project Members</h5>
+                                                <div class="card mb-4">
+                                                    <div class="card-header">User List</div>
+                                                    <div class="card-body">
+                                                        <div class="datatable">
+                                                            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>이름</th>
+                                                                        <th>회사</th>
+                                                                        <th>소속부서</th>
+                                                                        <th>직책</th>
+                                                                        <th>email</th>
+                                                                        <th>비고</th>
+                                                                        <th>Actions</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>이름</th>
+                                                                        <th>회사</th>
+                                                                        <th>소속부서</th>
+                                                                        <th>직책</th>
+                                                                        <th>email</th>
+                                                                        <th>비고</th>
+                                                                        <th>Actions</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>Tiger Nixon</td>
+                                                                        <td>System Architect</td>
+                                                                        <td>IT</td>
+                                                                        <td>system architecture</td>
+                                                                        <td>tiger@gmail.com</td>
+                                                                        <td><div class="badge badge-primary badge-pill">Full-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Garrett Winters</td>
+                                                                        <td>Accountant</td>
+                                                                        <td>회계부</td>
+                                                                        <td>Accountant</td>
+                                                                        <td>seller2@naver.com</td>
+                                                                        <td><div class="badge badge-warning badge-pill">Pending</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Ashton Cox</td>
+                                                                        <td>Junior Technical Author</td>
+                                                                        <td>Financial Analysis</td>
+                                                                        <td>intern</td>
+                                                                        <td>ac2442@gmail.cpm</td>
+                                                                        <td><div class="badge badge-secondary badge-pill">Part-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Cedric Kelly</td>
+                                                                        <td>Senior Javascript Developer</td>
+                                                                        <td>CEO</td>
+                                                                        <td>CEO</td>
+                                                                        <td>juu143@knuar.com</td>
+                                                                        <td><div class="badge badge-info badge-pill">Contract</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Airi Satou</td>
+                                                                        <td>Accountant</td>
+                                                                        <td>marketing</td>
+                                                                        <td>Accountant member</td>
+                                                                        <td>4je21@mail.com</td>
+                                                                        <td><div class="badge badge-primary badge-pill">Full-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Brielle Williamson</td>
+                                                                        <td>Integration Specialist</td>
+                                                                        <td>IT</td>
+                                                                        <td>project manager</td>
+                                                                        <td>4882jj@melon.com</td>
+                                                                        <td><div class="badge badge-primary badge-pill">Full-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Herrod Chandler</td>
+                                                                        <td>Sales Assistant</td>
+                                                                        <td>Sales</td>
+                                                                        <td>Sales Assistant</td>
+                                                                        <td>dj4h24@naver.com</td>
+                                                                        <td><div class="badge badge-primary badge-pill">Full-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Rhona Davidson</td>
+                                                                        <td>Integration Specialist</td>
+                                                                        <td>IT</td>
+                                                                        <td>Junior developer</td>
+                                                                        <td>isgood2@gmail.com</td>
+                                                                        <td><div class="badge badge-primary badge-pill">Full-time</div></td>
+                                                                        <td>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="more-vertical"></i></button>
+                                                                            <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <form>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkAccountChanges" type="checkbox" checked />
-                                                        <label class="custom-control-label" for="checkAccountChanges">Changes made to your account</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkAccountGroups" type="checkbox" checked />
-                                                        <label class="custom-control-label" for="checkAccountGroups">Changes are made to groups you're part of</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkProductUpdates" type="checkbox" checked />
-                                                        <label class="custom-control-label" for="checkProductUpdates">Product updates for products you've purchased or starred</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkProductNew" type="checkbox" checked />
-                                                        <label class="custom-control-label" for="checkProductNew">Information on new products and services</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkPromotional" type="checkbox" />
-                                                        <label class="custom-control-label" for="checkPromotional">Marketing and promotional offers</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" id="checkSecurity" type="checkbox" checked disabled />
-                                                        <label class="custom-control-label" for="checkSecurity">Security alerts</label>
-                                                    </div>
                                                     <hr class="my-4" />
                                                     <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light" type="button">Previous</button>
-                                                        <button class="btn btn-primary" type="button">Next</button>
+                                                        <button class="btn btn-light" type="button">이전 단계로</button>
+                                                        <button class="btn btn-primary" type="button">다음 단계로</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -397,8 +461,8 @@
                                                 </div>
                                                 <hr class="my-4" />
                                                 <div class="d-flex justify-content-between">
-                                                    <button class="btn btn-light" type="button">Previous</button>
-                                                    <button class="btn btn-primary" type="button">Submit</button>
+                                                    <button class="btn btn-light" type="button">이전 단계로</button>
+                                                    <button class="btn btn-primary" type="button">생성하기</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -424,6 +488,15 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/chart-area-demo.js"></script>
+        <script src="/assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/datatables-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/date-range-picker-demo.js"></script>
     </body>
 </html>

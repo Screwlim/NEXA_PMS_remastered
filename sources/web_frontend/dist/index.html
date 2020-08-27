@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Welcome to PMS - Nexa PMS</title>
         <link href="/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
@@ -16,6 +16,11 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
+                    <script>
+                        if (newclinet == true) {
+                            alert('회원가입에 성공하였습니다!');
+                        }
+                    </script>
                     <!-- Main page content-->
                     <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
                         <div class="container">
@@ -34,17 +39,17 @@
                             <div class="card-body">
                                 <h5 class="card-title">Start managing your project with PMS</h5>
                                 <p class="card-text">당신의 프로젝트를 진행하세요!</p>
-                                <a class="btn btn-primary btn-sm" href="./user/login">
+                                <a class="btn btn-primary btn-sm" href="/auth/login">
                                     <i class="mr-1" data-feather="external-link"></i>
                                     Sign in with your account
                                 </a>
                                 <p class="card-text">계정이 없으신가요?</p>
-                                <a class="btn btn-primary btn-sm" href="./user/signup">
+                                <a class="btn btn-primary btn-sm" href="/auth/signup">
                                     <i class="mr-1" data-feather="external-link"></i>
                                     Sign up for PMS
                                 </a>
                                 <p class="card-text">내 비밀번호가 뭐였지?</p>
-                                <a class="btn btn-primary btn-sm" href="./user/password">
+                                <a class="btn btn-primary btn-sm" href="/auth/password">
                                     <i class="mr-1" data-feather="external-link"></i>
                                     비밀번호 찾기
                                 </a>
@@ -72,6 +77,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
     </body>
 </html>

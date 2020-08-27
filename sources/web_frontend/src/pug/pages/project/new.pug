@@ -97,7 +97,7 @@ block content
                         .wizard-step-icon
                             | 4
                         .wizard-step-text
-                            .wizard-step-text-name Review &amp; Submit
+                            .wizard-step-text-name 검토 &amp; 생성
                             .wizard-step-text-details 입력한 정보를 검토 및 확인합니다.
             .card-body
                 .tab-content#cardTabContent
@@ -109,32 +109,16 @@ block content
                                 h5.card-title Enter Project Information
                                 form
                                     .form-group
-                                        label.small.mb-1(for='inputUsername') Username (how your name will appear to other users on the site)
-                                        input#inputUsername.form-control(type='text', placeholder='Enter your username', value='username')
+                                        label.small.mb-1(for='inputUsername') 프로젝트 명
+                                        input#inputProjectname.form-control(type='text', name='project_name',placeholder='Enter your username')
                                     .form-row
                                         .form-group.col-md-6
-                                            label.small.mb-1(for='inputFirstName') First name
-                                            input#inputFirstName.form-control(type='text', placeholder='Enter your first name', value='Valerie')
-                                        .form-group.col-md-6
-                                            label.small.mb-1(for='inputLastName') Last name
-                                            input#inputLastName.form-control(type='text', placeholder='Enter your last name', value='Luna')
+                                            label.small.mb-1(for='PMname') 총괄 책임자
+                                            input#inputPMName.form-control(type='text', name='pm_name',placeholder='Enter your first name')
                                     .form-row
-                                        .form-group.col-md-6
-                                            label.small.mb-1(for='inputOrgName') Organization name
-                                            input#inputOrgName.form-control(type='text', placeholder='Enter your organization name', value='Start Bootstrap')
-                                        .form-group.col-md-6
-                                            label.small.mb-1(for='inputLocation') Location
-                                            input#inputLocation.form-control(type='text', placeholder='Enter your location', value='San Francisco, CA')
-                                    .form-group
-                                        label.small.mb-1(for='inputEmailAddress') Email address
-                                        input#inputEmailAddress.form-control(type='email', placeholder='Enter your email address', value='name@example.com')
-                                    .form-row
-                                        .form-group.col-md-6.mb-md-0
-                                            label.small.mb-1(for='inputPhone') Phone number
-                                            input#inputPhone.form-control(type='tel', placeholder='Enter your phone number', value='555-123-4567')
-                                        .form-group.col-md-6.mb-0
-                                            label.small.mb-1(for='inputBirthday') Birthday
-                                            input#inputBirthday.form-control(type='text', name='birthday', placeholder='Enter your birthday', value='06/10/1988')
+                                        .form-group.col-md-12
+                                            label.small.mb-1(for='Description') 요약
+                                            input#inputDesciption.form-control(type='textarea',rows="3", placeholder='Enter your last name', value='Description...')
                                     hr.my-4
                                     .d-flex.justify-content-between
                                         button.btn.btn-light.disabled(type='button', disabled) Previous
@@ -146,56 +130,30 @@ block content
                                 h3.text-primary Step 2
                                 h5.card-title Set Project Plan
                                 form
-                                    .form-row
-                                        .form-group.col-md-6
-                                            label.small.mb-1(for='inputBillingName') Name on card
-                                            input#inputBillingName.form-control(type='text', placeholder='Enter the name as it appears on your card', value='Valerie Luna')
-                                        .form-group.col-md-6
-                                            label.small.mb-1(for='inputBillingCCNumber') Card number
-                                            input#inputBillingCCNumber.form-control(type='text', placeholder='Enter your credit card number', value='4444 3333 2222 1111')
-                                    .form-row
-                                        .form-group.col-md-4.mb-4.mb-md-0
-                                            label.small.mb-1(for='inputOrgName') Card expiry month
-                                            input#inputOrgName.form-control(type='text', placeholder='Enter expiry month', value='06')
-                                        .form-group.col-md-4.mb-4.mb-md-0
-                                            label.small.mb-1(for='inputLocation') Card expiry year
-                                            input#inputLocation.form-control(type='text', placeholder='Enter expiry year', value='2024')
-                                        .form-group.col-md-4.mb-0
-                                            label.small.mb-1(for='inputLocation') CVV Number
-                                            input#inputLocation.form-control(type='password', placeholder='Enter CVV number', value='111')
+                                    button#reportrange.btn.btn-white.btn-sm.line-height-normal.p-3
+                                        i.mr-2.text-primary(data-feather='calendar')
+                                        span
+                                        i.ml-1(data-feather='chevron-down')
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light(type='button') Previous
-                                        button.btn.btn-primary(type='button') Next
+                                        button.btn.btn-light(type='button') 이전 단계로
+                                        button.btn.btn-primary(type='button') 다음 단계로
                     // Wizard tab pane item 3
                     .tab-pane.py-5.py-xl-10.fade#wizard3(role='tabpanel', aria-labelledby='wizard3-tab')
                         .row.justify-content-center
                             .col-xxl-6.col-xl-8
                                 h3.text-primary Step 3
                                 h5.card-title Invite Project Members
+                                .card.mb-4
+                                    .card-header
+                                        | User List
+                                    .card-body
+                                        include ../includes/datatable-people.pug
                                 form
-                                    .custom-control.custom-checkbox
-                                        input#checkAccountChanges.custom-control-input(type='checkbox', checked)
-                                        label.custom-control-label(for='checkAccountChanges') Changes made to your account
-                                    .custom-control.custom-checkbox
-                                        input#checkAccountGroups.custom-control-input(type='checkbox', checked)
-                                        label.custom-control-label(for='checkAccountGroups') Changes are made to groups you're part of
-                                    .custom-control.custom-checkbox
-                                        input#checkProductUpdates.custom-control-input(type='checkbox', checked)
-                                        label.custom-control-label(for='checkProductUpdates') Product updates for products you've purchased or starred
-                                    .custom-control.custom-checkbox
-                                        input#checkProductNew.custom-control-input(type='checkbox', checked)
-                                        label.custom-control-label(for='checkProductNew') Information on new products and services
-                                    .custom-control.custom-checkbox
-                                        input#checkPromotional.custom-control-input(type='checkbox')
-                                        label.custom-control-label(for='checkPromotional') Marketing and promotional offers
-                                    .custom-control.custom-checkbox
-                                        input#checkSecurity.custom-control-input(type='checkbox', checked, disabled)
-                                        label.custom-control-label(for='checkSecurity') Security alerts
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light(type='button') Previous
-                                        button.btn.btn-primary(type='button') Next
+                                        button.btn.btn-light(type='button') 이전 단계로
+                                        button.btn.btn-primary(type='button') 다음 단계로
                     // Wizard tab pane item 4
                     .tab-pane.py-5.py-xl-10.fade#wizard4(role='tabpanel', aria-labelledby='wizard4-tab')
                         .row.justify-content-center
@@ -241,8 +199,8 @@ block content
 
                                 hr.my-4
                                 .d-flex.justify-content-between
-                                    button.btn.btn-light(type='button') Previous
-                                    button.btn.btn-primary(type='button') Submit
+                                    button.btn.btn-light(type='button') 이전 단계로
+                                    button.btn.btn-primary(type='button') 생성하기
 
 //- * * * * * * * *
 //- * * Footer  * *
@@ -257,3 +215,21 @@ block footer
     +footer({
         footerStyle: 'footer-light'
     })
+
+append scripts
+    //- Load Moment.js and Date Range Picker via CDN
+    //- Load Chart.js via CDN
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
+    //- Load custom Chart.js styling and demo data
+    script(src='/assets/demo/chart-area-demo.js')
+    script(src='/assets/demo/chart-bar-demo.js')
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables-demo.js')
+    //- Load Moment.js and Date Range Picker via CDN
+    script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
+    //- Load Date Range Picker initialization script
+    script(src='/assets/demo/date-range-picker-demo.js')

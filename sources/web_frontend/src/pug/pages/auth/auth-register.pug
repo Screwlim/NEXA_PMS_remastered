@@ -30,40 +30,52 @@ block content
                     .card-body
                         // Registration form
                         form(method="POST")
-                            // Form Row
-                            .form-row
-                                .col-md-6
-                                    // Form Group (first name)
-                                    .form-group
-                                        label.small.mb-1(for='inputFirstName') Name
-                                        input#inputName.form-control.py-4(type='text',name='name',placeholder='Enter your name')
-                                .col-md-6
-                                    // Form Group (last name)
-                                    .form-group
-                                        label.small.mb-1(for='inputCompany') Company
-                                        input#inputCompany.form-control.py-4(type='text',name='company',placeholder='Enter Company name')
                             // Form Group (email address)            
                             .form-group
-                                label.small.mb-1(for='inputEmailAddress') Email
-                                input#inputEmailAddress.form-control.py-4(type='email',name='email',aria-describedby='emailHelp',placeholder='Enter email address')
+                                label.small.mb-1(for='Email') 아이디
+                                input#inputEmailAddress.form-control.py-4(type='email',name='email',aria-describedby='emailHelp',placeholder='아이디로 사용하실 이메일을 입력해주세요')
+                            .form-row
+                                .col-md-6
+                                    .form-group
+                                        label.small.mb-1(for='Name') 이름
+                                        input#inputName.form-control.py-4(type='text',name='name',placeholder='이름을 입력해주세요')
+                            //Company info
+                            .form-row
+                                .col-md-6                            
+                                    .form-group
+                                        label.small.mb-1(for='Company') 회사명
+                                        input#inputCompany.form-control.py-4(type='text',name='company',placeholder='회사명을 입력해주세요')
+                                .col-md-6                            
+                                    .form-group
+                                        label.small.mb-1(for='Position') 직책
+                                        input#inputPosition.form-control.py-4(type='text',name='position',placeholder='사내 직책/직급을 입력해주세요') 
+                            .form-row                                
+                                .col-md-6                                                        
+                                    .form-group
+                                        label.small.mb-1(for='PhoneNumber') 휴대전화
+                                        input#inputPhoneNumber.form-control.py-4(type='text',name='phonenumber',placeholder='휴대전화 번호를 입력해주세요')
+                                .col-md-6                            
+                                    .form-group
+                                        label.small.mb-1(for='CompanyNumber') 사무실 번호
+                                        input#inputCompany.form-control.py-4(type='text',name='companynumber',placeholder='사무실 번호를 입력해주세요')
                             // Form Row    
                             .form-row
                                 .col-md-6
                                     // Form Group (password)
                                     .form-group
-                                        label.small.mb-1(for='inputPassword') Password
-                                        input#inputPassword.form-control.py-4(type='password',name='password',placeholder='Enter password')
+                                        label.small.mb-1(for='Password') 비밀번호
+                                        input#inputPassword.form-control.py-4(type='password',name='password',placeholder='비밀번호를 입력해주세요')
                                 .col-md-6
                                     // Form Group (confirm password)
                                     .form-group
-                                        label.small.mb-1(for='inputConfirmPassword') Confirm Password
-                                        input#inputConfirmPassword.form-control.py-4(type='password',name='confirmpassword',placeholder='Confirm password')
+                                        label.small.mb-1(for='ConfirmPassword') 비밀번호 확인
+                                        input#inputConfirmPassword.form-control.py-4(type='password',name='confirmpassword',placeholder='비밀번호를 다시 입력해주세요')
                             // Form Group (create account submit)
                             .form-group.mt-4.mb-0
-                                BUTTON.btn.btn-primary.btn-block(type="submit") Create Account
+                                BUTTON.btn.btn-primary.btn-block(type="submit") 회원가입
                     .card-footer.text-center
                         .small
-                            a(href='/auth/login') Have an account? Go to login
+                            a(href='/auth/login') 계정이 있으신가요? 로그인 하러가기
 
 //- * * * * * * * *
 //- * * Footer  * *
