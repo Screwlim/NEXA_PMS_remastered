@@ -11,19 +11,14 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  console.log("login processing");
-  res.redirect('/dashboard');
+  console.log("login processing")
+  USER.findOne({
+    where: {
+      EMAIL: req.body.email
+    }
+  }).then(USER => {
+    res.redirect('/dashboard')
+  })
 })
-
-// router.post('/', function(req, res) {
-//   console.log("login processing")
-//   USER.findOne({
-//     where: {
-//       EMAIL: req.body.email
-//     }
-//   }).then(USER => {
-//     res.render('dashboar.html')
-//   })
-// })
 
 module.exports = router;
