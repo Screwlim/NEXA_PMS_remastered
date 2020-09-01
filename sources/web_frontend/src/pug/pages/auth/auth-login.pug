@@ -21,12 +21,23 @@ block config
 block content
     .container
         .row.justify-content-center
-            .col-lg-5
-                // Basic login form
-                .card.shadow-lg.border-0.rounded-lg.mt-5
-                    .card-header.justify-content-center
-                        h3.font-weight-light.my-4 Login
-                    .card-body
+            .col-xl-5.col-lg-6.col-md-8.col-sm-11
+                // Social login form
+                .card.my-5
+                    .card-body.p-5.text-center
+                        .h3.font-weight-light.mb-3 Sign In
+                        // Social login links
+                        a.btn.btn-icon.btn-facebook.mx-1(href='#!')
+                            i.fab.fa-facebook-f.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-github.mx-1(href='#!')
+                            i.fab.fa-github.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-google.mx-1(href='#!')
+                            i.fab.fa-google.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-twitter.mx-1(href='#!')
+                            i.fab.fa-twitter.fa-fw.fa-sm
+                    // Basic login form
+                    hr.my-0
+                    .card-body.p-5
                         // Login form
                         form(method="POST")
                             // Form Group (email address)
@@ -46,8 +57,9 @@ block content
                             .form-group.d-flex.align-items-center.justify-content-between.mt-4.mb-0
                                 a.small(href='/auth/password') 비밀번호를 잊어버리셨나요?
                                 button.btn.btn-primary(type="submit") Login
-                    .card-footer.text-center
-                        .small
+                    hr.my-0
+                    .card-body.px-5.py-4
+                        .small.text-center
                             a(href='/auth/signup') Need an account? Sign up!
 
 //- * * * * * * * *

@@ -22,12 +22,23 @@ block config
 block content
     .container
         .row.justify-content-center
-            .col-lg-7
-                // Basic registration form
-                .card.shadow-lg.border-0.rounded-lg.mt-5
-                    .card-header.justify-content-center
-                        h3.font-weight-light.my-4 Create Account
-                    .card-body
+            .col-xl-8.col-lg-9
+                // Social registration form
+                .card.my-5
+                    .card-body.p-5.text-center
+                        .h3.font-weight-light.mb-3 Create an Account
+                        .small.text-muted.mb-2 Sign in using...
+                        // Social registration links
+                        a.btn.btn-icon.btn-facebook.mx-1(href='#!')
+                            i.fab.fa-facebook-f.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-github.mx-1(href='#!')
+                            i.fab.fa-github.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-google.mx-1(href='#!')
+                            i.fab.fa-google.fa-fw.fa-sm
+                        a.btn.btn-icon.btn-twitter.mx-1(href='#!')
+                            i.fab.fa-twitter.fa-fw.fa-sm
+                    hr.my-0
+                    .card-body.p-5
                         // Registration form
                         form(method="POST")
                             // Form Group (email address)            
