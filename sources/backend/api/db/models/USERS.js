@@ -35,6 +35,15 @@ module.exports = function(sequelize, DataTypes) {
     POSITION: {
       type: DataTypes.STRING(50),
       allowNull: true
+    },
+    PROVIDER: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+      defaultValue: 'local',
+    },
+    SNSID:{
+      type: DataTypes.STRING(30),
+      allowNull: true,
     }
   }, {
     sequelize,

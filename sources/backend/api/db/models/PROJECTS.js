@@ -54,6 +54,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'PROJECTS'
+    tableName: 'PROJECTS',
+    timestamps: false
   });
 };
