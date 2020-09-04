@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log("project create process");
-  res.render('project/new.html');
+  console.log("project list process");
+  res.render('projects/list.html');
 });
 
 module.exports = router;
