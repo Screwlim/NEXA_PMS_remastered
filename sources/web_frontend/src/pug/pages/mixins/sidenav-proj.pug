@@ -1,0 +1,29 @@
+mixin sidenav(options)
+
+    nav.sidenav.shadow-right(class=options.sidenavStyle)
+            
+        .sidenav-menu
+            
+            .nav.accordion#accordionSidenav
+                
+                a.nav-link(href='/dashboard')
+                    .nav-link-icon
+                        i(data-feather='bar-chart')
+                    | Main Dashboard로 돌아가기
+
+                .sidenav-menu-heading
+                    | 프로젝트 관리
+                a.nav-link(href='/project')
+                    | 프로젝트 Dashboard    
+                a.nav-link(href='/project/notices')
+                    | 공지사항
+                a.nav-link(href='/project/job')
+                    | 업무조회
+                a.nav-link(href='/project/members')
+                    | 멤버관리
+
+        .sidenav-footer
+            
+            .sidenav-footer-content
+                .sidenav-footer-subtitle Logged in as:
+                .sidenav-footer-title valerie

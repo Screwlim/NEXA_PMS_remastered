@@ -10,6 +10,11 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='bar-chart')
                     | Dashboard
+                
+                a.nav-link(href='/project')
+                    .nav-link-icon
+                        i(data-feather='bar-chart')
+                    | project_detail
 
                 .sidenav-menu-heading
                     | 프로젝트
@@ -22,15 +27,15 @@ mixin sidenav(options)
                         i.fas.fa-angle-down
                 #collapseDashboards.collapse(data-parent='#accordionSidenav')
                     nav.sidenav-menu-nested.nav.accordion#accordionSidenavPages
-                        a.nav-link(href='/project/list')
+                        a.nav-link(href='/projects/list')
                             | 프로젝트 조회
-                        a.nav-link(href='/project/new')
+                        a.nav-link(href='/projects/new')
                             | 프로젝트 생성
-                        a.nav-link(href='/project/delete')
+                        a.nav-link(href='/projects/delete')
                             | 프로젝트 삭제
 
         .sidenav-footer
             
             .sidenav-footer-content
                 .sidenav-footer-subtitle Logged in as:
-                .sidenav-footer-title Valerie Luna
+                .sidenav-footer-title valerie
