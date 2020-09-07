@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('../middleware');
 const { USERS } = require('../../db/models');
-const passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
