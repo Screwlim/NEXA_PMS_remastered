@@ -119,7 +119,7 @@
                             <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                             Account
                         </a>
-                        <a class="dropdown-item" href="/">
+                        <a class="dropdown-item" href="/auth/logout">
                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                             Logout
                         </a>
@@ -136,6 +136,10 @@
                                 <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="/project">
+                                <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                                project_detail
+                            </a>
                             <div class="sidenav-menu-heading">프로젝트</div>
                             <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
                                 <div class="nav-link-icon"><i data-feather="activity"></i></div>
@@ -144,9 +148,9 @@
                             </a>
                             <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="/project/list">프로젝트 조회</a>
-                                    <a class="nav-link" href="/project/new">프로젝트 생성</a>
-                                    <a class="nav-link" href="/project/delete">프로젝트 삭제</a>
+                                    <a class="nav-link" href="/projects/list">프로젝트 조회</a>
+                                    <a class="nav-link" href="/projects/new">프로젝트 생성</a>
+                                    <a class="nav-link" href="/projects/delete">프로젝트 삭제</a>
                                 </nav>
                             </div>
                         </div>
@@ -154,7 +158,7 @@
                     <div class="sidenav-footer">
                         <div class="sidenav-footer-content">
                             <div class="sidenav-footer-subtitle">Logged in as:</div>
-                            <div class="sidenav-footer-title">Valerie Luna</div>
+                            <div class="sidenav-footer-title">valerie</div>
                         </div>
                     </div>
                 </nav>
@@ -227,26 +231,23 @@
                                                 <h5 class="card-title">Enter Project Information</h5>
                                                 <form>
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="inputUsername">프로젝트 명</label>
-                                                        <input class="form-control" id="inputProjectname" type="text" name="project_name" placeholder="Enter your username" />
+                                                        <label class="small mb-1" for="inputProjectname">프로젝트 명</label>
+                                                        <input class="form-control" id="inputProjectname" type="text" name="project_name" placeholder="프로젝트의 이름을 입력하세요." />
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label class="small mb-1" for="PMname">총괄 책임자</label>
-                                                            <input class="form-control" id="inputPMName" type="text" name="pm_name" placeholder="Enter your first name" />
+                                                            <input class="form-control" id="inputPMName" type="text" name="pm_name" placeholder="책임자의 이름을 입력하세요." />
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-12">
-                                                            <label class="small mb-1" for="Description">요약</label>
-                                                            <input class="form-control" id="inputDesciption" type="textarea" rows="3" placeholder="Description..." />
+                                                            <label for="exampleFormControlTextarea1">요약</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="프로젝트에 대한 소개를 입력하세요."></textarea>
                                                         </div>
                                                     </div>
                                                     <hr class="my-4" />
-                                                    <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light disabled" type="button" disabled>Previous</button>
-                                                        <button class="btn btn-primary" type="button">Next</button>
-                                                    </div>
+                                                    <div class="d-flex justify-content-between"><button class="btn btn-primary btnNext" type="button" href="#wizard2">다음 단계로</button></div>
                                                 </form>
                                             </div>
                                         </div>
@@ -258,15 +259,22 @@
                                                 <h3 class="text-primary">Step 2</h3>
                                                 <h5 class="card-title">Set Project Plan</h5>
                                                 <form>
-                                                    <button class="btn btn-white btn-sm line-height-normal p-3" id="reportrange">
-                                                        <i class="mr-2 text-primary" data-feather="calendar"></i>
-                                                        <span></span>
-                                                        <i class="ml-1" data-feather="chevron-down"></i>
-                                                    </button>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="small mb-1" for="start_date">시작 날짜</label>
+                                                            <input class="form-contorl" id="inputStartdate" type="date" name="start_date" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="small mb-1" for="end_date">종료 날짜</label>
+                                                            <input class="form-contorl" id="inputEnddate" type="date" name="end_date" />
+                                                        </div>
+                                                    </div>
                                                     <hr class="my-4" />
                                                     <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light" type="button">이전 단계로</button>
-                                                        <button class="btn btn-primary" type="button">다음 단계로</button>
+                                                        <button class="btn btn-light btnPrevious" type="button" href="#wizard1">이전 단계로</button>
+                                                        <button class="btn btn-primary btnNext" type="button" href="#wizard3">다음 단계로</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -275,7 +283,7 @@
                                     <!-- Wizard tab pane item 3-->
                                     <div class="tab-pane py-5 py-xl-10 fade" id="wizard3" role="tabpanel" aria-labelledby="wizard3-tab">
                                         <div class="row justify-content-center">
-                                            <div class="col-xxl-6 col-xl-8">
+                                            <div class="col-xxl-10 col-xl-12">
                                                 <h3 class="text-primary">Step 3</h3>
                                                 <h5 class="card-title">Invite Project Members</h5>
                                                 <div class="card mb-4">
@@ -405,15 +413,14 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
+                                                        <button class="btn btn-success" type="button">메일로 초대하기</button>
                                                     </div>
                                                 </div>
-                                                <form>
-                                                    <hr class="my-4" />
-                                                    <div class="d-flex justify-content-between">
-                                                        <button class="btn btn-light" type="button">이전 단계로</button>
-                                                        <button class="btn btn-primary" type="button">다음 단계로</button>
-                                                    </div>
-                                                </form>
+                                                <hr class="my-4" />
+                                                <div class="d-flex justify-content-between">
+                                                    <button class="btn btn-light btnPrevious" type="button" href="#wizard2">이전 단계로</button>
+                                                    <button class="btn btn-primary btnNext" type="button" href="#wizard4">다음 단계로</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -424,45 +431,29 @@
                                                 <h3 class="text-primary">Step 4</h3>
                                                 <h5 class="card-title">Review the following information and submit</h5>
                                                 <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Username:</em></div>
-                                                    <div class="col">username</div>
+                                                    <div class="col-sm-3 text-truncate"><em>프로젝트 이름:</em></div>
+                                                    <div class="col"></div>
                                                 </div>
                                                 <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Name:</em></div>
+                                                    <div class="col-sm-3 text-truncate"><em>총괄 책임자:</em></div>
                                                     <div class="col">Valerie Luna</div>
                                                 </div>
                                                 <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Organization Name:</em></div>
+                                                    <div class="col-sm-3 text-truncate"><em>프로젝트 시작일:</em></div>
                                                     <div class="col">Start Bootstrap</div>
                                                 </div>
                                                 <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Location:</em></div>
-                                                    <div class="col">San Francisco, CA</div>
-                                                </div>
-                                                <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Email Address:</em></div>
+                                                    <div class="col-sm-3 text-truncate"><em>프로젝트 예상 종료일:</em></div>
                                                     <div class="col">name@example.com</div>
                                                 </div>
                                                 <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Phone Number:</em></div>
+                                                    <div class="col-sm-3 text-truncate"><em>구성원:</em></div>
                                                     <div class="col">555-123-4567</div>
-                                                </div>
-                                                <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Birthday:</em></div>
-                                                    <div class="col">06/10/1988</div>
-                                                </div>
-                                                <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Credit Card Number:</em></div>
-                                                    <div class="col">**** **** **** 1111</div>
-                                                </div>
-                                                <div class="row small text-muted">
-                                                    <div class="col-sm-3 text-truncate"><em>Credit Card Expiration:</em></div>
-                                                    <div class="col">06/2024</div>
                                                 </div>
                                                 <hr class="my-4" />
                                                 <div class="d-flex justify-content-between">
-                                                    <button class="btn btn-light" type="button">이전 단계로</button>
-                                                    <button class="btn btn-primary" type="button">생성하기</button>
+                                                    <button class="btn btn-light btnPrevious" type="button" href="#wizard3">이전 단계로</button>
+                                                    <button class="btn btn-primary" type="submit">생성하기</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -474,14 +465,7 @@
                 </main>
                 <footer class="footer mt-auto footer-light">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2020</div>
-                            <div class="col-md-6 text-md-right small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
+                        <div class="row"><div class="col-md-6 small">Copyright &copy; (주)넥사</div></div>
                     </div>
                 </footer>
             </div>
@@ -498,5 +482,6 @@
         <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
         <script src="/assets/demo/date-range-picker-demo.js"></script>
+        <script src="/assets/demo/tabclicker.js"></script>
     </body>
 </html>

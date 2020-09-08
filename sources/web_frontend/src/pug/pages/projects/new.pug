@@ -1,0 +1,224 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '프로젝트 시작하기'
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../mixins/sidenav.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-light'
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: '새로운 프로젝트를 생성합니다.',
+        pageIcon: 'arrow-right-circle',
+        breadcrumbs: false
+    })
+
+    // Main page content
+    .container.mt-n10
+        // Wizard card example with navigation
+        .card
+            .card-header.border-bottom
+                // Wizard navigation
+                .nav.nav-pills.nav-justified.flex-column.flex-xl-row.nav-wizard#cardTab(role='tablist')
+                    // Wizard navigation item 1
+                    a.nav-item.nav-link.active#wizard1-tab(href='#wizard1', data-toggle='tab', role='tab', aria-controls='wizard1', aria-selected='true')
+                        .wizard-step-icon
+                            | 1
+                        .wizard-step-text
+                            .wizard-step-text-name Project Info
+                            .wizard-step-text-details 기본정보를 입력합니다.
+                    // Wizard navigation item 2
+                    a.nav-item.nav-link#wizard2-tab(href='#wizard2', data-toggle='tab', role='tab', aria-controls='wizard2', aria-selected='true')
+                        .wizard-step-icon
+                            | 2
+                        .wizard-step-text
+                            .wizard-step-text-name Project Plan
+                            .wizard-step-text-details 프로젝트 기간을 계획합니다.
+                    // Wizard navigation item 3
+                    a.nav-item.nav-link#wizard3-tab(href='#wizard3', data-toggle='tab', role='tab', aria-controls='wizard3', aria-selected='true')
+                        .wizard-step-icon
+                            | 3
+                        .wizard-step-text
+                            .wizard-step-text-name Project Members
+                            .wizard-step-text-details 함께 프로젝트를 진행할 멤버를 초대합니다.
+                    // Wizard navigation item 4
+                    a.nav-item.nav-link#wizard4-tab(href='#wizard4', data-toggle='tab', role='tab', aria-controls='wizard4', aria-selected='true')
+                        .wizard-step-icon
+                            | 4
+                        .wizard-step-text
+                            .wizard-step-text-name 검토 &amp; 생성
+                            .wizard-step-text-details 입력한 정보를 검토 및 확인합니다.
+            .card-body
+                .tab-content#cardTabContent
+                    // Wizard tab pane item 1
+                    .tab-pane.py-5.py-xl-10.fade.show.active#wizard1(role='tabpanel', aria-labelledby='wizard1-tab')
+                        .row.justify-content-center
+                            .col-xxl-6.col-xl-8
+                                h3.text-primary Step 1
+                                h5.card-title Enter Project Information
+                                form
+                                    .form-group
+                                        label.small.mb-1(for='inputProjectname') 프로젝트 명
+                                        input#inputProjectname.form-control(type='text', name='project_name',placeholder='프로젝트의 이름을 입력하세요.')
+                                    .form-row
+                                        .form-group.col-md-6
+                                            label.small.mb-1(for='PMname') 총괄 책임자
+                                            input#inputPMName.form-control(type='text', name='pm_name',placeholder='책임자의 이름을 입력하세요.')
+                                    .form-row
+                                        .form-group.col-md-12
+                                            label(for='exampleFormControlTextarea1') 요약
+                                            textarea#exampleFormControlTextarea1.form-control(rows='3', placeholder='프로젝트에 대한 소개를 입력하세요.')
+
+                                    hr.my-4
+                                    .d-flex.justify-content-between
+                                        button.btn.btn-primary.btnNext(type='button', href='#wizard2') 다음 단계로
+                    // Wizard tab pane item 2
+                    .tab-pane.py-5.py-xl-10.fade#wizard2(role='tabpanel', aria-labelledby='wizard2-tab')
+                        .row.justify-content-center
+                            .col-xxl-6.col-xl-8
+                                h3.text-primary Step 2
+                                h5.card-title Set Project Plan
+                                form
+                                    .form-row
+                                        .form-group.col-md-6                                
+                                            label.small.mb-1(for='start_date') 시작 날짜
+                                            input#inputStartdate.form-contorl(type='date', name='start_date')
+                                    .form-row
+                                        .form-group.col-md-6
+                                            label.small.mb-1(for='end_date') 종료 날짜
+                                            input#inputEnddate.form-contorl(type='date', name='end_date')
+                                    hr.my-4
+                                    .d-flex.justify-content-between
+                                        button.btn.btn-light.btnPrevious(type='button', href='#wizard1') 이전 단계로
+                                        button.btn.btn-primary.btnNext(type='button', href='#wizard3') 다음 단계로
+                    // Wizard tab pane item 3
+                    .tab-pane.py-5.py-xl-10.fade#wizard3(role='tabpanel', aria-labelledby='wizard3-tab')
+                        .row.justify-content-center
+                            .col-xxl-10.col-xl-12
+                                h3.text-primary Step 3
+                                h5.card-title Invite Project Members
+                                .card.mb-4
+                                    .card-header
+                                        | User List
+                                    .card-body
+                                        include ../includes/datatable-people.pug
+                                        button.btn.btn-success(type='button') 메일로 초대하기
+                                hr.my-4
+                                .d-flex.justify-content-between
+                                    button.btn.btn-light.btnPrevious(type='button', href='#wizard2') 이전 단계로
+                                    button.btn.btn-primary.btnNext(type='button', href='#wizard4') 다음 단계로
+                    // Wizard tab pane item 4
+                    .tab-pane.py-5.py-xl-10.fade#wizard4(role='tabpanel', aria-labelledby='wizard4-tab')
+                        .row.justify-content-center
+                            .col-xxl-6.col-xl-8
+                                h3.text-primary Step 4
+                                h5.card-title Review the following information and submit
+                                .row.small.text-muted
+                                    .col-sm-3.text-truncate
+                                        em 프로젝트 이름:
+                                    .col 
+                                .row.small.text-muted
+                                    .col-sm-3.text-truncate
+                                        em 총괄 책임자:
+                                    .col Valerie Luna
+                                .row.small.text-muted
+                                    .col-sm-3.text-truncate
+                                        em 프로젝트 시작일:
+                                    .col Start Bootstrap
+                                .row.small.text-muted
+                                    .col-sm-3.text-truncate
+                                        em 프로젝트 예상 종료일:
+                                    .col name@example.com
+                                .row.small.text-muted
+                                    .col-sm-3.text-truncate
+                                        em 구성원:
+                                    .col 555-123-4567
+
+                                hr.my-4
+                                .d-flex.justify-content-between
+                                    button.btn.btn-light.btnPrevious(type='button', href='#wizard3') 이전 단계로
+                                    button.btn.btn-primary(type='submit') 생성하기
+
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include ../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
+
+append scripts
+    //- Load Moment.js and Date Range Picker via CDN
+    //- Load Chart.js via CDN
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
+    //- Load custom Chart.js styling and demo data
+    script(src='/assets/demo/chart-area-demo.js')
+    script(src='/assets/demo/chart-bar-demo.js')
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables-demo.js')
+    //- Load Moment.js and Date Range Picker via CDN
+    script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
+    //- Load Date Range Picker initialization script
+    script(src='/assets/demo/date-range-picker-demo.js')
+    script(src='/assets/demo/tabclicker.js')

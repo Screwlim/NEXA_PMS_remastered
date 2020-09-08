@@ -34,6 +34,11 @@ block content
                         form(method="POST")
                             //Company info
                             .form-row
+                                .col-md-6
+                                    .form-group
+                                        label.small.mb-1(for='Name') 이름
+                                        input#inputName.form-control.py-4(type='text',name='name',placeholder='이름을 입력해주세요')
+                            .form-row
                                 .col-md-6                            
                                     .form-group
                                         label.small.mb-1(for='Company') 회사명
@@ -53,10 +58,7 @@ block content
                                         input#inputCompany.form-control.py-4(type='text',name='companynumber',placeholder='사무실 번호를 입력해주세요')
                             // Form Group (create account submit)
                             .form-group.mt-4.mb-0
-                                BUTTON.btn.btn-primary.btn-block(type="submit") 회원가입
-                    .card-footer.text-center
-                        .small
-                            a(href='/auth/login') 계정이 있으신가요? 로그인 하러가기
+                                BUTTON.btn.btn-primary.btn-block(type="submit") 회원가입 마치기
 
 //- * * * * * * * *
 //- * * Footer  * *
