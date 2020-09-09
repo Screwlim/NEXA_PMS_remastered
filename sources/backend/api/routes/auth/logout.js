@@ -5,8 +5,9 @@ const { isLoggedIn, isNotLoggedIn } = require('../middleware');
 
 router.get('/', isLoggedIn, (req, res) =>{
     console.log('로그아웃 중');
-    req.logout();
+    res.clearCookie();    
     req.session.destroy();
+    req.logout();
     res.redirect('/');
 });
 
