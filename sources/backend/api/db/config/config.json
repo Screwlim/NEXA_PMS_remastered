@@ -4,20 +4,23 @@
     "password": "1234",
     "database": "pms_dev",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone": "+09:00"
   },
   "test": {
     "username": "pmsDB",
     "password": "1234",
     "database": "pms_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone": "+09:00"
   },
   "distribution": {
     "username": "pmsDB",
     "password": "1234",
     "database": "pms_dist",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone": "+09:00"
   }
 }
