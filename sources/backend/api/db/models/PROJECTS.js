@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     CREATOR: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    CREATOR_ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -42,6 +46,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     STATUS: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -54,7 +66,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'PROJECTS',
-    timestamps: false
+    tableName: 'PROJECTS'
   });
 };

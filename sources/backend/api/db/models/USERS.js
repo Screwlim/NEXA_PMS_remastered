@@ -38,12 +38,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     PROVIDER: {
       type: DataTypes.STRING(20),
-      allowNull: false,
-      defaultValue: 'local',
-    },
-    SNSID:{
-      type: DataTypes.STRING(30),
       allowNull: true,
+      defaultValue: "local"
+    },
+    SNSID: {
+      type: DataTypes.STRING(30),
+      allowNull: true
     }
   }, {
     sequelize,

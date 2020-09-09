@@ -20,6 +20,14 @@ module.exports = function(sequelize, DataTypes) {
     ISPM: {
       type: DataTypes.INTEGER(1),
       allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     sequelize,
