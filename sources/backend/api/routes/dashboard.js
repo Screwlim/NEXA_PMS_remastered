@@ -7,8 +7,6 @@ const router = express.Router();
 router.get('/', isLoggedIn,function(req, res, next) {
 
   console.log("dashboard process");
-  console.log(req.session);
-  console.log(req.user);
 
   const getProj = async() => {
     var results = await PROJECTS.findAll({
