@@ -25,16 +25,7 @@ block content
                 // Social login form
                 .card.my-5
                     .card-body.p-5.text-center
-                        .h3.font-weight-light.mb-3 Sign In
-                        // Social login links
-                        a.btn.btn-icon.btn-facebook.mx-1(href='/auth/kakao/callback')
-                            image(src='../../../assets/img/favicon-kakao.png')
-                        a.btn.btn-icon.btn-github.mx-1(href='#!')
-                            i.fab.fa-github.fa-fw.fa-sm
-                        a.btn.btn-icon.btn-google.mx-1(href='#!')
-                            i.fab.fa-google.fa-fw.fa-sm
-                        a.btn.btn-icon.btn-twitter.mx-1(href='#!')
-                            i.fab.fa-twitter.fa-fw.fa-sm
+                        .h2.font-weight-light.mb-3 Log in
                     // Basic login form
                     hr.my-0
                     .card-body.p-5
@@ -60,7 +51,24 @@ block content
                     hr.my-0
                     .card-body.px-5.py-4
                         .small.text-center
-                            a(href='/auth/signup') Need an account? Sign up!
+                            .h4.font-weight-light.mb-3 다른 서비스로 로그인
+                            // Social login links
+                            a(href='/auth/kakao/callback')
+                                image(src='../../../assets/img/login/login-kakao.png', style='width: 240px;height:45px;')
+                            br
+                            br
+                            a(href='/auth/naver/callback')
+                                image(src='../../../assets/img/login/login-naver.png', style='width: 240px;height:45px;')
+                            br
+                            br
+                            a(href='/auth/google/callback')
+                                image(src='../../../assets/img/login/login-google.png', style='width: 240px;height:45px;')
+                            br
+                            br
+                        hr.my-0
+                        .small.text-center
+                            br
+                            a(href='/auth/signup') 아이디가 없으신가요? 회원가입 하러가기
 
 //- * * * * * * * *
 //- * * Footer  * *

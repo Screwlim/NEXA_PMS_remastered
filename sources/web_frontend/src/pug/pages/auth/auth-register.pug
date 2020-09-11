@@ -26,17 +26,7 @@ block content
                 // Social registration form
                 .card.my-5
                     .card-body.p-5.text-center
-                        .h3.font-weight-light.mb-3 Create an Account
-                        .small.text-muted.mb-2 Sign in using...
-                        // Social registration links
-                        a.btn.btn-icon.btn-facebook.mx-1(href='#!')
-                            i.fab.fa-facebook-f.fa-fw.fa-sm
-                        a.btn.btn-icon.btn-github.mx-1(href='#!')
-                            i.fab.fa-github.fa-fw.fa-sm
-                        a.btn.btn-icon.btn-google.mx-1(href='#!')
-                            i.fab.fa-google.fa-fw.fa-sm
-                        a.btn.btn-icon.btn-twitter.mx-1(href='#!')
-                            i.fab.fa-twitter.fa-fw.fa-sm
+                        .h2.font-weight-light.mb-3 회원가입
                     hr.my-0
                     .card-body.p-5
                         // Registration form
@@ -84,6 +74,23 @@ block content
                             // Form Group (create account submit)
                             .form-group.mt-4.mb-0
                                 BUTTON.btn.btn-primary.btn-block(type="submit") 회원가입
+                    .card-body.px-5.py-4
+                        hr.my-0
+                        br
+                        .small.text-center
+                            .h4.font-weight-light.mb-3 다른 서비스로 회원가입하기
+                            // Social login links
+                            a(href='/auth/kakao/callback')
+                                image(src='../../../assets/img/login/login-kakao.png', style='width: 240px;height:45px;')
+                            br
+                            br
+                            a(href='/auth/naver/callback')
+                                image(src='../../../assets/img/login/login-naver.png', style='width: 240px;height:45px;')
+                            br
+                            br
+                            a(href='/auth/google/callback')
+                                image(src='../../../assets/img/login/login-google.png', style='width: 240px;height:45px;')
+                            br
                     .card-footer.text-center
                         .small
                             a(href='/auth/login') 계정이 있으신가요? 로그인 하러가기
