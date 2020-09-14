@@ -1,7 +1,7 @@
 const router = require("../main");
 const passport = require("passport");
 
-router.get('/', passport.authenticate('google'));
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 
 router.get('/callback', passport.authenticate('google', {
     failureRedirect: '/auth/login',

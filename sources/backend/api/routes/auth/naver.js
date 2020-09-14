@@ -1,9 +1,11 @@
 const router = require("../main");
 const passport = require("passport");
 
-router.get('/', passport.authenticate('naver'));
+router.get('/auth/naver', passport.authenticate('naver', {
+    failureRedirect: '/auth/login'
+}));
 
-router.get('/callback', passport.authenticate('naver', {
+router.get('/auth/naver/callback', passport.authenticate('naver', {
     failureRedirect: '/auth/login',
 }),(req,res)=>{
     console.log('naver auth succeeded');

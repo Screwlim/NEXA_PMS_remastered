@@ -1,7 +1,9 @@
 const router = require("../main");
 const passport = require("passport");
 
-router.get('/', passport.authenticate('kakao'));
+router.get('/auth/kakao', passport.authenticate('kakao',{
+    failureRedirect: '/auth/login'
+}));
 
 router.get('/callback', passport.authenticate('kakao', {
     failureRedirect: '/auth/login',
