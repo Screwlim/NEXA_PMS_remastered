@@ -15,7 +15,7 @@ module.exports = (passport) => {
       } else {
         console.log('new user create from naver');
         const newUser = await USERS.create({
-          EMAIL: profile._json && profile._json.kakao_account.email,
+          EMAIL: profile._json && profile._json.email,
           SNSID: profile.id,
           PROVIDER: 'naver',
         });

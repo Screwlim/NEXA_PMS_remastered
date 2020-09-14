@@ -14,9 +14,6 @@ module.exports = (passport) => {
       .then(USERS => done(null, USERS))
       .catch(err => done(err));
   });
-  // passport.use('kakao', kakao);
-  // passport.use('naver', naver);
-  // passport.use('google', google);
 
   local(passport);
   google(passport);

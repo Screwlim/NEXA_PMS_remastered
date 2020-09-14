@@ -1,14 +1,14 @@
-const GoogleStrategy = require('passport-google').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { USERS } = require('../db/models');
 
 module.exports = (passport) => {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    returnURL: 'http://localhost:3000/auth/google/callback',
-    realm: 'http://localhost:3000/'
-  }, async (accessToken, refreshToken, profile, done) => {
+    callbackURL: 'http://localhost:3000/auth/google/callback'
+  }, async (accessToken, refreshToken, profile, cb) => {
     try {
+      console.log(profile);
       const exUser = await USERS.findOne({ where: { snsId: profile.id, provider: 'google' } });
       if (exUser) {
         console.log(exUser.email + ' logging in auto');
@@ -16,7 +16,7 @@ module.exports = (passport) => {
       } else {
         console.log('new user create from google');
         const newUser = await USERS.create({
-          EMAIL: profile._json && profile._json.kakao_account.email,
+          EMAIL: profile._json && profile._json.email,
           SNSID: profile.id,
           PROVIDER: 'google',
         });
