@@ -8,19 +8,23 @@ mixin sidenav(options)
                 
                 a.nav-link(href='/dashboard')
                     .nav-link-icon
-                        i(data-feather='bar-chart')
-                    | Main Dashboard로 돌아가기
+                        i(data-feather='trello')
+                    | Main Dashboard
 
                 .sidenav-menu-heading
                     | 프로젝트 관리
                 a.nav-link(href='/project')
+                        i(data-feather='map')
                     | 프로젝트 Dashboard    
                 a.nav-link(href='/project/notices')
+                        i(data-feather='info')
                     | 공지사항
                 a.nav-link(href='/project/job')
+                        i(data-feather='monitor')
                     | 업무조회
                 a.nav-link(href='/project/members')
-                    | 멤버관리
+                        i(data-feather='users')
+                    | 참여 인원 관리
 
         .sidenav-footer
             

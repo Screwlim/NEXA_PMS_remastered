@@ -8,7 +8,7 @@ mixin sidenav(options)
                 
                 a.nav-link(href='/dashboard')
                     .nav-link-icon
-                        i(data-feather='bar-chart')
+                        i(data-feather='trello')
                     | Dashboard
                 
                 a.nav-link(href='/project')
@@ -19,9 +19,14 @@ mixin sidenav(options)
                 .sidenav-menu-heading
                     | 프로젝트
                     
-                a.nav-link.collapsed(href='javascript:void(0);', data-toggle='collapse', data-target='#collapseDashboards', aria-expanded='false', aria-controls='collapseDashboards')
+                a.nav-link(href='#!')
                     .nav-link-icon
                         i(data-feather='activity')
+                    | 진행중 프로젝트
+
+                a.nav-link.collapsed(href='javascript:void(0);', data-toggle='collapse', data-target='#collapseDashboards', aria-expanded='false', aria-controls='collapseDashboards')
+                    .nav-link-icon
+                        i(data-feather='sliders')
                     | 프로젝트 관리
                     .sidenav-collapse-arrow
                         i.fas.fa-angle-down
