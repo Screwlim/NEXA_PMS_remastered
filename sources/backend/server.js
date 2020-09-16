@@ -26,17 +26,19 @@ app.use(morgan('dev'));//logger init
 
 /* VIEW SETTING */
 //view engine setup - html
-app.set('views', path.join(__dirname, '../web_frontend/dist/'));
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-app.use(express.static('../web_frontend/dist/'))//static file(css, javascipt, image, etc..)을 제공하기 위해 express.static활용 (경로 제공) - express doc 참고할것
+// app.set('views', path.join(__dirname, '../web_frontend/dist/'));
+// app.set('view engine', 'ejs');
+// app.engine('html', require('ejs').renderFile);
+// app.use(express.static('../web_frontend/dist/'))//static file(css, javascipt, image, etc..)을 제공하기 위해 express.static활용 (경로 제공) - express doc 참고할것
 
 //view engine setup - pug
-// app.set('views', path.join(__dirname, '../web_frontend/src/pug/pages'));
-// app.set('view engine', 'pug');
-// app.engine('html', require('pug').renderFile);
-// app.use(express.static('../web_frontend/src/'))//static file(css, javascipt, image, etc..)을 제공하기 위해 express.static활용 (경로 제공)
-// app.use(express.static('../web_frontend/src/scss/'))
+app.set('views', path.join(__dirname, '../web_frontend/src/pug/pages'));
+app.set('view engine', 'pug');
+app.engine('html', require('pug').renderFile);
+app.use(express.static('../web_frontend/src/js'))//static file(css, javascipt, image, etc..)을 제공하기 위해 express.static활용 (경로 제공)
+app.use(express.static('../web_frontend/src/scss'))
+app.use(express.static('../web_frontend/src/assets'))
+app.use(express.static('../web_frontend/src/'))
 
 /* SESSION SETTING */
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -76,7 +78,7 @@ app.use((err, req, res, next) => {
     }else{
         var status = err.status;
     }
-    res.render('./err/error-'+status+'.html');
+    res.render('./err/error-'+status);
 });
 
 http.createServer(app).listen(app.get('port'), function () {// 서버 생성 및 실행
