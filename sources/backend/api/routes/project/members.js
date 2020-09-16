@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log("업무조회 process");
-  res.render('project/jobs');
+  console.log("인원 관리 process");
+  res.render('project/members');
 });
 
 module.exports = router;
