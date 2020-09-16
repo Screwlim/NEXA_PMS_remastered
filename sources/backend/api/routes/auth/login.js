@@ -5,7 +5,7 @@ const passport = require('passport');
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("login page");
-  res.render('auth/auth-login.html');
+  res.render('auth/auth-login');
 });
 
 router.post('/',isNotLoggedIn, (req, res, next) => {

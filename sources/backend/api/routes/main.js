@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   console.log("in main route");
-  res.render('index.html')
+  res.render('index')
 });
 
 module.exports = router;

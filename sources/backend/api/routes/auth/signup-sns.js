@@ -7,7 +7,7 @@ const { USERS } = require('../../db/models');
 router.get('/', function(req, res, next) {
   console.log("signup page");
   //console.log(req);
-  res.render('auth/auth-register-sns.html');
+  res.render('auth/auth-register-sns');
 });
 
 router.post('/', async (req, res, next) => {

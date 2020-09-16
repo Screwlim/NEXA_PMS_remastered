@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middleware');
-const { PROJECTS,USERS } = require('../db/models');
+const { PROJECTS } = require('../db/models');
 const router = express.Router();
 
 /* GET users listing. */
@@ -22,7 +22,9 @@ router.get('/', isLoggedIn,function(req, res, next) {
   console.log('projList : ');
   console.log(projList);
 
-  res.render('./dashboard.html');
+  res.render('./dashboard',{
+    user: req.user
+  });
 });
 
 module.exports = router;

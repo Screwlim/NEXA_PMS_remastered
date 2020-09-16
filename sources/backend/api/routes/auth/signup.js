@@ -7,7 +7,7 @@ const { USERS } = require('../../db/models');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log("signup page");
-  res.render('auth/auth-register.html');
+  res.render('auth/auth-register');
 });
 
 router.post('/', isNotLoggedIn, async (req, res, next) => {
