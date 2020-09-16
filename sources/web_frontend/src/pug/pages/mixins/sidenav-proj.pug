@@ -14,15 +14,19 @@ mixin sidenav(options)
                 .sidenav-menu-heading
                     | 프로젝트 관리
                 a.nav-link(href='/project')
+                    .nav-link-icon                
                         i(data-feather='map')
                     | 프로젝트 Dashboard    
                 a.nav-link(href='/project/notices')
+                    .nav-link-icon
                         i(data-feather='info')
                     | 공지사항
-                a.nav-link(href='/project/job')
+                a.nav-link(href='/project/jobs')
+                    .nav-link-icon
                         i(data-feather='monitor')
                     | 업무조회
                 a.nav-link(href='/project/members')
+                    .nav-link-icon
                         i(data-feather='users')
                     | 참여 인원 관리
 
