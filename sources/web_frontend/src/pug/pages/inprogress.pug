@@ -1,0 +1,124 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '나의 프로젝트'
+
+//- Add CSS for third party plugins used on this page
+append css
+    //- Load dataTables CSS via CDN
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+    //- Load Date Range Picker via CDN
+    link(href='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css', rel='stylesheet', crossorigin='anonymous')
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/sidenav.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-light'
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: 'Example dashboard overview and content summary',
+        pageIcon: 'activity',
+        breadcrumbs: false
+    })
+
+
+    // Main page content
+    .container.mt-n10
+        // Example Charts for Dashboard Demo
+        .proj
+            .row
+                .col-xl-6.mb-4
+                    .card.card-header-actions.h-100
+                        .card-header
+                            | project 1
+                        .card-body
+                            | 참여인원 : 3
+                            br
+                            | 현재 진행도 : 72%
+                            br
+                            | 최근 업데이트 : 2020-09-15
+                        a.card-footer(href='/project')
+                            .d-flex.align-items-center.justify-content-between.small.text-body
+                                | 프로젝트로 이동
+                                i(data-feather='arrow-right')
+                .col-xl-6.mb-4
+                    .card.card-header-actions.h-100
+                        .card-header
+                            | project 2
+                        .card-body
+                            | 참여인원 : 5
+                            br
+                            | 현재 진행도 : 42%
+                            br
+                            | 최근 업데이트 : 2020-09-14
+                        a.card-footer(href='/project')
+                            .d-flex.align-items-center.justify-content-between.small.text-body
+                                | 프로젝트로 이동
+                                i(data-feather='arrow-right')
+                            
+
+
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    include mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
+
+//- Add JS for third party plugins used on this page
+append scripts
