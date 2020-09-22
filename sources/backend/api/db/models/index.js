@@ -3,6 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const ATTENDANCES = require('./ATTENDANCES');
+const PROJECTS = require('./PROJECTS');
+const USERS = require('./USERS');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
@@ -48,6 +51,15 @@ db.PROJECTS = require('./PROJECTS')(sequelize, Sequelize);
 db.STATUS_INFO = require('./STATUS_INFO')(sequelize, Sequelize);
 db.TASKS = require('./TASKS')(sequelize, Sequelize);
 db.USERS = require('./USERS')(sequelize, Sequelize);
+
+db.USERS.hasMany(db.ATTENDANCES, {foreignKey: 'USER_ID', sourceKey: 'ID'});
+db.ATTENDANCES.belongsTo(db.USERS, {foreignKey: 'USER_ID', targetKey: 'ID'});
+
+db.USERS.hasMany(db.PROJECTS, {foreignKey:'CREATOR_ID', sourceKey: 'ID'});
+db.PROJECTS.belongsTo(db.USERS,{foreignKey:'CREATOR_ID', targetKey: 'ID'});
+
+db.PROJECTS.hasMany(db.ATTENDANCES, {foreignKey: 'PROJECT_ID', sourceKey: 'ID'});
+db.ATTENDANCES.belongsTo(db.PROJECTS, {foreignKey: 'PROJECT_ID', targetKey: 'ID'});
 
 
 module.exports = db;
