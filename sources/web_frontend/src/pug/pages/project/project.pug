@@ -73,284 +73,21 @@ block content
     .container.mt-n10
 
         .row
-            .col-xxl-4.col-xl-6.mb-4
-                // Dashboard example card 1
-                a.card.lift.h-100(href='#!')
-                    .card-body.d-flex.justify-content-center.flex-column
-                        .d-flex.align-items-center.justify-content-between
-                            .mr-3
-                                i.feather-xl.text-primary.mb-3(data-feather='package')
-                                h5 Powerful Components
-                                .text-muted To create informative visual elements on your pages
-                            img.card-img-top(src='../assets/img/freepik/browser-stats-pana.svg', alt='...', style='width: 10rem;')
-            .col-xxl-4.col-xl-6.mb-4
-                // Dashboard example card 2
-                a.card.lift.h-100(href='#!')
-                    .card-body.d-flex.justify-content-center.flex-column
-                        .d-flex.align-items-center.justify-content-between
-                            .mr-3
-                                i.feather-xl.text-secondary.mb-3(data-feather='book')
-                                h5 Documentation
-                                .text-muted To keep you on track when working with our toolkit
-                            img.card-img-top(src='../assets/img/freepik/processing-pana.svg', alt='...', style='width: 10rem;')
-            .col-xxl-4.col-xl-6.mb-4
-                // Dashboard example card 3
+            .col-xxl-12.col-xl-12.mb-6
                 a.card.lift.h-100(href='#!')
                     .card-body.d-flex.justify-content-center.flex-column
                         .d-flex.align-items-center.justify-content-between
                             .mr-3
                                 i.feather-xl.text-green.mb-3(data-feather='layout')
-                                h5 Pages &amp; Layouts
-                                .text-muted To help get you started when building your new UI
+                                h5 Project 1
+                            .mr-3
+                                h5 진행상황
                             img.card-img-top(src='../assets/img/freepik/windows-pana.svg', alt='...', style='width: 10rem;')
-
         .row
-
-            .col-xxl-8
-
-                // Tabbed dashboard card example
-                .card.mb-4
-                    .card-header.border-bottom
-                        // Dashboard card navigation
-                        ul.nav.nav-tabs.card-header-tabs#dashboardNav(role='tablist')
-                            li.nav-item.mr-1
-                                a.nav-link.active#overview-pill(href='#overview', data-toggle='tab', role='tab', aria-controls='overview', aria-selected='true') Overview
-                            li.nav-item
-                                a.nav-link#activities-pill(href='#activities', data-toggle='tab', role='tab', aria-controls='activities', aria-selected='false') Activities
-                    .card-body
-                        .tab-content#dashboardNavContent
-                            // Dashboard Tab Pane 1
-                            .tab-pane.fade.show.active#overview(role='tabpanel', aria-labelledby='overview-pill')
-                                .chart-area.mb-4.mb-lg-0(style="height: 20rem;")
-                                    canvas#myAreaChart(width='100%', height='30')
-                            // Dashboard Tab Pane 2
-                            .tab-pane.fade#activities(role='tabpanel', aria-labelledby='activities-pill')
-                                include ../includes/datatable-activity-example.pug
-                // Illustration dashboard card example
-                .card.mb-4
-                    .card-body.py-5
-                        .d-flex.flex-column.justify-content-center
-                            img.img-fluid.mb-4(src='../assets/img/freepik/data-report-pana.svg', alt='', style='height: 10rem;')
-                            .text-center.px-0.px-lg-5
-                                h5 New reports are here! Generate custom reports now!
-                                p.mb-4 Our new report generation system is now online. You can start creating custom reporting for any documents available on your account.
-                                a.btn.btn-sm.btn-primary.p-3.line-height-normal(href='#!') Get Started
-
-                .row
-                    .col-xxl-6.mb-4
-                        // Dashboard activity timeline example
-                        .card.card-header-actions.h-100
-                            .card-header
-                                | Recent Activity
-                                .dropdown.no-caret
-                                    button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                        i.text-gray-500(data-feather='more-vertical')
-                                    .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
-                                        h6.dropdown-header Filter Activity:
-                                        a.dropdown-item(href='#!')
-                                            span.badge.badge-green-soft.text-green.my-1 Commerce
-                                        a.dropdown-item(href='#!')
-                                            span.badge.badge-blue-soft.text-blue.my-1 Reporting
-                                        a.dropdown-item(href='#!')
-                                            span.badge.badge-yellow-soft.text-yellow.my-1 Server
-                                        a.dropdown-item(href='#!')
-                                            span.badge.badge-purple-soft.text-purple.my-1 Users
-                            .card-body
-                                .timeline.timeline-xs
-                                    // Timeline Item 1
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 27 min
-                                            .timeline-item-marker-indicator.bg-green
-                                        .timeline-item-content
-                                            | New order placed!
-                                            a.font-weight-bold.text-dark(href='#!') Order #2912 
-                                            | has been successfully placed.
-                                    // Timeline Item 2
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 58 min
-                                            .timeline-item-marker-indicator.bg-blue
-                                        .timeline-item-content
-                                            | Your
-                                            a.font-weight-bold.text-dark(href='#!') weekly report 
-                                            | has been generated and is ready to view.
-                                    // Timeline Item 3
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 2 hrs
-                                            .timeline-item-marker-indicator.bg-purple
-                                        .timeline-item-content
-                                            | New user
-                                            a.font-weight-bold.text-dark(href='#!') Valerie Luna 
-                                            | has registered
-                                    // Timeline Item 4
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 1 day
-                                            .timeline-item-marker-indicator.bg-yellow
-                                        .timeline-item-content
-                                            | Server activity monitor alert
-                                    // Timeline Item 5
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 1 day
-                                            .timeline-item-marker-indicator.bg-green
-                                        .timeline-item-content
-                                            | New order placed!
-                                            a.font-weight-bold.text-dark(href='#!') Order #2911 
-                                            | has been successfully placed.
-                                    // Timeline Item 6
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 1 day
-                                            .timeline-item-marker-indicator.bg-purple
-                                        .timeline-item-content
-                                            | Details for
-                                            a.font-weight-bold.text-dark(href='#!') Marketing and Planning Meeting 
-                                            | have been updated.
-                                    // Timeline Item 7
-                                    .timeline-item
-                                        .timeline-item-marker
-                                            .timeline-item-marker-text
-                                                | 2 days
-                                            .timeline-item-marker-indicator.bg-green
-                                        .timeline-item-content
-                                            | New order placed!
-                                            a.font-weight-bold.text-dark(href='#!') Order #2910 
-                                            | has been successfully placed.
-                    .col-xxl-6.mb-4
-                        // Pie chart with legend example
-                        .card.h-100
-                            .card-header Traffic Sources
-                            .card-body
-                                .chart-pie.mb-4
-                                    canvas#myPieChart(width='100%', height='50')
-                                .list-group.list-group-flush
-                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                        .mr-3
-                                            i.fas.fa-circle.fa-sm.mr-1.text-blue
-                                            | Direct
-                                        .font-weight-500.text-dark 55%
-                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                        .mr-3
-                                            i.fas.fa-circle.fa-sm.mr-1.text-purple
-                                            | Social
-                                        .font-weight-500.text-dark 15%
-                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                        .mr-3
-                                            i.fas.fa-circle.fa-sm.mr-1.text-green
-                                            | Referral
-                                        .font-weight-500.text-dark 30%
-
-            .col-xxl-4
-
-                // Team members / people dashboard card example
-                .card.mb-4
-                    .card-header
-                        | People
-                    .card-body
-                        // Item 1
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-1.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Sid Rooney
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople1.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople1')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                        // Item 2
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Keelan Garza
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople2.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople2')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                        // Item 3
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-3.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Kaia Smyth
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople3.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople3')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                        // Item 4
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-4.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Kerri Kearney
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople4.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople4')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                        // Item 5
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-5.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Georgina Findlay
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople5.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople5')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                        // Item 6
-                        .d-flex.align-items-center.justify-content-between
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-6.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(href='#!') Wilf Ingram
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople6.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople6')
-                                    a.dropdown-item(href='#!') Action
-                                    a.dropdown-item(href='#!') Another action
-                                    a.dropdown-item(href='#!') Something else here
-                
-                // Project tracker card example
+            .col-xxl-12.col-xl-12.mb-6
                 .card.card-header-actions.mb-4
                     .card-header
-                        | Projects
+                        | 업무별 진행상황
                         a.small.text-arrow-icon(href='#!')
                             | Create New
                             i(data-feather='arrow-right')
@@ -383,13 +120,51 @@ block content
                         .progress
                             .progress-bar.bg-success(role='progressbar', style='width: 100%', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100')
 
-                // Illustration dashboard card example
-                .card
-                    .card-body.text-center.p-5
-                        img.img-fluid.mb-4(src='assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
-                        h5 Team Access
-                        p.mb-4 Upgrade your plan to get access to team collaboration tools.
-                        a.btn.btn-sm.btn-primary.p-3.line-height-normal(href='#!') Upgrade
+                .row
+                    .col-xxl-12.col-xl-12.mb-6
+                        // Pie chart with legend example
+                        .card.h-100
+                            .card-header 업무별 비중도
+                            .card-body
+                                .chart-pie.mb-4
+                                    canvas#myPieChart(width='100%', height='50')
+                                .list-group.list-group-flush
+                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
+                                        .mr-3
+                                            i.fas.fa-circle.fa-sm.mr-1.text-blue
+                                            | Direct
+                                        .font-weight-500.text-dark 55%
+                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
+                                        .mr-3
+                                            i.fas.fa-circle.fa-sm.mr-1.text-purple
+                                            | Social
+                                        .font-weight-500.text-dark 15%
+                                    .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
+                                        .mr-3
+                                            i.fas.fa-circle.fa-sm.mr-1.text-green
+                                            | Referral
+                                        .font-weight-500.text-dark 30%
+
+        .row
+            .col-xxl-12.col-xl-12.mb-6
+                // Tabbed dashboard card example
+                .card.mb-4
+                    .card-header.border-bottom
+                        // Dashboard card navigation
+                        ul.nav.nav-tabs.card-header-tabs#dashboardNav(role='tablist')
+                            li.nav-item.mr-1
+                                a.nav-link.active#overview-pill(href='#overview', data-toggle='tab', role='tab', aria-controls='overview', aria-selected='true') Overview
+                            li.nav-item
+                                a.nav-link#activities-pill(href='#activities', data-toggle='tab', role='tab', aria-controls='activities', aria-selected='false') Activities
+                    .card-body
+                        .tab-content#dashboardNavContent
+                            // Dashboard Tab Pane 1
+                            .tab-pane.fade.show.active#overview(role='tabpanel', aria-labelledby='overview-pill')
+                                .chart-area.mb-4.mb-lg-0(style="height: 20rem;")
+                                    canvas#myAreaChart(width='100%', height='30')
+                            // Dashboard Tab Pane 2
+                            .tab-pane.fade#activities(role='tabpanel', aria-labelledby='activities-pill')
+                                include ../includes/datatable-activity-example.pug
 
 //- * * * * * * * *
 //- * * Footer  * *
