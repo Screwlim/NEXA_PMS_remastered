@@ -66,7 +66,7 @@ block content
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
         pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
-        pageSubtitle: 'Example dashboard overview and content summary',
+        pageSubtitle: '현재 진행중인 프로젝트를 볼 수 있습니다',
         pageIcon: 'activity',
         breadcrumbs: false
     })
@@ -74,38 +74,25 @@ block content
 
     // Main page content
     .container.mt-n10
-        // Example Charts for Dashboard Demo
         .proj
             .row
-                .col-xl-6.mb-4
-                    .card.card-header-actions.h-100
-                        .card-header
-                            | project 1
-                        .card-body
-                            | 참여인원 : 3
-                            br
-                            | 현재 진행도 : 72%
-                            br
-                            | 최근 업데이트 : 2020-09-15
-                        a.card-footer(href='/project')
-                            .d-flex.align-items-center.justify-content-between.small.text-body
-                                | 프로젝트로 이동
-                                i(data-feather='arrow-right')
-                .col-xl-6.mb-4
-                    .card.card-header-actions.h-100
-                        .card-header
-                            | project 2
-                        .card-body
-                            | 참여인원 : 5
-                            br
-                            | 현재 진행도 : 42%
-                            br
-                            | 최근 업데이트 : 2020-09-14
-                        a.card-footer(href='/project')
-                            .d-flex.align-items-center.justify-content-between.small.text-body
-                                | 프로젝트로 이동
-                                i(data-feather='arrow-right')
-                            
+                each val in [0,1,2]
+                    .col-xl-6.mb-4
+                        .card.card-header-actions.h-100
+                            .card-header
+                                | #{proj[val].NAME}
+                            .card-body
+                                | 참여인원 : #{proj[val]}
+                                br
+                                | 현재 진행도 : 42%
+                                br
+                                | 현재 상태 : #{proj[val].STATUS}
+                                br
+                                | 최근 업데이트 : 2020-09-14
+                            a.card-footer(href='/project')
+                                .d-flex.align-items-center.justify-content-between.small.text-body
+                                    | 프로젝트로 이동
+                                    i(data-feather='arrow-right')
 
 
 //- * * * * * * * *

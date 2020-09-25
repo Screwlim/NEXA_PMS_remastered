@@ -75,10 +75,20 @@ block content
             i.mr-2.text-primary(data-feather='calendar')
             span
             i.ml-1(data-feather='chevron-down')
+    
+    //- - var user1 = user
+    //- - console.log(user1)
+    //- script.
+    //-     var datas = JSON.parse(`${window.user}`)
+    //-     //- console.log(datas)
+    //- script.
+    //-     var data = JSON.parse('!{JSON.stringify(user)}');
+    //-     //var data = '!{user}';
+    //-     console.log(data.NAME)
+
 
     // Main page content
     .container.mt-n10
-
         .row
             .col-xxl-4.col-xl-12.mb-4
                 .card.h-100
@@ -86,14 +96,14 @@ block content
                         .row.align-items-center
                             .col-xl-8.col-xxl-12
                                 .text-center.px-4.mb-4.mb-xl-0.mb-xxl-4
-                                    h1.text-primary Welcome Back!
-                                    p.text-gray-700.mb-0 It's time to get started! View new opportunities now, or continue on your previous work.
+                                    h1.text-primary Welcome Back! #{user.NAME} !{a}
+                                    p.text-gray-700.mb-0 현재 2개의 프로젝트가 진행중 입니다.
                             .col-xl-4.col-xxl-12.text-center
                                 img.img-fluid(src='assets/img/freepik/at-work-pana.svg', style='max-width: 26rem')
             .col-xxl-4.col-xl-6.mb-4
                 .card.card-header-actions.h-100
                     .card-header
-                        | Recent Activity
+                        | 최근 업무 기록
                         .dropdown.no-caret
                             button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                                 i.text-gray-500(data-feather='more-vertical')
@@ -180,7 +190,7 @@ block content
             .col-xxl-4.col-xl-6.mb-4
                 .card.card-header-actions.h-100
                     .card-header
-                        | Progress Tracker
+                        | 프로젝트 진행현황
                         .dropdown.no-caret
                             button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                                 i.text-gray-500(data-feather='more-vertical')
@@ -235,22 +245,22 @@ block content
                     .card-body
                         .d-flex.justify-content-between.align-items-center
                             .mr-3
-                                .text-white-75.small Earnings (Monthly)
-                                .text-lg.font-weight-bold $40,000
-                            i.feather-xl.text-white-50(data-feather='calendar')
+                                .text-white-75.small 정상 프로젝트
+                                .text-lg.font-weight-bold 2개
+                            i.feather-xl.text-white-50(data-feather='play-circle')
                     .card-footer.d-flex.align-items-center.justify-content-between
                         a(href='#').small.text-white.stretched-link
                             | View Report
                         .small.text-white
                             i.fas.fa-angle-right
             .col-xxl-3.col-lg-6
-                .card.bg-warning.text-white.mb-4
+                .card.bg-danger.text-white.mb-4
                     .card-body
                         .d-flex.justify-content-between.align-items-center
                             .mr-3
-                                .text-white-75.small Earnings (Annual)
-                                .text-lg.font-weight-bold $215,000
-                            i.feather-xl.text-white-50(data-feather='dollar-sign')
+                                .text-white-75.small 지연 프로젝트
+                                .text-lg.font-weight-bold 1개
+                            i.feather-xl.text-white-50(data-feather='minus-circle')
                     .card-footer.d-flex.align-items-center.justify-content-between
                         a(href='#').small.text-white.stretched-link
                             | View Report
@@ -261,81 +271,27 @@ block content
                     .card-body
                         .d-flex.justify-content-between.align-items-center
                             .mr-3
-                                .text-white-75.small Task Completion
-                                .text-lg.font-weight-bold 24
-                            i.feather-xl.text-white-50(data-feather='check-square')
+                                .text-white-75.small 완료 프로젝트
+                                .text-lg.font-weight-bold 11
+                            i.feather-xl.text-white-50(data-feather='check-circle')
                     .card-footer.d-flex.align-items-center.justify-content-between
                         a(href='#').small.text-white.stretched-link
                             | View Tasks
                         .small.text-white
                             i.fas.fa-angle-right
             .col-xxl-3.col-lg-6
-                .card.bg-danger.text-white.mb-4
+                .card.bg-warning.text-white.mb-4
                     .card-body
                         .d-flex.justify-content-between.align-items-center
                             .mr-3
-                                .text-white-75.small Pending Requests
-                                .text-lg.font-weight-bold 17
-                            i.feather-xl.text-white-50(data-feather='message-circle')
+                                .text-white-75.small 취소 프로젝트
+                                .text-lg.font-weight-bold 8
+                            i.feather-xl.text-white-50(data-feather='x-circle')
                     .card-footer.d-flex.align-items-center.justify-content-between
                         a(href='#').small.text-white.stretched-link
                             | View Requests
                         .small.text-white
                             i.fas.fa-angle-right
-
-        // Example Charts for Dashboard Demo
-        .row
-            .col-xl-6.mb-4
-                .card.card-header-actions.h-100
-                    .card-header
-                        | Earnings Breakdown
-                        .dropdown.no-caret
-                            button#areaChartDropdownExample.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                i.text-gray-500(data-feather='more-vertical')
-                            .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='areaChartDropdownExample')
-                                a.dropdown-item(href='#!')
-                                    | Last 12 Months
-                                a.dropdown-item(href='#!')
-                                    | Last 30 Days
-                                a.dropdown-item(href='#!')
-                                    | Last 7 Days
-                                a.dropdown-item(href='#!')
-                                    | This Month
-                                .dropdown-divider
-                                a.dropdown-item(href='#!')
-                                    | Custom Range
-                    .card-body
-                        .chart-area
-                            canvas#myAreaChart(width='100%', height='30')
-            .col-xl-6.mb-4
-                .card.card-header-actions.h-100
-                    .card-header
-                        | Monthly Revenue
-                        .dropdown.no-caret
-                            button#areaChartDropdownExample.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                i.text-gray-500(data-feather='more-vertical')
-                            .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='areaChartDropdownExample')
-                                a.dropdown-item(href='#!')
-                                    | Last 12 Months
-                                a.dropdown-item(href='#!')
-                                    | Last 30 Days
-                                a.dropdown-item(href='#!')
-                                    | Last 7 Days
-                                a.dropdown-item(href='#!')
-                                    | This Month
-                                .dropdown-divider
-                                a.dropdown-item(href='#!')
-                                    | Custom Range
-                    .card-body
-                        .chart-bar
-                            canvas#myBarChart(width='100%', height='30')
-
-        // Example DataTable for Dashboard Demo
-        .card.mb-4
-            .card-header
-                | Personnel Management
-            .card-body
-                include includes/datatable-example.pug
 
 //- * * * * * * * *
 //- * * Footer  * *
@@ -351,6 +307,8 @@ block footer
 
 //- Add JS for third party plugins used on this page
 append scripts
+    //- Load JS for Dashboard page
+    script(src='js/dashboard.js')
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
     //- Load custom Chart.js styling and demo data
