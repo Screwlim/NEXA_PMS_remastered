@@ -5,30 +5,24 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', isLoggedIn,function(req, res, next) {
+  var results;
 
   console.log("dashboard process");
   const getProj = async() => {
-    var results = PROJECTS.findAll({
+    console.log("start searching");
+    results = await PROJECTS.findAll({
       include :[{
         model: ATTENDANCES,
         where: {USER_ID : req.user.ID}
       }]
     });
-    projData = JSON.stringify(results);
-    console.log(projData);
-    console.log(results);
-    return results;
+    res.render('./dashboard',{
+      user : req.user,
+      proj : results
+    });
   }
-  //need
-  var proj = getProj();
-  userData = JSON.stringify(req.user);
-  projData = JSON.stringify(proj);
-  var test = [1,2,3,4,5]
-  console.log('User\'s proj :' + projData);
-  res.render('./dashboard',{
-    user : req.user,
-    test : test
-  });
+  //need 비동기 절차 조정
+  getProj();
 });
 
 module.exports = router;
