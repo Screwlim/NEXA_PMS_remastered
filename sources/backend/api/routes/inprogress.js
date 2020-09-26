@@ -15,14 +15,13 @@ router.get('/', isLoggedIn,function(req, res) {
       }],
       where : { [Op.or] : [{STATUS : 0}, {STATUS : -2}]}
     });
-    projData = JSON.stringify(results);
-    console.log(projData);
+    res.render('inprogress',{proj: results});
     return projData;
   }
 
   getProj();
 
-  res.render('inprogress');
+  //res.render('inprogress');
 });
 
 module.exports = router;
