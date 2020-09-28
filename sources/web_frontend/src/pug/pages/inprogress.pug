@@ -71,30 +71,30 @@ block content
         breadcrumbs: false
     })
 
-
     // Main page content
     .container.mt-n10
         .proj
             .row
-                each val in [0,1,2]
-                    .col-xl-6.mb-4
-                        .card.card-header-actions.h-100
-                            .card-header
-                                | #{proj[val].NAME}
-                            .card-body
-                                | 참여인원 : #{proj[val]}
-                                br
-                                | 현재 진행도 : 42%
-                                br
-                                | 현재 상태 : #{proj[val].STATUS}
-                                br
-                                | 최근 업데이트 : 2020-09-14
-                            a.card-footer(href='/project')
-                                .d-flex.align-items-center.justify-content-between.small.text-body
-                                    | 프로젝트로 이동
-                                    i(data-feather='arrow-right')
-
-
+                if projs.rows.length != 0                
+                    each proj in projs.rows
+                        .col-xl-6.mb-4
+                            .card.card-header-actions.h-100
+                                .card-header
+                                    | #{proj.NAME}
+                                .card-body
+                                    | 참여인원 : #{proj}
+                                    br
+                                    | 현재 진행도 : 42%
+                                    br
+                                    | 현재 상태 : #{proj.STATUS}
+                                    br
+                                    | 최근 업데이트 : 2020-09-14
+                                a.card-footer(href='/project')
+                                    .d-flex.align-items-center.justify-content-between.small.text-body
+                                        | 프로젝트로 이동
+                                        i(data-feather='arrow-right')
+                else                
+                    | 현재 진행 중인 프로젝트가 없습니다
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
