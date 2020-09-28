@@ -25,7 +25,12 @@ router.post('/',isNotLoggedIn, (req, res, next) => {
         console.error(loginError);
         return next(loginError);
       }
-      console.log('login successful');
+      console.log('login successful' + user.NAME);
+      
+      //app global variables set
+      res.locals.userID = user.ID;
+      res.locals.userName = user.NAME;
+
       return res.redirect('/dashboard');
     });
   })(req, res, next);
