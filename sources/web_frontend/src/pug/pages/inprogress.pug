@@ -86,7 +86,14 @@ block content
                                     br
                                     | 현재 진행도 : 42%
                                     br
-                                    | 현재 상태 : #{proj.STATUS}
+                                    if proj.STATUS  == '0'
+                                        | 현재 상태 : 정상
+                                    else if proj.STATUS == '-2'
+                                        | 현재 상태 : 지연
+                                    else if proj.STATUS == '-1'
+                                        | 현재 상태 : 취소
+                                    else if proj.STATUS == '1'
+                                        | 현재 상태 : 완료
                                     br
                                     | 최근 업데이트 : 2020-09-14
                                 a.card-footer(href='/project')
