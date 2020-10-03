@@ -41,7 +41,8 @@ block sidenav
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/sidenav.pug
     +sidenav({
-        sidenavStyle: 'sidenav-light'
+        sidenavStyle: 'sidenav-light',
+        user: user.NAME
     })
 
 //- * * * * * * * * * * *
@@ -178,7 +179,7 @@ block content
                                     .row.small.text-muted
                                         .col-sm-3.text-truncate
                                             em 총괄 책임자:
-                                        .col 
+                                        .col #{user.NAME}
                                     .row.small.text-muted
                                         .col-sm-3.text-truncate
                                             em 프로젝트 요약:

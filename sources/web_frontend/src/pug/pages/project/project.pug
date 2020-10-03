@@ -13,7 +13,7 @@ extends ../../layouts/dashboard.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
-    - var pageTitle = 'Dashboard'
+    - var pageTitle = proj.NAME
 
 //- Add CSS for third party plugins used on this page
 append css
@@ -46,7 +46,9 @@ block sidenav
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/sidenav-proj.pug
     +sidenav({
-        sidenavStyle: 'sidenav-dark'
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: proj.ID
     })
 
 //- * * * * * * * * * * *
@@ -64,7 +66,7 @@ block content
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
         pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
-        pageSubtitle: 'Example dashboard overview and content summary',
+        pageSubtitle: proj.DESCRIPTION,
         pageIcon: 'activity',
         breadcrumbs: false
     })
@@ -79,7 +81,7 @@ block content
                         .d-flex.align-items-center.justify-content-between
                             .mr-3
                                 i.feather-xl.text-green.mb-3(data-feather='layout')
-                                h5 Project 1
+                                h5 #{proj.NAME}
                             .mr-3
                                 h5 진행상황
                             img.card-img-top(src='../assets/img/freepik/windows-pana.svg', alt='...', style='width: 10rem;')
