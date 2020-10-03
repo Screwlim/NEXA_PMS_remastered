@@ -1,5 +1,4 @@
 mixin sidenav(options)
-
     nav.sidenav.shadow-right(class=options.sidenavStyle)
             
         .sidenav-menu
@@ -10,10 +9,9 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='trello')
                     | Main Dashboard
-
                 .sidenav-menu-heading
                     | 프로젝트 관리
-                a.nav-link(href='/project')
+                a.nav-link(href='/project?pid='+options.pid)
                     .nav-link-icon
                         i(data-feather='map')
                     | 프로젝트 Dashboard
@@ -34,4 +32,4 @@ mixin sidenav(options)
             
             .sidenav-footer-content
                 .sidenav-footer-subtitle Logged in as:
-                .sidenav-footer-title valerie
+                .sidenav-footer-title #{options.user}
