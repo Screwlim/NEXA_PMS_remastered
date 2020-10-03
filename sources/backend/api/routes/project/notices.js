@@ -24,6 +24,7 @@ router.get('/detail', function(req, res, next) {
     console.log(results);
     console.log(req.user);
     res.render('project/notice-detail',{
+      user: req.user
     });
   });
 

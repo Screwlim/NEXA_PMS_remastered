@@ -21,7 +21,7 @@ router.get('/', isLoggedIn,function(req, res, next) {
 
   getProj();
 
-  res.render('projects/list');
+  res.render('projects/list', {user: req.user});
 });
 
 module.exports = router;

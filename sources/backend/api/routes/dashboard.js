@@ -5,12 +5,12 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', isLoggedIn,function(req, res, next) {
-  var results;
-
+  var projData;
+  
   console.log("dashboard process");
   const getProj = async() => {
     console.log("start searching");
-    results = await PROJECTS.findAll({
+    projData = await PROJECTS.findAll({
       include :[{
         model: ATTENDANCES,
         where: {USER_ID : req.user.ID}
@@ -18,7 +18,7 @@ router.get('/', isLoggedIn,function(req, res, next) {
     });
     res.render('./dashboard',{
       user : req.user,
-      proj : results
+      proj : projData
     });
   }
   //need 비동기 절차 조정

@@ -8,22 +8,19 @@ router.get('/', isLoggedIn,function(req, res) {
   console.log("in progress page");
 
   const getProj = async() => {
-    var results = await PROJECTS.findAndCountAll({
+    var projlist = await PROJECTS.findAndCountAll({
       include :[{
         model: ATTENDANCES,
         where: {USER_ID : req.user.ID}
       }],
       where : { [Op.or] : [{STATUS : 0}, {STATUS : -2}]}
     });
-    console.log(results);
-    var val = [];
-    res.render('inprogress',{projs: results});
-    return results;
+
+    res.render('inprogress',{projs: projlist, user: req.user});
+    return projlist;
   }
 
   getProj();
-
-  //res.render('inprogress');
 });
 
 module.exports = router;
