@@ -11,7 +11,6 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   console.log("project create process");
-
   PROJECTS.create({
     NAME: req.body.project_name,
     START: req.body.start_date,
@@ -22,20 +21,19 @@ router.post('/', function(req, res) {
     NUM_TASKS: 0,
     NUM_DONE_TASKS: 0,
     STATUS: 0
+  }).then(data => {
+
+    ATTENDANCES.create({
+      PROJECT_ID: data.ID,
+      USER_ID: req.user.ID,
+      ISPM: 1
+    })
+
   })
 
-  var new_proj = PROJECTS.findOne({
-    where: {NAME: req.body.project_name}
-  })
-
-  ATTENDANCES.create({
-    PROJECT_ID: new_proj.ID,
-    USER_ID: req.user.ID,
-    ISPM: 1
-  })
 
   console.log(req.body);
-  res.render('projects/new', {user: req.user});
+  res.render('dashboard', {user: req.user});
 });
 
 module.exports = router;
