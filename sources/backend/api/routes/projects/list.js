@@ -1,6 +1,7 @@
 var express = require('express');
 const { isLoggedIn } = require('../middleware');
 const { PROJECTS, ATTENDANCES } = require('../../db/models');
+const { Op } = require('sequelize');
 var router = express.Router();
 
 /* GET users listing. */
@@ -8,20 +9,20 @@ router.get('/', isLoggedIn,function(req, res, next) {
   console.log("project list process");
 
   const getProj = async() => {
-    var results = await PROJECTS.findAll({
+    var projlist = await PROJECTS.findAndCountAll({
       include :[{
         model: ATTENDANCES,
         where: {USER_ID : req.user.ID}
-      }]
+      }],
+      where : { [Op.or] : [{STATUS : 0}, {STATUS : -2}, {STATUS : -1}, {STATUS : 1}]}
+
     });
-    projData = JSON.stringify(results);
-    console.log(projData);
-    return projData;
+
+    res.render('projects/list',{projs: projlist, user: req.user});
+    return projlist;
   }
 
   getProj();
-
-  res.render('projects/list', {user: req.user});
 });
 
 module.exports = router;
