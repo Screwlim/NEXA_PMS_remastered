@@ -13,7 +13,7 @@ extends ../../layouts/dashboard.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
-    - var pageTitle = 'Project List'
+    - var pageTitle = '모든 프로젝트'
 
 //- Add CSS for third party plugins used on this page
 append css
@@ -67,26 +67,42 @@ block content
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
         pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
-        pageSubtitle: 'Project List',
+        pageSubtitle: '내가 기여한 모든 프로젝트를 볼 수 있습니다',
         pageIcon: 'activity',
         breadcrumbs: false
     })
 
-        button#reportrange.btn.btn-white.btn-sm.line-height-normal.p-3
-            i.mr-2.text-primary(data-feather='calendar')
-            span
-            i.ml-1(data-feather='chevron-down')
-
     // Main page content
     .container.mt-n10
-
-        // Example DataTable for Dashboard Demo
-        .card.mb-4
-            .card-header
-                | Project List
-            .card-body
-                include ../includes/datatable-example.pug
-
+        .proj
+            .row
+                if projs.rows.length != 0                
+                    each proj in projs.rows
+                        .col-xl-6.mb-4
+                            .card.card-header-actions.h-100
+                                .card-header
+                                    | #{proj.NAME}
+                                .card-body
+                                    | 참여인원 : #{proj}
+                                    br
+                                    | 현재 진행도 : 42%
+                                    br
+                                    if proj.STATUS  == '0'
+                                        | 현재 상태 : 정상
+                                    else if proj.STATUS == '-2'
+                                        | 현재 상태 : 지연
+                                    else if proj.STATUS == '-1'
+                                        | 현재 상태 : 취소
+                                    else if proj.STATUS == '1'
+                                        | 현재 상태 : 완료
+                                    br
+                                    | 최근 업데이트 : 2020-09-14
+                                a.card-footer(href='/project?pid='+proj.ID)
+                                    .d-flex.align-items-center.justify-content-between.small.text-body
+                                        | 프로젝트로 이동
+                                        i(data-feather='arrow-right')
+                else                
+                    | 현재 진행 중인 프로젝트가 없습니다
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
@@ -101,18 +117,3 @@ block footer
 
 //- Add JS for third party plugins used on this page
 append scripts
-    //- Load Chart.js via CDN
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
-    //- Load custom Chart.js styling and demo data
-    script(src='/assets/demo/chart-area-demo.js')
-    script(src='/assets/demo/chart-bar-demo.js')
-    //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='/assets/demo/datatables-demo.js')
-    //- Load Moment.js and Date Range Picker via CDN
-    script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
-    script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
-    //- Load Date Range Picker initialization script
-    script(src='/assets/demo/date-range-picker-demo.js')
