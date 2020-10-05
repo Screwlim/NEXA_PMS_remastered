@@ -72,37 +72,187 @@ block content
         breadcrumbs: false
     })
 
-    // Main page content
     .container.mt-n10
-        .proj
-            .row
-                if projs.rows.length != 0                
-                    each proj in projs.rows
-                        .col-xl-6.mb-4
-                            .card.card-header-actions.h-100
-                                .card-header
-                                    | #{proj.NAME}
-                                .card-body
-                                    | 참여인원 : #{proj}
-                                    br
-                                    | 현재 진행도 : 42%
-                                    br
-                                    if proj.STATUS  == '0'
-                                        | 현재 상태 : 정상
-                                    else if proj.STATUS == '-2'
-                                        | 현재 상태 : 지연
-                                    else if proj.STATUS == '-1'
-                                        | 현재 상태 : 취소
-                                    else if proj.STATUS == '1'
-                                        | 현재 상태 : 완료
-                                    br
-                                    | 최근 업데이트 : 2020-09-14
-                                a.card-footer(href='/project?pid='+proj.ID)
-                                    .d-flex.align-items-center.justify-content-between.small.text-body
-                                        | 프로젝트로 이동
-                                        i(data-feather='arrow-right')
-                else                
-                    | 현재 진행 중인 프로젝트가 없습니다
+        // Wizard card example with navigation
+        .card
+            form(method="POST")
+                .card-header.border-bottom
+                    // Wizard navigation
+                    .nav.nav-pills.nav-justified.flex-column.flex-xl-row.nav-wizard#cardTab(role='tablist')
+                        // Wizard navigation item 1
+                        a.nav-item.nav-link.active#wizard1-tab(href='#wizard1', data-toggle='tab', role='tab', aria-controls='wizard1', aria-selected='true')
+                            .wizard-step-icon
+                                | 1
+                            .wizard-step-text
+                                .wizard-step-text-name 정상
+                                .wizard-step-text-details 
+                        // Wizard navigation item 2
+                        a.nav-item.nav-link#wizard2-tab(href='#wizard2', data-toggle='tab', role='tab', aria-controls='wizard2', aria-selected='true')
+                            .wizard-step-icon
+                                | 2
+                            .wizard-step-text
+                                .wizard-step-text-name 지연
+                                .wizard-step-text-details 현재 지연 상태로 진행 중인 프로젝트 목록입니다.
+                        // Wizard navigation item 3
+                        a.nav-item.nav-link#wizard3-tab(href='#wizard3', data-toggle='tab', role='tab', aria-controls='wizard3', aria-selected='true')
+                            .wizard-step-icon
+                                | 3
+                            .wizard-step-text
+                                .wizard-step-text-name 취소
+                                .wizard-step-text-details 진행중 취소되거나 중단된 프로젝트 목록입니다.
+                        // Wizard navigation item 4
+                        a.nav-item.nav-link#wizard4-tab(href='#wizard4', data-toggle='tab', role='tab', aria-controls='wizard4', aria-selected='true')
+                            .wizard-step-icon
+                                | 4
+                            .wizard-step-text
+                                .wizard-step-text-name 완료
+                                .wizard-step-text-details 종료된 프로젝트 목록입니다.
+                        a.nav-item.nav-link#wizard5-tab(href='#wizard5', data-toggle='tab', role='tab', aria-controls='wizard5', aria-selected='true')
+                            .wizard-step-icon
+                                | 5
+                            .wizard-step-text
+                                .wizard-step-text-name 모든 프로젝트
+                                .wizard-step-text-details 현재까지 자신이 참여한 모든 프로젝트를 검색합니다.
+                .card-body
+                    .tab-content#cardTabContent
+                        // Wizard tab pane item 1
+                        .tab-pane.py-5.py-xl-10.fade.show.active#wizard1(role='tabpanel', aria-labelledby='wizard1-tab')
+                            .container.mt-n10
+                                .proj
+                                    .row
+                                        if projs.rows.length != 0                
+                                            each proj in projs.rows
+                                                if proj.STATUS == '0'
+                                                    .col-xl-6.mb-4
+                                                        .card.card-header-actions.h-100
+                                                            .card-header
+                                                                | #{proj.NAME}
+                                                            .card-body
+                                                                | 참여인원 : #{proj}
+                                                                br
+                                                                | 현재 진행도 : 42%
+                                                                br
+                                                                | 현재 상태 : 정상
+                                                                br
+                                                                | 최근 업데이트 : #{proj.updatedAt}
+                                                            a.card-footer(href='/project?pid='+proj.ID)
+                                                                .d-flex.align-items-center.justify-content-between.small.text-body
+                                                                    | 프로젝트로 이동
+                                                                    i(data-feather='arrow-right')
+                                        else                
+                                            | 현재 진행 중인 프로젝트가 없습니다
+                        // Wizard tab pane item 2
+                        .tab-pane.py-5.py-xl-10.fade#wizard2(role='tabpanel', aria-labelledby='wizard2-tab')
+                            .container.mt-n10
+                                .proj
+                                    .row
+                                        if projs.rows.length != 0                
+                                            each proj in projs.rows
+                                                if proj.STATUS == '-2'
+                                                    .col-xl-6.mb-4
+                                                        .card.card-header-actions.h-100
+                                                            .card-header
+                                                                | #{proj.NAME}
+                                                            .card-body
+                                                                | 참여인원 : #{proj}
+                                                                br
+                                                                | 현재 진행도 : 42%
+                                                                br
+                                                                | 현재 상태 : 지연
+                                                                br
+                                                                | 최근 업데이트 : #{proj.updatedAt}
+                                                            a.card-footer(href='/project?pid='+proj.ID)
+                                                                .d-flex.align-items-center.justify-content-between.small.text-body
+                                                                    | 프로젝트로 이동
+                                                                    i(data-feather='arrow-right')
+                                        else                
+                                            | 현재 진행 중인 프로젝트가 없습니다
+                        // Wizard tab pane item 3
+                        .tab-pane.py-5.py-xl-10.fade#wizard3(role='tabpanel', aria-labelledby='wizard3-tab')
+                            .container.mt-n10
+                                .proj
+                                    .row
+                                        if projs.rows.length != 0                
+                                            each proj in projs.rows
+                                                if proj.STATUS == '-1'
+                                                    .col-xl-6.mb-4
+                                                        .card.card-header-actions.h-100
+                                                            .card-header
+                                                                | #{proj.NAME}
+                                                            .card-body
+                                                                | 참여인원 : #{proj}
+                                                                br
+                                                                | 현재 진행도 : 42%
+                                                                br
+                                                                | 현재 상태 : 취소
+                                                                br
+                                                                | 최근 업데이트 : #{proj.updatedAt}
+                                                            a.card-footer(href='/project?pid='+proj.ID)
+                                                                .d-flex.align-items-center.justify-content-between.small.text-body
+                                                                    | 프로젝트로 이동
+                                                                    i(data-feather='arrow-right')
+                                        else                
+                                            | 현재 진행 중인 프로젝트가 없습니다
+                        // Wizard tab pane item 4
+                        .tab-pane.py-5.py-xl-10.fade#wizard4(role='tabpanel', aria-labelledby='wizard4-tab')
+                            .container.mt-n10
+                                .proj
+                                    .row
+                                        if projs.rows.length != 0                
+                                            each proj in projs.rows
+                                                if proj.STATUS == '1'
+                                                    .col-xl-6.mb-4
+                                                        .card.card-header-actions.h-100
+                                                            .card-header
+                                                                | #{proj.NAME}
+                                                            .card-body
+                                                                | 참여인원 : #{proj}
+                                                                br
+                                                                | 현재 진행도 : 42%
+                                                                br
+                                                                | 현재 상태 : 완료
+                                                                br
+                                                                | 최근 업데이트 : #{proj.updatedAt}
+                                                            a.card-footer(href='/project?pid='+proj.ID)
+                                                                .d-flex.align-items-center.justify-content-between.small.text-body
+                                                                    | 프로젝트로 이동
+                                                                    i(data-feather='arrow-right')
+                                        else                
+                                            | 현재 진행 중인 프로젝트가 없습니다
+                        // Wizard tab pane item 5
+                        .tab-pane.py-5.py-xl-10.fade#wizard5(role='tabpanel', aria-labelledby='wizard5-tab')
+                            .container.mt-n10
+                                .proj
+                                    .row
+                                        if projs.rows.length != 0                
+                                            each proj in projs.rows
+                                                .col-xl-6.mb-4
+                                                    .card.card-header-actions.h-100
+                                                        .card-header
+                                                            | #{proj.NAME}
+                                                        .card-body
+                                                            | 참여인원 : #{proj}
+                                                            br
+                                                            | 현재 진행도 : 42%
+                                                            br
+                                                            if proj.STATUS  == '0'
+                                                                | 현재 상태 : 정상
+                                                            else if proj.STATUS == '-2'
+                                                                | 현재 상태 : 지연
+                                                            else if proj.STATUS == '-1'
+                                                                | 현재 상태 : 취소
+                                                            else if proj.STATUS == '1'
+                                                                | 현재 상태 : 완료
+                                                            br
+                                                            | 최근 업데이트 : #{proj.updatedAt}
+                                                        a.card-footer(href='/project?pid='+proj.ID)
+                                                            .d-flex.align-items-center.justify-content-between.small.text-body
+                                                                | 프로젝트로 이동
+                                                                i(data-feather='arrow-right')
+                                        else                
+                                            | 현재 진행 중인 프로젝트가 없습니다
+                
+    
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
