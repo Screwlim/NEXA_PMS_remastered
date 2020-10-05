@@ -5,7 +5,7 @@ const { PROJECTS, JOBS, TASKS } = require('../../db/models');
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("project " + req.query.pid+ " process");
-  var jobs;
+  var jobs
   var proj
   PROJECTS.findOne({
     where : {ID: req.query.pid}
@@ -14,14 +14,16 @@ router.get('/', function(req, res) {
       where: {PROJECT_ID: data.ID}
     })
     proj = data
-  })
-  .then(data2 => {
+  }).then(data2 => {
     if (data2 === undefined){
       data2 = []
     }
-    console.log(proj)
-    console.log(jobs)
-    res.render('project/project', {proj: proj, jobs: data2, user: req.user});
+    else{
+      jobs = data2
+    }
+    console.dir(proj)
+    console.dir(jobs)
+    res.render('project/project', {proj: proj, jobs: jobs, user: req.user});
   })    
 
 
