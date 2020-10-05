@@ -1,0 +1,136 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../../../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '업무 생성'
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/sidenav-proj.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/headers/header-compact.pug
+    +header({
+        pageHeaderStyle: 'page-header-light border-bottom',
+        pageHeaderBg: 'bg-white',
+        pageHeaderSpacing: 'mb-4',
+        pageHeaderContainer: 'container-fluid',
+        pageIcon: 'clipboard'
+    })
+
+    // Main page content
+    .container.mt-4
+        hr.mt-0.mb-4
+        .row
+            .col-lg-8
+                .card.mb-4
+                    .card-header 기본 정보
+                    .card-body
+                        form
+                            .form-group
+                                label(for='jobTitle').small.mb-1 제목
+                                input.form-control#jobTitle(type='text', placeholder='업무명을 입력하세요')
+                            .form-group
+                                label(for='jobDesc').small.mb-1 요약
+                                input.form-control#jobDesc(type='text', placeholder='')
+                .card.mb-4
+                    .card-header 상세
+                    .card-body
+                        h5.card-title 기간 설정
+                            .form-row
+                                .form-group.col-md-6                                
+                                    label.small.mb-1(for='start_date') 시작 날짜
+                                    input#inputStartdate.form-contorl(type='date', name='start_date')
+                            .form-row
+                                .form-group.col-md-6
+                                    label.small.mb-1(for='end_date') 종료 날짜
+                                    input#inputEnddate.form-contorl(type='date', name='end_date')
+                        h5.mb-1 내용
+                        form
+                            .custom-control.custom-radio
+                                textarea#JobContents(name='JobContents',rows='10', cols='40',placeholder='내용을 입력해 주세요.')
+                        hr.my-4
+                        // Data sharing options
+                        h5.mb-1 파일 공유
+                        
+                            
+            .col-lg-4
+                .card.mb-4
+                    .card-header 중요도 설정
+                    .card-body
+                        form
+                            p 업무 중요도를 설정해 주세요. (1: 낮음 5: 높음)
+                            .form-group
+                                .custom-control.custom-radio
+                                    input#l1.custom-control-input(type='radio', name='radioUsage', checked)
+                                    label.custom-control-label(for='l1') 1
+                                .custom-control.custom-radio
+                                    input#l2.custom-control-input(type='radio', name='radioUsage')
+                                    label.custom-control-label(for='l2') 2
+                                .custom-control.custom-radio
+                                    input#l3.custom-control-input(type='radio', name='radioUsage')
+                                    label.custom-control-label(for='l3') 3
+                                .custom-control.custom-radio
+                                    input#l4.custom-control-input(type='radio', name='radioUsage')
+                                    label.custom-control-label(for='l4') 4
+                                .custom-control.custom-radio
+                                    input#l5.custom-control-input(type='radio', name='radioUsage')
+                                    label.custom-control-label(for='l5') 5
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include ../../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
