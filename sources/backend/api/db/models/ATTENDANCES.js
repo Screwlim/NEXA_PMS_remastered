@@ -30,7 +30,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'ATTENDANCES',
-    timestamps: false
+    tableName: 'ATTENDANCES'
   });
 };

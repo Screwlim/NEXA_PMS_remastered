@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
-    WRITER: {
+    AUTHOR: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -39,16 +39,6 @@ module.exports = function(sequelize, DataTypes) {
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: true
-    },
-    STATUS: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'STATUS_INFO',
-        },
-        key: 'STATUS'
-      }
     }
   }, {
     sequelize,

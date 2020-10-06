@@ -13,7 +13,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'STATUS_INFO',
-    timestamps: false
+    tableName: 'STATUS_INFO'
   });
 };

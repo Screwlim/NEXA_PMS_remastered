@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(512),
       allowNull: true
     },
-    WRITER: {
+    AUTHOR: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -58,13 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     STATUS: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'STATUS_INFO',
-        },
-        key: 'STATUS'
-      }
+      allowNull: true
     }
   }, {
     sequelize,

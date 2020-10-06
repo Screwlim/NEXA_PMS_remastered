@@ -47,7 +47,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'USERS',
-    timestamps: false
+    tableName: 'USERS'
   });
 };

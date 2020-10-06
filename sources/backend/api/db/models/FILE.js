@@ -2,6 +2,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('FILE', {
+    ID: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      primaryKey: true
+    },
     TYPE: {
       type: DataTypes.CHAR(1),
       allowNull: true

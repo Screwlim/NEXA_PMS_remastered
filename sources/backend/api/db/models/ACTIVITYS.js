@@ -39,10 +39,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     DESCRIPTION: {
-      type: DataTypes.STRING(512),
+      type: DataTypes.STRING(2048),
       allowNull: true
     },
-    WRITER: {
+    AUTHOR: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -52,15 +52,9 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
-    STATUS: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'STATUS_INFO',
-        },
-        key: 'STATUS'
-      }
+    FILEURL: {
+      type: DataTypes.STRING(50),
+      allowNull: true
     }
   }, {
     sequelize,
