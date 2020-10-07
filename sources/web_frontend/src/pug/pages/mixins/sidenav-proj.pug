@@ -15,15 +15,15 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='map')
                     | 프로젝트 Dashboard
-                a.nav-link(href='/project/jobs')
+                a.nav-link(href='/project/jobs?pid='+options.pid)
                     .nav-link-icon
                         i(data-feather='monitor')
                     | 업무조회
-                a.nav-link(href='/project/notices')
+                a.nav-link(href='/project/notices?pid='+options.pid)
                     .nav-link-icon
                         i(data-feather='info')
                     | 공지사항
-                a.nav-link(href='/project/members')
+                a.nav-link(href='/project/members?pid='+options.pid)
                     .nav-link-icon
                         i(data-feather='users')
                     | 멤버조회

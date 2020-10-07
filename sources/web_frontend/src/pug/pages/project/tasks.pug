@@ -46,7 +46,9 @@ block sidenav
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/sidenav-proj.pug
     +sidenav({
-        sidenavStyle: 'sidenav-dark'
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: pid
     })
 
 //- * * * * * * * * * * *
