@@ -21,9 +21,12 @@ router.get('/', function(req, res) {
     else{
       jobs = data2
     }
-    console.dir(proj)
-    console.dir(jobs)
-    res.render('project/project', {proj: proj, jobs: jobs, user: req.user});
+    res.render('project/project', {
+      proj: proj,
+      jobs: jobs,
+      user: req.user,
+      pid: proj.ID
+    });
   })    
 
 

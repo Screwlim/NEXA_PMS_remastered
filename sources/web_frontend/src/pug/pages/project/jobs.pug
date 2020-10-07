@@ -13,7 +13,7 @@ extends ../../layouts/dashboard.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
-    - var pageTitle = 'Dashboard'
+    - var pageTitle = '업무 게시판'
 
 //- Add CSS for third party plugins used on this page
 append css
@@ -71,73 +71,126 @@ block content
 
     // Main page content
     .container.mt-n10
-        .row
-            form.form-inline.mr-auto.d-none.d-md-block
-                .input-group.input-group-joined.input-group-solid
-                    input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-                    .input-group-append
-                        .input-group-text
-                            i(data-feather='search')
-
-        .row
-            .col-xxl-12.col-xl-12.mb-6
-                .card
-                    .card-header 업무게시판
-                    .card-body.p-0
-                        .table-responsive.table-billing-history
-                            table.table.mb-0
-                                thead
-                                    tr
-                                        th(scope='col') 이름
-                                        th(scope='col') 시작날짜
-                                        th(scope='col') 종료날짜
-                                        th(scope='col') Status
-                                tbody
-                                    tr
-                                        td 업무1
-                                        td 08/15/2020
-                                        td 09/01/2020
-                                        td
-                                            span.badge.badge-danger 지연
-                                    tr
-                                        td 업무2
-                                        td 08/15/2020
-                                        td 09/10/2020
-                                        td
-                                            span.badge.badge-success 정상
-                                    tr
-                                        td 업무3
-                                        td 08/15/2020
-                                        td 09/14/2020
-                                        td
-                                            span.badge.badge-success 정상
-                                    tr
-                                        td 업무4
-                                        td 08/15/2020
-                                        td 09/14/2020
-                                        td
-                                            span.badge.badge-success 정상           
-        .row
-            .col-xxl-12.col-xl-12.mb-6
-                // Tabbed dashboard card example
-                .card.mb-4
-                    .card-header.border-bottom
-                        // Dashboard card navigation
-                        ul.nav.nav-tabs.card-header-tabs#dashboardNav(role='tablist')
-                            li.nav-item.mr-1
-                                a.nav-link.active#overview-pill(href='#overview', data-toggle='tab', role='tab', aria-controls='overview', aria-selected='true') Overview
-                            li.nav-item
-                                a.nav-link#activities-pill(href='#activities', data-toggle='tab', role='tab', aria-controls='activities', aria-selected='false') Activities
-                    .card-body
-                        .tab-content#dashboardNavContent
-                            // Dashboard Tab Pane 1
-                            .tab-pane.fade.show.active#overview(role='tabpanel', aria-labelledby='overview-pill')
-                                .chart-area.mb-4.mb-lg-0(style="height: 20rem;")
-                                    canvas#myAreaChart(width='100%', height='30')
-                            // Dashboard Tab Pane 2
-                            .tab-pane.fade#activities(role='tabpanel', aria-labelledby='activities-pill')
-                                include ../includes/datatable-activity-example.pug
-
+        .card.mb-4
+            .card-header 업무게시판 data table
+            .card-body      
+                .datatable
+                    table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                        thead
+                            tr
+                                th 작성일
+                                th 내용
+                                th 작성시간
+                                th 작성자
+                                th action
+                        tfoot
+                            tr
+                                th 작성일
+                                th 내용
+                                th 작성시간
+                                th 작성자
+                                th action
+                        tbody
+                            tr
+                                td 01/13/20
+                                td
+                                    i.mr-2.text-green(data-feather='zap')
+                                    | Server online
+                                td 1:21 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/13/20
+                                td
+                                    i.mr-2.text-red(data-feather='zap-off')
+                                    | Server restarted
+                                td 1:00 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/12/20
+                                td 
+                                    i.mr-2.text-purple(data-feather='shopping-cart')
+                                    | New order placed! Order #
+                                    a(href='javascript:void(0);') 1126550
+                                td 5:45 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/12/20
+                                td
+                                    i.mr-2.text-blue(data-feather='user')
+                                    | Valerie Luna submitted 
+                                    a(href='javascript:void(0);') quarter four report
+                                td 4:23 PM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/12/20
+                                td 
+                                    i.mr-2.text-yellow(data-feather='database')
+                                    | Database backup created
+                                td 3:51 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/12/20
+                                td 
+                                    i.mr-2.text-purple(data-feather='shopping-cart')
+                                    | New order placed! Order #
+                                    a(href='javascript:void(0);') 1126549
+                                td 1:22 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/11/20
+                                td
+                                    i.mr-2.text-red(data-feather='zap-off')
+                                    | Server restarted
+                                td 1:00 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                td 01/10/20
+                                td
+                                    i.mr-2.text-blue(data-feather='user')
+                                    | Diane Chambers submitted 
+                                    a(href='javascript:void(0);') quarter four report
+                                td 10:56 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
@@ -153,13 +206,8 @@ block footer
     })
 
 append scripts
-    //- Load Chart.js via CDN
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
-    //- Load custom Chart.js styling and demo data
-    script(src='../assets/demo/chart-area-demo.js')
-    script(src='../assets/demo/chart-pie-demo.js')
     //- Load dataTables via CDN
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load dataTables demo data
-    script(src='../assets/demo/datatables-demo.js')
+    script(src='/assets/demo/datatables-demo.js')
