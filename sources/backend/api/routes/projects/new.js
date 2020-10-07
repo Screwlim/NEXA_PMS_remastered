@@ -22,7 +22,6 @@ router.post('/', function(req, res) {
     NUM_DONE_TASKS: 0,
     STATUS: 0
   }).then(data => {
-
     ATTENDANCES.create({
       PROJECT_ID: data.ID,
       USER_ID: req.user.ID,
@@ -33,7 +32,7 @@ router.post('/', function(req, res) {
 
 
   console.log(req.body);
-  res.render('dashboard', {user: req.user});
+  res.redirect('/inprogress');
 });
 
 module.exports = router;
