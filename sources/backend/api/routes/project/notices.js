@@ -6,7 +6,10 @@ const { NOTICES } = require('../../db/models');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log("project notice list process");
-  res.render('project/notice-list');
+  res.render('project/notice-list',{
+    user: req.user,
+    pid: req.query.pid
+  });
 });
 
 router.get('/detail', function(req, res, next) {

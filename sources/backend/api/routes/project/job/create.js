@@ -4,7 +4,10 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("업무 생성 page");
-  res.render('project/job/create', {user: req.user});
+  res.render('project/job/create',{
+    user: req.user,
+    pid: req.query.pid
+  });
 });
 
 module.exports = router;
