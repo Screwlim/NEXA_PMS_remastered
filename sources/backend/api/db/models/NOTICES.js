@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     TITLE: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     CONTENT: {
@@ -44,15 +44,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
-    STATUS: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'STATUS_INFO',
-        },
-        key: 'STATUS'
-      }
+    FILEURL: {
+      type: DataTypes.STRING(200),
+      allowNull: true
     }
   }, {
     sequelize,

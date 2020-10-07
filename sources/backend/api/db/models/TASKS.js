@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     TITLE: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     START_DATE: {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(512),
       allowNull: true
     },
-    AUTHOR: {
+    AUTHOR_ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -51,6 +51,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         key: 'ID'
       }
+    },
+    AUTHOR: {
+      type: DataTypes.STRING(20),
+      allowNull: true
     },
     WEIGHT: {
       type: DataTypes.INTEGER,
@@ -63,5 +67,5 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'TASKS'
-  });
+    });
 };

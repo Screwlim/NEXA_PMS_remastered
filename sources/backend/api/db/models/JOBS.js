@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     TITLE: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     START_DATE: {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(512),
       allowNull: true
     },
-    AUTHOR: {
+    AUTHOR_ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -52,6 +52,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
+    AUTHOR: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
     NUM_TASKS: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -59,16 +63,6 @@ module.exports = function(sequelize, DataTypes) {
     NUM_DONE_TASKS: {
       type: DataTypes.INTEGER,
       allowNull: true
-    },
-    STATUS: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'STATUS_INFO',
-        },
-        key: 'STATUS'
-      }
     }
   }, {
     sequelize,

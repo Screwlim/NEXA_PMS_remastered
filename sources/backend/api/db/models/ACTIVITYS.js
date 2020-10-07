@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     TITLE: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     START_DATE: {
@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     FILEURL: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(200),
       allowNull: true
     }
   }, {
