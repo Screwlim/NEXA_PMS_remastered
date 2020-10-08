@@ -71,6 +71,9 @@ block content
         breadcrumbs: false
     })
 
+        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/create?pid='+pid) 새로운 업무 생성
+
+
     // Main page content
     .container.mt-n10
         .card.mb-4
@@ -80,119 +83,59 @@ block content
                     table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
                         thead
                             tr
-                                th 작성일
-                                th 내용
-                                th 작성시간
                                 th 작성자
-                                th action
+                                th 제목
+                                th 기간
+                                th 최근 업데이트
+                                th 진행도
                         tfoot
                             tr
-                                th 작성일
-                                th 내용
-                                th 작성시간
                                 th 작성자
-                                th action
+                                th 제목
+                                th 기간
+                                th 최근 업데이트
+                                th 진행도
                         tbody
-                            tr
-                                td 01/13/20
-                                td
-                                    i.mr-2.text-green(data-feather='zap')
-                                    | Server online
-                                td 1:21 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/13/20
-                                td
-                                    i.mr-2.text-red(data-feather='zap-off')
-                                    | Server restarted
-                                td 1:00 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/12/20
-                                td 
-                                    i.mr-2.text-purple(data-feather='shopping-cart')
-                                    | New order placed! Order #
-                                    a(href='javascript:void(0);') 1126550
-                                td 5:45 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/12/20
-                                td
-                                    i.mr-2.text-blue(data-feather='user')
-                                    | Valerie Luna submitted 
-                                    a(href='javascript:void(0);') quarter four report
-                                td 4:23 PM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/12/20
-                                td 
-                                    i.mr-2.text-yellow(data-feather='database')
-                                    | Database backup created
-                                td 3:51 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/12/20
-                                td 
-                                    i.mr-2.text-purple(data-feather='shopping-cart')
-                                    | New order placed! Order #
-                                    a(href='javascript:void(0);') 1126549
-                                td 1:22 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/11/20
-                                td
-                                    i.mr-2.text-red(data-feather='zap-off')
-                                    | Server restarted
-                                td 1:00 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/10/20
-                                td
-                                    i.mr-2.text-blue(data-feather='user')
-                                    | Diane Chambers submitted 
-                                    a(href='javascript:void(0);') quarter four report
-                                td 10:56 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
+                            if jobs.length != 0
+                                each job in jobs
+                                    tr
+                                        td #{job.AUTHOR}
+                                        td 
+                                            a(href='/project/job?pid='+pid+'&jid='+job.ID, title='#{job.TITLE}') #{job.TITLE}
+                                        td #{job.START_DATE}  -  #{job.END_DATE}
+                                        td #{job.updatedAt}                                    
+                                        if job.NUM_TASKS == 0    
+                                            td 준비 단계
+                                        else
+                                            td #{job.NUM_DONE_TASKS / job.NUM_TASKS}                                                                                
+                            //- tr
+                            //-     a(href='#')
+                            //-     td 01/13/20
+                            //-     td
+                            //-         i.mr-2.text-red(data-feather='zap-off')
+                            //-         | Server restarted
+                            //-     td 1:00 AM
+                            //-     td ee
+                            //-     td
+                            //-         button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                            //-             i(data-feather='more-vertical')
+                            //-         button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                            //-             i(data-feather='trash-2')
+                            //- tr
+                            //-     a(href='#')
+                            //-     td 01/12/20
+                            //-     td 
+                            //-         i.mr-2.text-purple(data-feather='shopping-cart')
+                            //-         | New order placed! Order #
+                            //-         a(href='javascript:void(0);') 1126550
+                            //-     td 5:45 AM
+                            //-     td ee
+                            //-     td
+                            //-         button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                            //-             i(data-feather='more-vertical')
+                            //-         button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                            //-             i(data-feather='trash-2')
+                            
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
