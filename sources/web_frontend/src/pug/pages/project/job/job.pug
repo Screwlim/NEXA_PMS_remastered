@@ -1,0 +1,110 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../../../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = job.TITLE
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/sidenav-proj.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: pid
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/headers/header-compact.pug
+    +header({
+        pageHeaderStyle: 'page-header-light border-bottom',
+        pageHeaderBg: 'bg-white',
+        pageHeaderSpacing: 'mb-4',
+        pageHeaderContainer: 'container-fluid',
+        pageIcon: 'clipboard'
+    })
+
+    // Main page content
+    .container.mt-4
+        form(method="POST")
+            hr.mt-0.mb-4
+            .row
+                .col-lg-8
+                    .card.mb-4
+                        .card-header 기본 정보
+                        .card-body
+                            .form-group.col-md-6
+                                label(for='jobTitle').small.mb-1 제목
+                                input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
+                            .form-group.col-md-6
+                                label(for='jobDesc').small.mb-1 요약
+                                input#jobDesc.form-control(type='text', name='desc', placeholder='')
+                    .card.mb-4
+                        .card-header 상세
+                        .card-body
+                            h5.card-title 기간 설정
+                                .form-row
+                                    .form-group.col-md-6                                
+                                        label.small.mb-1(for='start_date') 시작 날짜
+                                        input#inputStartdate.form-contorl(type='date', name='start_date')
+                                .form-row
+                                    .form-group.col-md-6
+                                        label.small.mb-1(for='end_date') 종료 날짜
+                                        input#inputEnddate.form-contorl(type='date', name='end_date')
+            .col-lg-4
+                .card.mb-4
+                    button.btn.btn-primary(type='submit') 생성하기
+            
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include ../../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
