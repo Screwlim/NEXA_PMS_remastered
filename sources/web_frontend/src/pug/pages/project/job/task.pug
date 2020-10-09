@@ -1,0 +1,146 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../../../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = job.TITLE
+
+//- Add CSS for third party plugins used on this page
+append css
+    //- Load dataTables CSS via CDN
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/sidenav-proj.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: pid
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../../mixins/headers/header-breadcrumb.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: 'Example dashboard overview and content summary',
+        pageIcon: 'activity',
+        breadcrumbs: true,
+        pid: pid,
+    })
+
+        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/create?pid='+pid) 새로운 task 생성
+
+
+    // Main page content
+    .container.mt-n10
+        .card.mb-4
+            .card-header task 게시판
+            .card-body      
+                .datatable
+                    table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                        thead
+                            tr
+                                th 작성자
+                                th 제목
+                                th 기간
+                                th 최근 업데이트
+                        tfoot
+                            tr
+                                th 작성자
+                                th 제목
+                                th 기간
+                                th 최근 업데이트
+                                th 진행도
+                        tbody                            
+                            tr
+                                a(href='#')
+                                td 01/13/20
+                                td
+                                    i.mr-2.text-red(data-feather='zap-off')
+                                    | Server restarted
+                                td 1:00 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            tr
+                                a(href='#')
+                                td 01/12/20
+                                td 
+                                    i.mr-2.text-purple(data-feather='shopping-cart')
+                                    | New order placed! Order #
+                                    a(href='javascript:void(0);') 1126550
+                                td 5:45 AM
+                                td ee
+                                td
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                        i(data-feather='more-vertical')
+                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
+                                        i(data-feather='trash-2')
+                            
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include ../../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
+
+append scripts
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables-demo.js')
