@@ -68,8 +68,9 @@ block content
         pageHeaderContainer: 'container',
         pageSubtitle: 'Example dashboard overview and content summary',
         pageIcon: 'activity',
-        breadcrumbs: true,
+        isTask: true,
         pid: pid,
+        job: job
     })
 
         a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/create?pid='+pid) 새로운 task 생성
@@ -97,7 +98,6 @@ block content
                                 th 진행도
                         tbody                            
                             tr
-                                a(href='#')
                                 td 01/13/20
                                 td
                                     i.mr-2.text-red(data-feather='zap-off')
@@ -110,7 +110,6 @@ block content
                                     button.btn.btn-datatable.btn-icon.btn-transparent-dark
                                         i(data-feather='trash-2')
                             tr
-                                a(href='#')
                                 td 01/12/20
                                 td 
                                     i.mr-2.text-purple(data-feather='shopping-cart')
