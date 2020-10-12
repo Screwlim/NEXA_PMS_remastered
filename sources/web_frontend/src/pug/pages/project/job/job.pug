@@ -78,8 +78,8 @@ block content
     // Main page content
     .container.mt-n10
         .card.mb-4
-            .card-header task 게시판
-            .card-body      
+            .card-header task 게시판   #{tasks.length}
+            .card-body
                 .datatable
                     table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
                         thead
@@ -95,34 +95,20 @@ block content
                                 th 기간
                                 th 최근 업데이트
                                 th 진행도
-                        tbody                            
-                            tr
-                                a(href='#')
-                                td 01/13/20
-                                td
-                                    i.mr-2.text-red(data-feather='zap-off')
-                                    | Server restarted
-                                td 1:00 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                a(href='#')
-                                td 01/12/20
-                                td 
-                                    i.mr-2.text-purple(data-feather='shopping-cart')
-                                    | New order placed! Order #
-                                    a(href='javascript:void(0);') 1126550
-                                td 5:45 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
+                        tbody
+                            if tasks.length != 0
+                                each task in tasks
+                                    tr
+                                        td #{task.AUTHOR}
+                                        td 
+                                            a(href='/project/job/task?pid='+pid+'&jid='+job.ID+'&tid='+task.ID, title='#{task.TITLE}') #{task.TITLE}
+                                        td #{task.START_DATE}  -  #{task.END_DATE}
+                                        td #{task.updatedAt}
+                                        td status val?                                    
+                                        //- if job.NUM_TASKS == 0    
+                                        //-     td 준비 단계
+                                        //- else
+                                        //-     td #{job.NUM_DONE_TASKS / job.NUM_TASKS}                        
                             
 //- * * * * * * * *
 //- * * Footer  * *
