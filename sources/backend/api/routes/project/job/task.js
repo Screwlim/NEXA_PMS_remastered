@@ -1,33 +1,35 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS} = require('../../../db/models');
 /* GET users listing. */
 router.get('/', function(req, res) {
-  console.log("job page");
+  console.log("task page");
 
   JOBS.findOne({
     where: {ID: req.query.jid}
   }).then(Job => {
-    TASKS.findAll({
+    TASKS.findOne({
       where: {JOB_ID: Job.ID}
-    }).then(Tasks => {
+    }).then(Task => {
+      ACTIVITYS.findAll({
+        where: {TASK_ID: Task.ID}
+      })
+    }).then(Acts =>{
+
       console.log(Job);
-      console.log(Tasks);
+      console.log(Task);
+      console.log(Acts);
 
       res.render('project/job/task',{
         user: req.user,
         pid: req.query.pid,
         jid: req.query.jid,
         job: Job,
-        tasks: Tasks,
-      });
+        task: Task,
+        acts: Acts
+      })
     })
-    
   })
-  // res.render('project/job/job',{
-  //   user: req.user,
-  //   pid: req.query.pid,
-  // })
 });
 
 module.exports = router;
