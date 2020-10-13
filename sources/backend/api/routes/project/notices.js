@@ -12,8 +12,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/detail', function(req, res, next) {
-    console.log("project notice list process");
+router.get('/detail', function(req, res) {
+    console.log("project notice detail process");
 
     const getNotice = async() => {
       var results = await NOTICES.findAll({

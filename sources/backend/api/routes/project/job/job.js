@@ -24,10 +24,7 @@ router.get('/', function(req, res) {
     })
     
   })
-  // res.render('project/job/job',{
-  //   user: req.user,
-  //   pid: req.query.pid,
-  // })
+
 });
 
 module.exports = router;

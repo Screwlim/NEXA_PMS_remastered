@@ -16,9 +16,11 @@ router.get('/', function(req, res) {
     proj = data
   }).then(data2 => {
     if (data2 === undefined){
+      console.log('no job data');
       data2 = []
     }
     else{
+      console.log('job data = ');
       jobs = data2
     }
     res.render('project/project', {

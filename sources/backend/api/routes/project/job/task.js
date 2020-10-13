@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     where: {ID: req.query.jid}
   }).then(Job => {
     TASKS.findOne({
-      where: {JOB_ID: Job.ID}
+      where: {ID: req.query.tid}
     }).then(Task => {
       ACTIVITYS.findAll({
         where: {TASK_ID: Task.ID}
