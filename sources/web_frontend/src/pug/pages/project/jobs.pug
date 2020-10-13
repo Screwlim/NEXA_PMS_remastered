@@ -102,12 +102,12 @@ block content
                                         td #{job.AUTHOR}
                                         td 
                                             a(href='/project/job?pid='+pid+'&jid='+job.ID, title='#{job.TITLE}') #{job.TITLE}
-                                        td #{job.START_DATE}  -  #{job.END_DATE}
-                                        td #{job.updatedAt}                                    
+                                        td #{job.START_DATE.getFullYear()}/#{job.START_DATE.getMonth()}/#{job.START_DATE.getDate()}  -  #{job.END_DATE.getFullYear()}/#{job.END_DATE.getMonth()}/#{job.END_DATE.getDate()}
+                                        td #{job.updatedAt.getFullYear()}/#{job.updatedAt.getMonth()}/#{job.updatedAt.getDate()} #{job.updatedAt.getHours()}:#{job.updatedAt.getMinutes()}:#{job.updatedAt.getSeconds()}                                  
                                         if job.NUM_TASKS == 0    
                                             td 준비 단계
                                         else
-                                            td #{job.NUM_DONE_TASKS / job.NUM_TASKS}                                                                                
+                                            td #{job.NUM_DONE_jobS / job.NUM_jobS}                                                                                
                             
 //- * * * * * * * *
 //- * * Footer  * *

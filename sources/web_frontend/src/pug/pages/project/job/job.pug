@@ -88,6 +88,7 @@ block content
                                 th 제목
                                 th 기간
                                 th 최근 업데이트
+                                th 진행도                                
                         tfoot
                             tr
                                 th 작성자
@@ -102,13 +103,16 @@ block content
                                         td #{task.AUTHOR}
                                         td 
                                             a(href='/project/job/task?pid='+pid+'&jid='+job.ID+'&tid='+task.ID, title='#{task.TITLE}') #{task.TITLE}
-                                        td #{task.START_DATE}  -  #{task.END_DATE}
-                                        td #{task.updatedAt}
+                                        td #{task.START_DATE.getFullYear()}/#{task.START_DATE.getMonth()}/#{task.START_DATE.getDate()}  -  #{task.END_DATE.getFullYear()}/#{task.END_DATE.getMonth()}/#{task.END_DATE.getDate()}
+                                        td #{task.updatedAt.getFullYear()}/#{task.updatedAt.getMonth()}/#{task.updatedAt.getDate()} #{task.updatedAt.getHours()}:#{task.updatedAt.getMinutes()}:#{task.updatedAt.getSeconds()}
                                         td status val?                                    
                                         //- if job.NUM_TASKS == 0    
                                         //-     td 준비 단계
                                         //- else
-                                        //-     td #{job.NUM_DONE_TASKS / job.NUM_TASKS}                        
+                                        //-     td #{job.NUM_DONE_TASKS / job.NUM_TASKS}
+                            else
+                                tr
+                                    p 아직 업무가 없습니다.                  
                             
 //- * * * * * * * *
 //- * * Footer  * *
