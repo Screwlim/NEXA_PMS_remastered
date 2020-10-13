@@ -26,11 +26,11 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
-    START: {
+    START_DATE: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    END: {
+    END_DATE: {
       type: DataTypes.DATE,
       allowNull: true
     },

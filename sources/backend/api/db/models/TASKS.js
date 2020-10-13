@@ -67,5 +67,5 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'TASKS'
-    });
+  });
 };

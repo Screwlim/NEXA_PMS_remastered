@@ -63,6 +63,14 @@ module.exports = function(sequelize, DataTypes) {
     NUM_DONE_TASKS: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    WEIGHT: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    STATUS: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
