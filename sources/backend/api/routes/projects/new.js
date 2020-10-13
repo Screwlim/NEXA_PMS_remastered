@@ -13,8 +13,8 @@ router.post('/', function(req, res) {
   console.log("project create process");
   PROJECTS.create({
     NAME: req.body.project_name,
-    START: req.body.start_date,
-    END: req.body.end_date,
+    START_DATE: req.body.start_date,
+    END_DATE: req.body.end_date,
     CREATOR: req.user.NAME,
     CREATOR_ID: req.user.ID,
     DESCRIPTION: req.body.desc,
