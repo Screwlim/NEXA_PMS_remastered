@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(2048),
       allowNull: true
     },
-    AUTHOR: {
+    AUTHOR_ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -51,6 +51,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         key: 'ID'
       }
+    },
+    AUTHOR: {
+      type: DataTypes.STRING(20),
+      allowNull: true
     },
     FILEURL: {
       type: DataTypes.STRING(200),
