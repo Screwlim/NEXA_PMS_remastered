@@ -78,7 +78,7 @@ block content
 
         if notices.length != 0
             each notice in notices
-                .card.card-icon.lift.lift-sm.mb-4(href='/project/notices/detail?nid='+'#{notice.ID}')
+                a.card.card-icon.lift.lift-sm.mb-4(href='/project/notices/detail?pid='+pid+'&nid='+notice.ID)
                     .card-body
                         .d-flex.align-items-center.justify-content-between
                             .h5.card-title.mb-0 #{notice.TITLE}
@@ -89,24 +89,24 @@ block content
     #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
         .modal-dialog.modal-dialog-scrollable(role='document')
             .modal-content
-                .modal-header
-                    h5#exampleModalScrollableTitle.modal-title 공지사항 작성
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
-                        span(aria-hidden='true') ×
-                .modal-body
-                    form(method="POST")
+                form(method="POST")
+                    .modal-header
+                        h5#exampleModalScrollableTitle.modal-title 공지사항 작성
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
                         hr
                         .row
                             .form-group.col-md-6
                                 label(for='noticeTitle').small.mb-1 제목
-                                input#title.form-control(type='text', name='title')
+                                input#title.form-control(type='text', name='title', placeholder='제목을 입력하세요')
                         .row    
                             .form-group.col-md-10
                                 label(for='noticeContent').small.mb-1 내용
-                                textarea#content.form-control(name='content', placeholder='')
-                .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                    button.btn.btn-primary(type='submit') 생성하기 
+                                textarea#content.form-control(name='content', placeholder='내용을 입력하세요')
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') 생성하기 
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
