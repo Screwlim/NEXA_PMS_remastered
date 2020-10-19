@@ -32,7 +32,7 @@ router.post('/', function(req, res) {
 
 
   console.log(req.body);
-  res.redirect('/inprogress');
+  res.redirect('../inprogress');
 });
 
 module.exports = router;
