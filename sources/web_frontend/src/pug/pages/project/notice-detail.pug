@@ -72,27 +72,21 @@ block content
         // Knowledge base article
         .card.mb-4
             .card-header.d-flex.align-items-center
-                a.btn.btn-transparent-dark.btn-icon(href='knowledge-base-category.html')
+                a.btn.btn-transparent-dark.btn-icon(href='/project/notices?pid='+pid)
                     i(data-feather='arrow-left')
                 .ml-3
-                    h2.my-3 Knowledge base article example
+                    h2.my-3 #{notice.TITLE}
             .card-body
-                p.lead Here's an example of what an article in your knowledge base will look like.
-                p.lead You can use the paragraph element along with other typography elements and text tools to create articles within your knowledge base. This is a great way to display support information to your users.
-                p.lead The knowledge base page examples are a great starting point for creating FAQ's, documentation, and more. In this section, we're using the lead paragraph class to make the text a bit larger so it's more legible since it's meant to be read in sentences.
-                p.lead.mb-5 You can also use step-by-step examples in this section:
-                h4 Step 1: Start the process
-                p.lead.mb-4 Here is some example text of a longer version of a first step. This format is great when you need to explain things more, not just using a ordered list.
-                h4 Step 2: Continue doing something
-                p.lead.mb-4 We're using built-in elements and text utilities to make this list more legible and understandable. This is a great starting point for a step by step guide within your knowledge base article.
-                h4 Step 3: Finish the process
-                p.lead.mb-5 We've used spacing utilities, text utilities, and other components within this article example. This is just an example layout of a few things you can do within an article page. Thanks for reading!
+                h4 작성자 : #{notice.AUTHOR}
+                h5 작성일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
+                h5 수정일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
+                p.lead.mb-5 #{notice.CONTENT}
                 .alert.alert-primary.alert-icon.mb-0(role='alert')
                     .alert-icon-aside
                         i(data-feather='alert-triangle')
                     .alert-icon-content
                         h5.alert-heading Article Alert
-                        | If there is something in your article that you really want to emphasize, use the alert component, or our custom icon alert component like this one here!
+                        | #{notice.FILEURL}
 
 
 //- * * * * * * * *
