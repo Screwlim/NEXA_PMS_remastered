@@ -1,5 +1,4 @@
 var express = require('express');
-const { NOT } = require('sequelize/types/lib/deferrable');
 var router = express.Router();
 const { NOTICES } = require('../../db/models');
 
@@ -43,9 +42,11 @@ router.post('/', function(req,res) {
     PROJECT_ID: req.query.pid,
     TITLE: req.body.title,
     CONTENT: req.body.content,
-    AUTHOR: req.user.ID,
-    AUTHOR_NAME: req.user.NAME,
+    AUTHOR_ID: req.user.ID,
+    AUTHOR: req.user.NAME,
     FILEURL: 'url'
+  }).then(data => {
+    res.redirect('/project/notices?pid='+req.query.pid);
   })
 })
 
