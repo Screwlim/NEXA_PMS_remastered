@@ -99,7 +99,7 @@ block content
             .card-body
                 if acts.length != 0
                     each act in acts
-                        a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#!')
+                        a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Activity'+act.ID)
                             .card-body
                                 .d-flex.align-items-center.justify-content-between
                                     .h5.card-title.mb-0 #{act.TITLE}
@@ -107,7 +107,60 @@ block content
                 else
                     p No activity
 
-       
+    // CREATE activity modal
+    #createActivity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-dialog-scrollable(role='document')
+            .modal-content
+                form(method="POST")
+                    .modal-header
+                        h5#exampleModalScrollableTitle.modal-title Modal title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        hr.mt-0.mb-4
+                        .row
+                            .col-lg-8
+                                .card.mb-4
+                                    .card-header 기본 정보
+                                    .card-body
+                                        .form-group.col-md-6
+                                            label(for='actTitle').small.mb-1 제목
+                                            input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
+                                        .form-group.col-md-6
+                                            label(for='actDetail').small.mb-1 내용
+                                            input#jobDesc.form-control(type='text', name='desc', placeholder='')
+                                .card.mb-4
+                                    .card-header 상세
+                                    .card-body
+                                        h5.card-title 기간 설정
+                                            .form-row
+                                                .form-group.col-md-6                                
+                                                    label.small.mb-1(for='start_date') 시작 날짜
+                                                    input#inputStartdate.form-contorl(type='date', name='start_date')
+                                            .form-row
+                                                .form-group.col-md-6
+                                                    label.small.mb-1(for='end_date') 종료 날짜
+                                                    input#inputEnddate.form-contorl(type='date', name='end_date')
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') 생성하기
+
+    // Activity Read modal
+    if acts.length != 0
+        each act in acts
+            .modal.fade(id='Activity'+act.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+                .modal-dialog.modal-lg.modal-dialog-scrollable.modal-dialog-centered(role='document')
+                    .modal-content
+                        .modal-header
+                            h5#exampleModalScrollableTitle.modal-title #{act.TITLE}
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') ×
+                        .modal-body
+                            hr.mt-0.mb-4
+                            
+                        .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.btn.btn-primary(type='button') 확인         
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
