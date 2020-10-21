@@ -13,7 +13,7 @@ extends ../../../layouts/dashboard.pug
 //- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
-    - var pageTitle = job.TITLE
+    - var pageTitle = task.TITLE
 
 //- Add CSS for third party plugins used on this page
 append css
@@ -73,56 +73,41 @@ block content
         job: job
     })
 
-        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='#!') 새로운 activity 생성
-
+        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createActivity') 새로운 activity 등록
 
     // Main page content
     .container.mt-n10
-        .card.mb-4
-            .card-header task 게시판
-            .card-body      
-                .datatable
-                    table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
-                        thead
-                            tr
-                                th 작성자
-                                th 제목
-                                th 기간
-                                th 최근 업데이트
-                        tfoot
-                            tr
-                                th 작성자
-                                th 제목
-                                th 기간
-                                th 최근 업데이트
-                                th 진행도
-                        tbody                            
-                            tr
-                                td 01/13/20
-                                td
-                                    i.mr-2.text-red(data-feather='zap-off')
-                                    | Server restarted
-                                td 1:00 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            tr
-                                td 01/12/20
-                                td 
-                                    i.mr-2.text-purple(data-feather='shopping-cart')
-                                    | New order placed! Order #
-                                    a(href='javascript:void(0);') 1126550
-                                td 5:45 AM
-                                td ee
-                                td
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
-                                        i(data-feather='more-vertical')
-                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark
-                                        i(data-feather='trash-2')
-                            
+        .row
+            .col-xxl-12.col-xl-8.mb-6
+                .card.card-scrollable
+                    .card-header Post
+                    .card-body
+                        if posts.length != 0
+                            each post in posts
+                                a.card.card-icon.lift.lift-sm.mb-4(href='#!')
+                                    .card-body
+                                        .d-flex.align-items-center.justify-content-between
+                                            .h5.card-title.mb-0 #{post.TITLE}
+                                            i.flex-shrink-0.ml-4(data-feather='chevron-right')
+                        else
+                            p 등록된 Post가 없습니다.
+                    a.card-footer.small.text-muted(href='#!') post 추가하기 
+
+
+        .card.mb-4.card-scrollable
+            .card-header activity 기록
+            .card-body
+                if acts.length != 0
+                    each act in acts
+                        a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#!')
+                            .card-body
+                                .d-flex.align-items-center.justify-content-between
+                                    .h5.card-title.mb-0 #{act.TITLE}
+                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
+                else
+                    p No activity
+
+       
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
