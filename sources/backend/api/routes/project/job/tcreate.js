@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {TASKS} = require('../../../db/models');
+const {TASKS, JOBS, PROJECTS} = require('../../../db/models');
 
 router.get('/', function(req, res) {
   console.log("업무 생성 page");
@@ -23,6 +23,14 @@ router.post('/', function(req, res) {
     AUTHOR_ID: req.user.ID, 
     WEIGHT: 0,
     STATUS: 0
+  }).then(data => {
+    JOBS.increment('NUM_TASKS', {
+      where: {ID: req.query.jid}
+    })
+  }).then(data=> {
+    PROJECTS.increment('NUM_TASKS', {
+      where: {ID: req.query.pid}
+    })
   })
 
   res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
