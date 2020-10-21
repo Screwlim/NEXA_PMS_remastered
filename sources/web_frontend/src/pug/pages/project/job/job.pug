@@ -94,32 +94,17 @@ block content
                 .card.card-scrollable
                     .card-header Post
                     .card-body
-                        a.card.card-icon.lift.lift-sm.mb-4(href='knowledge-base-article.html')
-                            .card-body
-                                .d-flex.align-items-center.justify-content-between
-                                    .h5.card-title.mb-0 How to update your billing information
-                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
-                        a.card.card-icon.lift.lift-sm.mb-4(href='knowledge-base-article.html')
-                            .card-body
-                                .d-flex.align-items-center.justify-content-between
-                                    .h5.card-title.mb-0 How to update your billing information
-                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
-                        a.card.card-icon.lift.lift-sm.mb-4(href='knowledge-base-article.html')
-                            .card-body
-                                .d-flex.align-items-center.justify-content-between
-                                    .h5.card-title.mb-0 How to update your billing information
-                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
-                        a.card.card-icon.lift.lift-sm.mb-4(href='knowledge-base-article.html')
-                            .card-body
-                                .d-flex.align-items-center.justify-content-between
-                                    .h5.card-title.mb-0 How to update your billing information
-                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
-                        a.card.card-icon.lift.lift-sm.mb-4(href='knowledge-base-article.html')
-                            .card-body
-                                .d-flex.align-items-center.justify-content-between
-                                    .h5.card-title.mb-0 How to update your billing information
-                                    i.flex-shrink-0.ml-4(data-feather='chevron-right')
-                    a.card-footer.small.text-muted(href='!#') post 추가하기 
+                        if posts.length != 0
+                            each post in posts
+                                a.card.card-icon.lift.lift-sm.mb-4(href='#!')
+                                    .card-body
+                                        .d-flex.align-items-center.justify-content-between
+                                            .h5.card-title.mb-0 #{post.TITLE}
+                                            i.flex-shrink-0.ml-4(data-feather='chevron-right')
+                        else
+                            p 등록된 Post가 없습니다.
+                        
+                    a.card-footer.small.text-muted(href='#!') post 추가하기 
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card.mb-8
