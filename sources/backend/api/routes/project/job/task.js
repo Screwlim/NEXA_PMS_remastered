@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS, ACTIVITYS} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS, POST_TASKS} = require('../../../db/models');
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("task page");
@@ -13,29 +13,54 @@ router.get('/', function(req, res) {
     Job = data;
     TASKS.findOne({
       where: {ID: req.query.tid}
-    }).then(data2 => {
-      Task = data2;
+    }).then(data => {
+      Task = data;
       ACTIVITYS.findAll({
         where: {TASK_ID: Task.ID}
-      }).then(data3 =>{
-      console.log('search done');
-      console.log(Job);
-      console.log(Task);
-      console.log(data3);
+      }).then(data =>{
+        Acts = data;
+        POST_TASKS.findAll({
+          where: {TASK_ID: req.query.tid}
+        }).then(data => {
+          console.log('search done');
+          console.log(Job);
+          console.log(Task);
+          console.log(Acts)
+          console.log(data);
 
-      res.render('project/job/task',{
-        user: req.user,
-        pid: req.query.pid,
-        jid: req.query.jid,
-        job: Job,
-        task: Task,
-        acts: data3
-      })
+          res.render('project/job/task',{
+            user: req.user,
+            pid: req.query.pid,
+            jid: req.query.jid,
+            job: Job,
+            task: Task,
+            acts: Acts,
+            posts: data
+          })
+
+        })
     })
   }).catch(err => {
     console.error(err)
   })
 })
 });
+
+router.post('/', function(req, res) {
+  console.log('create activity process');
+
+  ACTIVITYS.create({
+    TASK_ID: req.query.tid,
+    TITLE: req.body.title,
+    START_DATE: req.body.start_date,
+    END_DATE: req.body.end_date,
+    AUTHOR: req.user.NAME,
+    AUTHOR_ID: req.user.ID,
+    FILEURL: 'url'
+  }).then(data => {
+
+    res.redirect('/project/job/task?pid'+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid)
+  })
+})
 
 module.exports = router;
