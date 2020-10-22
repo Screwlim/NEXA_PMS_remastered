@@ -22,14 +22,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    START_DATE: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    END_DATE: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true
@@ -38,8 +30,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
-    DESCRIPTION: {
-      type: DataTypes.STRING(2048),
+    CONTENTS: {
+      type: DataTypes.TEXT,
       allowNull: true
     },
     AUTHOR_ID: {

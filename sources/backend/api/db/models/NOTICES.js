@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     CONTENT: {
-      type: DataTypes.STRING(512),
+      type: DataTypes.TEXT,
       allowNull: true
     },
     AUTHOR_ID: {

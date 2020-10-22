@@ -39,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     DESCRIPTION: {
-      type: DataTypes.STRING(512),
+      type: DataTypes.STRING(2500),
       allowNull: true
     },
     AUTHOR_ID: {

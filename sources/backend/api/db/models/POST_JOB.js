@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     CONTENT: {
-      type: DataTypes.STRING(2048),
+      type: DataTypes.TEXT,
       allowNull: true
     },
     createdAt: {
