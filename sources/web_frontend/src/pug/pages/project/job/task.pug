@@ -124,10 +124,10 @@ block content
                                             .card.shadow-sm
                                                 a.card-body(data-toggle="modal", href='#Activity'+act.ID)
                                                     h5.text-primary #{act.TITLE}
-                                                    if act.DESCRIPTION.length > 30
-                                                        | #{act.DESCRIPTION.substring(0,30)}...
-                                                    else
-                                                        | #{act.DESCRIPTION}...
+                                                    //- if act.CONTENT.length > 30
+                                                    //-     | #{act.CONTENT.substring(0,30)}...
+                                                    //- else
+                                                    //-     | #{act.CONTENT}...
                             else
                                 p 등록된 활동이 없습니다.            
 
@@ -170,7 +170,7 @@ block content
                                 span(aria-hidden='true') ×
                         .modal-body
                             hr.mt-0.mb-4
-                            
+                            p #{act.CONTENT}
                         .modal-footer
                             button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button') 확인
