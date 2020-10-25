@@ -53,6 +53,7 @@ db.TASKS = require('./TASKS')(sequelize, Sequelize);
 db.USERS = require('./USERS')(sequelize, Sequelize);
 db.POST_JOB = require('./POST_JOB')(sequelize, Sequelize);
 db.POST_TASKS = require('./POST_TASK')(sequelize, Sequelize);
+db.LOG = require('./LOG')(sequelize, Sequelize);
 
 db.USERS.hasMany(db.ATTENDANCES, {foreignKey: 'USER_ID', sourceKey: 'ID'});
 db.ATTENDANCES.belongsTo(db.USERS, {foreignKey: 'USER_ID', targetKey: 'ID'});
