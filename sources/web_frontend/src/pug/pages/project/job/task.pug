@@ -144,15 +144,12 @@ block content
                         hr.mt-0.mb-4
                         .row
                             .col-lg-8
-                                .card.mb-4
-                                    .card-header 기본 정보
-                                    .card-body
-                                        .form-group.col-md-12
-                                            label(for='actTitle').small.mb-1 제목
-                                            input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
-                                        .form-group.col-md-12
-                                            label(for='actDetail').small.mb-1 내용
-                                            input#jobDesc.form-control(type='textarea', name='desc', placeholder='내용을 입력하세요')
+                                .form-group.col-md-12
+                                    label(for='actTitle').small.mb-1 제목
+                                    input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
+                                .form-group.col-md-12
+                                    label(for='actDetail').small.mb-1 내용
+                                    textarea#jobDesc.form-control(rows='5', type='textarea', name='contents', placeholder='내용을 입력하세요')
                                 
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
@@ -161,7 +158,7 @@ block content
     // Activity Read modal
     if acts.length != 0
         each act in acts
-            .modal.fade(id='Activity'+act.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+            .modal.fade(data-backdrop='static', id='Activity'+act.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
                 .modal-dialog.modal-lg.modal-dialog-scrollable.modal-dialog-centered(role='document')
                     .modal-content
                         .modal-header
@@ -170,7 +167,7 @@ block content
                                 span(aria-hidden='true') ×
                         .modal-body
                             hr.mt-0.mb-4
-                            p #{act.CONTENT}
+                            p #{act.CONTENTS}
                         .modal-footer
                             button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button') 확인
