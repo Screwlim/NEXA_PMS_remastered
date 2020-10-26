@@ -52,8 +52,7 @@ router.post('/', function(req, res) {
   ACTIVITYS.create({
     TASK_ID: req.query.tid,
     TITLE: req.body.title,
-    START_DATE: req.body.start_date,
-    END_DATE: req.body.end_date,
+    CONTENTS: req.body.contents,
     AUTHOR: req.user.NAME,
     AUTHOR_ID: req.user.ID,
     FILEURL: 'url'

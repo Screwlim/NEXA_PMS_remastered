@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
       }).then(Posts => {
         console.log(Job);
         console.log(Tasks);
-        console.log(posts);
+        console.log(Posts);
         res.render('project/job/job',{
           user: req.user,
           pid: req.query.pid,
