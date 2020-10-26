@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
+    TITLE: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
     AUTHOR_ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
