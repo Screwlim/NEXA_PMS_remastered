@@ -3,10 +3,11 @@ var router = express.Router();
 const {POST_JOB} = require('../../../db/models');
 
 router.get('/', function(req, res) {
-  console.log("업무 생성 page");
-  res.render('project/job/tcreate',{
+  console.log("post 생성 page");
+  res.render('project/job/post_create',{
     user: req.user,
-    pid: req.query.pid
+    pid: req.query.pid,
+    jid: req.query.jid
   });
 });
 
