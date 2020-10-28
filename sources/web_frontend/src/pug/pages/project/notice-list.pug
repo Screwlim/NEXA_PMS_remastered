@@ -15,6 +15,10 @@ block config
     - var navPosition = 'nav-fixed'
     - var pageTitle = '공지사항'
 
+append css
+    //- Load dataTables CSS via CDN
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+
 //- * * * * * * * *
 //- * * Topnav  * *
 //- * * * * * * * *
@@ -59,35 +63,48 @@ block content
     +header({
         pageHeaderStyle: 'page-header-dark',
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
-        pageHeaderSpacing: 'mb-4',
+        pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
         pageSubtitle: 'What are you looking for? Our knowledge base is here to help.',
         pageIcon: 'life-buoy',
         breadcrumbs: false
-        })
+    })
 
         
         button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#noticeCreate') 새로운 공지사항 등록
 
     // Main page content
-    .container
+    .container.mt-n10
+        .card.mb-4
+            .card-header 업무게시판 data table
+            .card-body 
+                .datatable
+                    table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                        thead
+                            tr
+                                th 작성자
+                                th 제목
+                                th 작성일
+                                th 최근 업데이트
+                        tfoot
+                            tr
+                                th 작성자
+                                th 제목
+                                th 작성일
+                                th 최근 업데이트
+                        tbody
+                            if notices.length != 0
+                                each notice in notices
+                                    tr
+                                        td #{notice.AUTHOR}
+                                        td 
+                                            a(href='/project/notices/detail?pid='+pid+'&nid='+notice.ID, title='#{job.TITLE}') #{notice.TITLE}
+                                        td #{notice.AUTHOR}
+                                        td #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}                                  
 
-        // Knowledge base category
-        h2.mb-0.mt-5 공지사항
-        hr.mt-2.mb-4
-
-        if notices.length != 0
-            each notice in notices
-                a.card.card-icon.lift.lift-sm.mb-4(href='/project/notices/detail?pid='+pid+'&nid='+notice.ID)
-                    .card-body
-                        .d-flex.align-items-center.justify-content-between
-                            .h5.card-title.mb-0 #{notice.TITLE}
-                            i.flex-shrink-0.ml-4(data-feather='chevron-right')
-        else   
-            p 등록된 공지사항이 없습니다.
-
-    #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
-        .modal-dialog.modal-dialog-scrollable(role='document')
+    
+    #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='noticeCreate', aria-hidden='true')
+        .modal-dialog.modal-dialog-scrollable.modal-lg(role='document')
             .modal-content
                 form(method="POST")
                     .modal-header
@@ -95,7 +112,6 @@ block content
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
-                        hr
                         .row
                             .form-group.col-md-6
                                 label(for='noticeTitle').small.mb-1 제목
@@ -104,6 +120,8 @@ block content
                             .form-group.col-md-10
                                 label(for='noticeContent').small.mb-1 내용
                                 textarea#content.form-control(name='content', placeholder='내용을 입력하세요')
+                        hr
+                        button.btn-light(type='button', href='#!') 파일첨부
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') 생성하기 
@@ -120,3 +138,10 @@ block footer
     +footer({
         footerStyle: 'footer-light'
     })
+
+append scripts
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables-demo.js')
