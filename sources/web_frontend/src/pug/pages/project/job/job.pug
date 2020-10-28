@@ -96,7 +96,7 @@ block content
                     .card-body
                         if posts.length != 0
                             each post in posts
-                                a.card.card-icon.lift.lift-sm.mb-4(href='#!')
+                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Post'+post.ID)
                                     .card-body
                                         .d-flex.align-items-center.justify-content-between
                                             .h5.card-title.mb-0 #{post.TITLE}
@@ -104,7 +104,7 @@ block content
                         else
                             p 등록된 Post가 없습니다.
                         
-                    a.card-footer.small.text-muted(href='#!') post 추가하기 
+                    a.card-footer.small.text-muted(href='/project/job/job_post?pid='+pid+'&jid='+jid) post 추가하기 
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card.mb-8
@@ -143,7 +143,21 @@ block content
                                     else
                                         tr
                                             p 아직 업무가 없습니다.                
-        
+    if posts.length != 0
+        each post in posts
+            .modal.fade(data-backdrop='static', id='Post'+post.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+                .modal-dialog.modal-lg.modal-dialog-scrollable.modal-dialog-centered(role='document')
+                    .modal-content
+                        .modal-header
+                            h5#exampleModalScrollableTitle.modal-title #{post.TITLE}
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') ×
+                        .modal-body
+                            hr.mt-0.mb-4
+                            pre #{post.CONTENT}
+                        .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.btn.btn-primary(type='button') 확인
 
 //- * * * * * * * *
 //- * * Footer  * *
