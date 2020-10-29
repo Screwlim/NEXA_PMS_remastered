@@ -98,7 +98,7 @@ block content
                             .col-xl-8.col-xxl-12
                                 .text-center.px-4.mb-4.mb-xl-0.mb-xxl-4
                                     h1.text-primary Welcome Back! #{user.NAME} !{a}
-                                    p.text-gray-700.mb-0 현재 #{proj.rows.length}개의 프로젝트가 진행중 입니다.
+                                    p.text-gray-700.mb-0 현재 #{projs.length}개의 프로젝트가 진행중 입니다.
                             .col-xl-4.col-xxl-12.text-center
                                 img.img-fluid(src='assets/img/freepik/at-work-pana.svg', style='max-width: 26rem')
             .col-xxl-4.col-xl-6.mb-4
@@ -120,6 +120,20 @@ block content
                                     span.badge.badge-purple-soft.text-purple.my-1 Users
                     .card-body
                         .timeline.timeline-xs
+                            //- if logs.length != 0
+                            //-     each log in logs
+                            //-         .timeline-item
+                            //-             .timeline-item-marker
+                            //-                 .timeline-item-marker-text
+                            //-                     | 2 days
+                            //-                 .timeline-item-marker-indicator.bg-green
+                            //-             .timeline-item-content
+                            //-                 | New order placed!
+                            //-                 a.font-weight-bold.text-dark(href='#!') Order #2910 
+                            //-                 | has been successfully placed.
+                            //- else
+                            //-     p 아직 활동 사항이 없습니다!
+
                             // Timeline Item 1
                             .timeline-item
                                 .timeline-item-marker
@@ -209,31 +223,13 @@ block content
                                         i.text-gray-500(data-feather='minus-circle')
                                     | Delete Tasks
                     .card-body
-                        h4.small
-                            | Server Migration 
-                            span.float-right.font-weight-bold 20%
-                        .progress.mb-4
-                            .progress-bar.bg-danger(role='progressbar', style='width: 20%', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100')
-                        h4.small
-                            | Sales Tracking 
-                            span.float-right.font-weight-bold 40%
-                        .progress.mb-4
-                            .progress-bar.bg-warning(role='progressbar', style='width: 40%', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100')
-                        h4.small
-                            | Customer Database 
-                            span.float-right.font-weight-bold 60%
-                        .progress.mb-4
-                            .progress-bar(role='progressbar', style='width: 60%', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100')
-                        h4.small
-                            | Payout Details 
-                            span.float-right.font-weight-bold 80%
-                        .progress.mb-4
-                            .progress-bar.bg-info(role='progressbar', style='width: 80%', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100')
-                        h4.small
-                            | Account Setup 
-                            span.float-right.font-weight-bold Complete!
-                        .progress
-                            .progress-bar.bg-success(role='progressbar', style='width: 100%', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100')
+                        if projs.length != 0
+                            each proj in projs
+                                h4.small
+                                    | #{proj.NAME} 
+                                    span.float-right.font-weight-bold #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                .progress.mb-4
+                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
                     a.card-footer(href='#!')
                         .d-flex.align-items-center.justify-content-between.small.text-body
                             | Visit Task Center
