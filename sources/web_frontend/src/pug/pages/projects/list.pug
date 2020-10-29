@@ -128,9 +128,7 @@ block content
                                                             .card-header
                                                                 | #{proj.NAME}
                                                             .card-body
-                                                                | 참여인원 : #{proj}
-                                                                br
-                                                                | 현재 진행도 : 42%
+                                                                | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 정상
                                                                 br
@@ -156,9 +154,7 @@ block content
                                                             .card-header
                                                                 | #{proj.NAME}
                                                             .card-body
-                                                                | 참여인원 : #{proj}
-                                                                br
-                                                                | 현재 진행도 : 42%
+                                                                | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 지연
                                                                 br
@@ -184,9 +180,7 @@ block content
                                                             .card-header
                                                                 | #{proj.NAME}
                                                             .card-body
-                                                                | 참여인원 : #{proj}
-                                                                br
-                                                                | 현재 진행도 : 42%
+                                                                | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 취소
                                                                 br
@@ -212,9 +206,7 @@ block content
                                                             .card-header
                                                                 | #{proj.NAME}
                                                             .card-body
-                                                                | 참여인원 : #{proj}
-                                                                br
-                                                                | 현재 진행도 : 42%
+                                                                | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 완료
                                                                 br
@@ -239,9 +231,7 @@ block content
                                                         .card-header
                                                             | #{proj.NAME}
                                                         .card-body
-                                                            | 참여인원 : #{proj}
-                                                            br
-                                                            | 현재 진행도 : 42%
+                                                            | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                             br
                                                             if proj.STATUS  == '0'
                                                                 | 현재 상태 : 정상
