@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn } = require('./middleware');
-const { PROJECTS, ATTENDANCES } = require('../db/models');
+const { PROJECTS, ATTENDANCES, LOG } = require('../db/models');
 const { Op } = require('sequelize');
 const router = express.Router();
 
@@ -9,16 +9,24 @@ router.get('/', isLoggedIn,function(req, res) {
   var projData;
   
   console.log("dashboard process");
-    PROJECTS.findAndCountAll({
+    PROJECTS.findAll({
       include :[{
         model: ATTENDANCES,
         where: {USER_ID : req.user.ID}
       }],
       where : { [Op.or] : [{STATUS : 0}, {STATUS : -2}]}
     }).then(data=>{
+      proj = data
+      LOG.findAll({
+        where: {USER_ID : req.user.ID}
+      })
+    }).then(data => {
+      console.log(proj);
+      console.log(data);
       res.render('./dashboard',{
         user : req.user,
-        proj : data
+        projs : proj,
+        logs: data
       });
     })
     
