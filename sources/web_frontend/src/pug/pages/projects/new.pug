@@ -67,15 +67,19 @@ block content
 
     script.
         function printInputs()  {
-        const pnameout = document.getElementById('inputProjectname').value;
-        const desc = document.getElementById('description').value;
-        const sdate = document.getElementById('inputStartdate').value;
-        const edate = document.getElementById('inputEnddate').value;
-        console.log(pnameout);
-        document.getElementById("pnameShow").innerText = pnameout;
-        document.getElementById("descShow").innerText = desc;
-        document.getElementById("sDateShow").innerText = sdate;
-        document.getElementById("eDateShow").innerText = edate;
+            const pnameout = document.getElementById('inputProjectname').value;
+            const desc = document.getElementById('description').value;
+            const sdate = document.getElementById('inputStartdate').value;
+            const edate = document.getElementById('inputEnddate').value;
+            console.log(pnameout);
+            document.getElementById("pnameShow").innerText = pnameout;
+            document.getElementById("descShow").innerText = desc;
+            document.getElementById("sDateShow").innerText = sdate;
+            document.getElementById("eDateShow").innerText = edate;
+        }
+
+        function areaSelect() {
+            
         }
     // Main page content
     .container.mt-n10
@@ -131,7 +135,7 @@ block content
 
                                         hr.my-4
                                         .d-flex.justify-content-between
-                                            button.btn.btn-primary.btnNext(type='button', href='#wizard2') 다음 단계로
+                                            button.btn.btn-primary.btnNext(type='button',data-toggle='tab', aria-selected='true', href='#wizard2') 다음 단계로
                         // Wizard tab pane item 2
                         .tab-pane.py-5.py-xl-10.fade#wizard2(role='tabpanel', aria-labelledby='wizard2-tab')
                             .row.justify-content-center
@@ -148,8 +152,8 @@ block content
                                                 input#inputEnddate.form-contorl(type='date', name='end_date')
                                         hr.my-4
                                         .d-flex.justify-content-between
-                                            button.btn.btn-light.btnPrevious(type='button', href='#wizard1') 이전 단계로
-                                            button.btn.btn-primary.btnNext(type='button', href='#wizard3') 다음 단계로
+                                            button.btn.btn-light.btnPrevious(type='button',data-toggle='tab',  aria-selected='true', href='#wizard1') 이전 단계로
+                                            button.btn.btn-primary.btnNext(type='button',data-toggle='tab', aria-selected='true',  href='#wizard3') 다음 단계로
                         // Wizard tab pane item 3
                         .tab-pane.py-5.py-xl-10.fade#wizard3(role='tabpanel', aria-labelledby='wizard3-tab')
                             .row.justify-content-center
@@ -164,8 +168,8 @@ block content
                                             button.btn.btn-success(type='button') 메일로 초대하기
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light.btnPrevious(type='button', href='#wizard2') 이전 단계로
-                                        button.btn.btn-primary.btnNext(type='button', href='#wizard4') 다음 단계로
+                                        button.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard2') 이전 단계로
+                                        button.btn.btn-primary.btnNext(type='button',data-toggle='tab', href='#wizard4') 다음 단계로
                         // Wizard tab pane item 4
                         .tab-pane.py-5.py-xl-10.fade#wizard4(role='tabpanel', aria-labelledby='wizard4-tab')
                             .row.justify-content-center
@@ -199,7 +203,7 @@ block content
 
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light.btnPrevious(type='button', href='#wizard3') 이전 단계로
+                                        button.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard3') 이전 단계로
                                         button.btn.btn-primary(type='submit') 생성하기
 
 //- * * * * * * * *
