@@ -71,16 +71,41 @@ block content
             const desc = document.getElementById('description').value;
             const sdate = document.getElementById('inputStartdate').value;
             const edate = document.getElementById('inputEnddate').value;
-            console.log(pnameout);
+
             document.getElementById("pnameShow").innerText = pnameout;
             document.getElementById("descShow").innerText = desc;
             document.getElementById("sDateShow").innerText = sdate;
             document.getElementById("eDateShow").innerText = edate;
         }
 
-        function areaSelect() {
-            
+        function moveTab(from, to, last) {
+            var buttons = document.querySelectorAll('#step');
+            console.log(buttons);
+            var fromTab = document.getElementById('wizard'+from+'-tab');
+            var toTab = document.getElementById('wizard'+to+'-tab');
+            fromTab.classList.remove('active');
+            toTab.classList.add('active');
+            fromTab.setAttribute('aria-selected', 'false');
+            toTab.setAttribute('aria-selected', 'true');
+
+            for (var i = 0; i < buttons.length; i++){
+                buttons[i].classList.remove('active');
+            }
+
+            if (last == 1){
+                const pnameout = document.getElementById('inputProjectname').value;
+                const desc = document.getElementById('description').value;
+                const sdate = document.getElementById('inputStartdate').value;
+                const edate = document.getElementById('inputEnddate').value;
+
+                document.getElementById("pnameShow").innerText = pnameout;
+                document.getElementById("descShow").innerText = desc;
+                document.getElementById("sDateShow").innerText = sdate;
+                document.getElementById("eDateShow").innerText = edate;
+            }
         }
+
+
     // Main page content
     .container.mt-n10
         // Wizard card example with navigation
@@ -93,7 +118,7 @@ block content
                         a.nav-item.nav-link.active#wizard1-tab(href='#wizard1', data-toggle='tab', role='tab', aria-controls='wizard1', aria-selected='true')
                             .wizard-step-icon
                                 | 1
-                            .wizard-step-text
+                            .wizard-step-text   
                                 .wizard-step-text-name Project Info
                                 .wizard-step-text-details 기본정보를 입력합니다.
                         // Wizard navigation item 2
@@ -135,7 +160,7 @@ block content
 
                                         hr.my-4
                                         .d-flex.justify-content-between
-                                            button.btn.btn-primary.btnNext(type='button',data-toggle='tab', aria-selected='true', href='#wizard2') 다음 단계로
+                                            button#step.btn.btn-primary.btnNext(data-toggle='tab', href='#wizard2', onclick='moveTab(1,2,0)') 다음 단계로
                         // Wizard tab pane item 2
                         .tab-pane.py-5.py-xl-10.fade#wizard2(role='tabpanel', aria-labelledby='wizard2-tab')
                             .row.justify-content-center
@@ -152,8 +177,8 @@ block content
                                                 input#inputEnddate.form-contorl(type='date', name='end_date')
                                         hr.my-4
                                         .d-flex.justify-content-between
-                                            button.btn.btn-light.btnPrevious(type='button',data-toggle='tab',  aria-selected='true', href='#wizard1') 이전 단계로
-                                            button.btn.btn-primary.btnNext(type='button',data-toggle='tab', aria-selected='true',  href='#wizard3') 다음 단계로
+                                            button#step.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard1', onclick='moveTab(2,1,0)') 이전 단계로
+                                            button#step.btn.btn-primary.btnNext(type='button',data-toggle='tab', href='#wizard3', onclick='moveTab(2,3,0)') 다음 단계로
                         // Wizard tab pane item 3
                         .tab-pane.py-5.py-xl-10.fade#wizard3(role='tabpanel', aria-labelledby='wizard3-tab')
                             .row.justify-content-center
@@ -168,8 +193,8 @@ block content
                                             button.btn.btn-success(type='button') 메일로 초대하기
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard2') 이전 단계로
-                                        button.btn.btn-primary.btnNext(type='button',data-toggle='tab', href='#wizard4') 다음 단계로
+                                        button#step.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard2', onclick='moveTab(3,2,0)') 이전 단계로
+                                        button#step.btn.btn-primary.btnNext(type='button',data-toggle='tab', href='#wizard4', onclick='moveTab(3,4,1)') 다음 단계로
                         // Wizard tab pane item 4
                         .tab-pane.py-5.py-xl-10.fade#wizard4(role='tabpanel', aria-labelledby='wizard4-tab')
                             .row.justify-content-center
@@ -203,7 +228,7 @@ block content
 
                                     hr.my-4
                                     .d-flex.justify-content-between
-                                        button.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard3') 이전 단계로
+                                        button#step.btn.btn-light.btnPrevious(type='button',data-toggle='tab', href='#wizard3', onclick='moveTab(4,3,0)') 이전 단계로
                                         button.btn.btn-primary(type='submit') 생성하기
 
 //- * * * * * * * *
@@ -224,17 +249,12 @@ append scripts
     //- Load Moment.js and Date Range Picker via CDN
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
-    //- Load custom Chart.js styling and demo data
-    script(src='/assets/demo/chart-area-demo.js')
-    script(src='/assets/demo/chart-bar-demo.js')
     //- Load dataTables via CDN
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='/assets/demo/datatables-demo.js')
     //- Load Moment.js and Date Range Picker via CDN
     script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
     script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
     //- Load Date Range Picker initialization script
-    script(src='/assets/demo/date-range-picker-demo.js')
     script(src='/assets/demo/tabclicker.js')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', crossorigin='anonymous')
