@@ -189,7 +189,35 @@ block content
                                         .card-header
                                             | User List
                                         .card-body
-                                            include ../includes/datatable-users.pug
+                                            .datatable
+                                                table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                                                    thead
+                                                        tr
+                                                            th 이름
+                                                            th 회사
+                                                            th 직책
+                                                            th email
+                                                            th Actions
+
+                                                    tfoot
+                                                        tr
+                                                            th 이름
+                                                            th 회사
+                                                            th 직책
+                                                            th email
+                                                            th Actions
+
+                                                    tbody
+                                                        if invitelist.length != 0
+                                                            each invite in invitelist
+                                                                tr
+                                                                    td #{invite.NAME}
+                                                                    td #{invite.COMPANY}
+                                                                    td #{invite.POSITION}
+                                                                    td #{invite.EMAIL}            
+                                                                    td
+                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                                                            i(data-feather='user-plus')
                                             button.btn.btn-success(type='button') 메일로 초대하기
                                     hr.my-4
                                     .d-flex.justify-content-between
@@ -257,4 +285,4 @@ append scripts
     script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
     //- Load Date Range Picker initialization script
     script(src='/assets/demo/tabclicker.js')
-    script(src='https://code.jquery.com/jquery-3.2.1.min.js', crossorigin='anonymous')
+    script(src='/assets/demo/datatables-demo.js')

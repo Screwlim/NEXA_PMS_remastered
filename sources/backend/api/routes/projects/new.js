@@ -1,16 +1,27 @@
 var express = require('express');
 var router = express.Router();
-const { USERS, INVITES, PROJECTS, ATTENDANCES } = require('../../db/models');
+const { USERS, INVITES, PROJECTS, ATTENDANCES, LOG} = require('../../db/models');
+const { Op } = require('sequelize');
 
 
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("project create page");
-  res.render('projects/new', {user: req.user});
+
+  USERS.findAll({
+    where: { 
+      ID : {
+        [Op.not] : req.user.ID 
+      }
+    }
+  }).then(data=>{
+    res.render('projects/new', {user: req.user, invitelist: data});
+  })
 });
 
 router.post('/', function(req, res) {
   console.log("project create process");
+
   PROJECTS.create({
     NAME: req.body.project_name,
     START_DATE: req.body.start_date,
@@ -30,8 +41,6 @@ router.post('/', function(req, res) {
 
   })
 
-
-  console.log(req.body);
   res.redirect('../inprogress');
 });
 
