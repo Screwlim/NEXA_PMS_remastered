@@ -18,6 +18,9 @@ block config
 //- * * * * * * * *
 //- * * Topnav  * *
 //- * * * * * * * *
+append css
+    //- Load dataTables CSS via CDN
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
 
 //- Define the `block topnav` from the layout
 block topnav
@@ -65,7 +68,11 @@ block content
         breadcrumbs: false
     })
 
+
+    
+
     script.
+        // print previously input data
         function printInputs()  {
             const pnameout = document.getElementById('inputProjectname').value;
             const desc = document.getElementById('description').value;
@@ -78,6 +85,7 @@ block content
             document.getElementById("eDateShow").innerText = edate;
         }
 
+        //moveTab function
         function moveTab(from, to, last) {
             var buttons = document.querySelectorAll('#step');
             console.log(buttons);
@@ -105,6 +113,15 @@ block content
             }
         }
 
+        //move invite list
+        function addInvite() {
+            console.log("add to invite clicked")
+            
+        }  
+
+        function minusInvite() {
+            console.log("minus to invite clicked")
+        }
 
     // Main page content
     .container.mt-n10
@@ -189,6 +206,7 @@ block content
                                         .card-header
                                             | User List
                                         .card-body
+                                            h3 user list
                                             .datatable
                                                 table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
                                                     thead
@@ -216,8 +234,35 @@ block content
                                                                     td #{invite.POSITION}
                                                                     td #{invite.EMAIL}            
                                                                     td
-                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2
+                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2(type='button', onclick='addInvite()')
                                                                             i(data-feather='user-plus')
+                                            br
+                                            h3 To invite
+                                            .datatable        
+                                                table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')  
+                                                    thead
+                                                        tr
+                                                            th 이름
+                                                            th 회사
+                                                            th 직책
+                                                            th email
+                                                            th Actions
+                                                    tfoot
+                                                        tr
+                                                            th 이름
+                                                            th 회사
+                                                            th 직책
+                                                            th email
+                                                            th Actions
+                                                    tbody
+                                                        tr
+                                                            td jake shick
+                                                            td foo
+                                                            td foo
+                                                            td vfoo
+                                                            td
+                                                                button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2(type='button', onclick='minusInvite()')
+                                                                    i(data-feather='user-minus')
                                             button.btn.btn-success(type='button') 메일로 초대하기
                                     hr.my-4
                                     .d-flex.justify-content-between
@@ -278,8 +323,8 @@ append scripts
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
     //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load Moment.js and Date Range Picker via CDN
     script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
     script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
