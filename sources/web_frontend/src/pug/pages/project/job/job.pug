@@ -151,13 +151,15 @@ block content
                         .modal-header
                             h5#exampleModalScrollableTitle.modal-title #{post.TITLE}
                             button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                span(aria-hidden='true') ×
+                                span(aria-hidden='true') × 
+                        .modal-header
+                            pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             hr.mt-0.mb-4
                             pre #{post.CONTENT}
                         .modal-footer
-                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                            button.btn.btn-primary(type='button') 확인
+                            button.btn.btn-secondary(type='button') 수정
+                            button.btn.btn-primary(type='button', data-dismiss='modal') 확인
 
 //- * * * * * * * *
 //- * * Footer  * *
@@ -177,5 +179,4 @@ append scripts
     //- Load dataTables via CDN
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='/assets/demo/datatables-demo.js')
+    
