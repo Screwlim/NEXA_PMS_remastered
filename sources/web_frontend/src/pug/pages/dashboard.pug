@@ -97,7 +97,7 @@ block content
                         .row.align-items-center
                             .col-xl-8.col-xxl-12
                                 .text-center.px-4.mb-4.mb-xl-0.mb-xxl-4
-                                    h1.text-primary Welcome Back! #{user.NAME} !{a}
+                                    h1.text-primary Welcome Back! #{user.NAME}
                                     p.text-gray-700.mb-0 현재 #{projs.length}개의 프로젝트가 진행중 입니다.
                             .col-xl-4.col-xxl-12.text-center
                                 img.img-fluid(src='assets/img/freepik/at-work-pana.svg', style='max-width: 26rem')
@@ -230,9 +230,9 @@ block content
                                     span.float-right.font-weight-bold #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                 .progress.mb-4
                                     .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
-                    a.card-footer(href='#!')
+                    a.card-footer(href='/inprogress')
                         .d-flex.align-items-center.justify-content-between.small.text-body
-                            | Visit Task Center
+                            | 진행중인 프로젝트 보기
                             i(data-feather='arrow-right')
 
         // Example Colored Cards for Dashboard Demo
