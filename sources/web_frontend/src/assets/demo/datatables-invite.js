@@ -32,7 +32,13 @@ function InviteUser() {
         btn
     ]).draw(false);
 
-
+    var input = document.createElement("input");
+    input.setAttribute("type", "hidden");
+    input.setAttribute("id", `user${data.eq(0).text()}`);
+    input.setAttribute("value", data.eq(0).text());
+    input.setAttribute("name","invited");
+    input.setAttribute("username",data.eq(1).text());
+    document.getElementById("invitedlist").appendChild(input);
     itable.row($(this).closest('tr')).remove().draw(false);
 }    
 
@@ -54,7 +60,8 @@ function unInviteUser() {
         data.eq(4).text(),
         btn
     ]).draw(false);
-
+    uninvite = document.getElementById(`user${data.eq(0).text()}`);
+    uninvite.parentElement.removeChild(uninvite);
     utable.row($(this).closest('tr')).remove().draw(false);
 }
 
