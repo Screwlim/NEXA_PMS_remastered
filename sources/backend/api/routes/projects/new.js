@@ -33,15 +33,22 @@ router.post('/', function(req, res) {
     NUM_DONE_TASKS: 0,
     STATUS: 0
   }).then(data => {
+    newProj = data
     ATTENDANCES.create({
-      PROJECT_ID: data.ID,
+      PROJECT_ID:newProj.ID,
       USER_ID: req.user.ID,
       ISPM: 1
     })
-
+  }).then(data=> {
+    req.body.invited.forEach(function(invitedUser){
+      INVITES.create({
+        PROJECT_ID: newProj.ID,
+        SEND_USER_ID: req.user.ID,
+        RECV_USER_ID: invitedUser
+      })
+    });
   })
 
   res.redirect('../inprogress');
 });
-
 module.exports = router;
