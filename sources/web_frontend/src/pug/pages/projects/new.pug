@@ -68,9 +68,6 @@ block content
         breadcrumbs: false
     })
 
-
-    
-
     script.
         // print previously input data
         function printInputs()  {
@@ -78,11 +75,21 @@ block content
             const desc = document.getElementById('description').value;
             const sdate = document.getElementById('inputStartdate').value;
             const edate = document.getElementById('inputEnddate').value;
+            
+            const invited = document.querySelectorAll("#invitedlist input[name=invited]");
+
+            var list = []
+
+            invited.forEach(function(invitedUser){
+                list.push(invitedUser.getAttribute("username"));
+            })
 
             document.getElementById("pnameShow").innerText = pnameout;
             document.getElementById("descShow").innerText = desc;
             document.getElementById("sDateShow").innerText = sdate;
             document.getElementById("eDateShow").innerText = edate;
+            document.getElementById("invitedShow").innerText = list;
+            
         }
 
         //moveTab function
@@ -113,15 +120,6 @@ block content
             }
         }
 
-        //move invite list
-        function addInvite() {
-            console.log("add to invite clicked")
-            
-        }  
-
-        function minusInvite() {
-            console.log("minus to invite clicked")
-        }
 
     // Main page content
     .container.mt-n10
@@ -208,9 +206,10 @@ block content
                                         .card-body
                                             h3 user list
                                             .datatable
-                                                table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                                                table#inviteTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
                                                     thead
                                                         tr
+                                                            th id
                                                             th 이름
                                                             th 회사
                                                             th 직책
@@ -219,6 +218,7 @@ block content
 
                                                     tfoot
                                                         tr
+                                                            th id
                                                             th 이름
                                                             th 회사
                                                             th 직책
@@ -229,19 +229,21 @@ block content
                                                         if invitelist.length != 0
                                                             each invite in invitelist
                                                                 tr
+                                                                    td #{invite.ID}
                                                                     td #{invite.NAME}
                                                                     td #{invite.COMPANY}
                                                                     td #{invite.POSITION}
                                                                     td #{invite.EMAIL}            
                                                                     td
-                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2(type='button', onclick='addInvite()')
+                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2.invite(type='button')
                                                                             i(data-feather='user-plus')
                                             br
                                             h3 To invite
                                             .datatable        
-                                                table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')  
+                                                table#invitedTable.table.table-bordered.table-hover(width='100%', cellspacing='0')  
                                                     thead
                                                         tr
+                                                            th id
                                                             th 이름
                                                             th 회사
                                                             th 직책
@@ -249,20 +251,14 @@ block content
                                                             th Actions
                                                     tfoot
                                                         tr
+                                                            th id
                                                             th 이름
                                                             th 회사
                                                             th 직책
                                                             th email
                                                             th Actions
                                                     tbody
-                                                        tr
-                                                            td jake shick
-                                                            td foo
-                                                            td foo
-                                                            td vfoo
-                                                            td
-                                                                button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2(type='button', onclick='minusInvite()')
-                                                                    i(data-feather='user-minus')
+                                            div.form#invitedlist
                                             button.btn.btn-success(type='button') 메일로 초대하기
                                     hr.my-4
                                     .d-flex.justify-content-between
@@ -297,7 +293,7 @@ block content
                                     .row.small.text-muted
                                         .col-sm-3.text-truncate
                                             em 구성원:
-                                        .col dev ing...
+                                        .col#invitedShow
 
                                     hr.my-4
                                     .d-flex.justify-content-between
@@ -323,6 +319,7 @@ append scripts
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
     //- Load dataTables via CDN
+    script(src='https://code.jquery.com/jquery-3.5.1.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load Moment.js and Date Range Picker via CDN
@@ -330,4 +327,4 @@ append scripts
     script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
     //- Load Date Range Picker initialization script
     script(src='/assets/demo/tabclicker.js')
-    script(src='/assets/demo/datatables-demo.js')
+    script(src='/assets/demo/datatables-invite.js')
