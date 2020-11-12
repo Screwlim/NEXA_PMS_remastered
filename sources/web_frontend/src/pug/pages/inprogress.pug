@@ -83,7 +83,10 @@ block content
                                 .card-header
                                     | #{proj.NAME}
                                 .card-body
-                                    | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                    if proj.NUM_TASKS == '0'
+                                        | 현재 진행도 : 0%
+                                    else
+                                        | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                     br
                                     if proj.STATUS  == '0'
                                         | 현재 상태 : 정상

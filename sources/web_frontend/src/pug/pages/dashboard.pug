@@ -226,8 +226,12 @@ block content
                         if projs.length != 0
                             each proj in projs
                                 h4.small
-                                    | #{proj.NAME} 
-                                    span.float-right.font-weight-bold #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                    | #{proj.NAME} :
+                                    span.float-right.font-weight-bold 
+                                    if proj.NUM_TASKS == '0'
+                                        | 0%
+                                    else
+                                        | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                 .progress.mb-4
                                     .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
                     a.card-footer(href='/inprogress')
