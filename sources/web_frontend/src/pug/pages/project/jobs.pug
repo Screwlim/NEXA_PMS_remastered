@@ -104,10 +104,10 @@ block content
                                             a(href='/project/job?pid='+pid+'&jid='+job.ID, title='#{job.TITLE}') #{job.TITLE}
                                         td #{job.START_DATE.getFullYear()}/#{job.START_DATE.getMonth()}/#{job.START_DATE.getDate()}  -  #{job.END_DATE.getFullYear()}/#{job.END_DATE.getMonth()}/#{job.END_DATE.getDate()}
                                         td #{job.updatedAt.getFullYear()}/#{job.updatedAt.getMonth()}/#{job.updatedAt.getDate()} #{job.updatedAt.getHours()}:#{job.updatedAt.getMinutes()}:#{job.updatedAt.getSeconds()}                                  
-                                        if job.NUM_TASKS == 0    
+                                        if job.NUM_TASKS == '0'    
                                             td 준비 단계
                                         else
-                                            td #{job.NUM_DONE_jobS / job.NUM_jobS}                                                                                
+                                            td #{job.NUM_DONE_TASKS / job.NUM_TASKS}%                                                                                
                             
 //- * * * * * * * *
 //- * * Footer  * *
@@ -128,4 +128,4 @@ append scripts
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load dataTables demo data
-    script(src='/assets/demo/datatables-demo.js')
+    script(src='/assets/demo/datatables.js')
