@@ -10,27 +10,26 @@ router.get('/', function(req, res) {
   PROJECTS.findOne({
     where : {ID: req.query.pid}
   }).then(data => {
-      jobs = JOBS.findAll({
-      where: {PROJECT_ID: data.ID}
-    })
     proj = data
-  }).then(data2 => {
-    if (data2 === undefined){
-      console.log('no job data');
-      data2 = []
-    }
-    else{
-      console.log('job data = ');
-      jobs = data2
-    }
-    res.render('project/project', {
-      proj: proj,
-      jobs: jobs,
-      user: req.user,
-      pid: proj.ID
+    JOBS.findAll({
+      where: {PROJECT_ID: proj.ID}
+    }).then(data => {
+      if (data === undefined){
+        console.log('no job data');
+        jobs = []
+      }
+      else{
+        jobs = data
+      }
+    }).then(data=>{
+      res.render('project/project', {
+        proj: proj,
+        jobs: jobs,
+        user: req.user,
+        pid: proj.ID
+      });
     });
-  })    
-
+  });    
 
 });
 
