@@ -1,10 +1,22 @@
-var express = require('express');
+const express = require('express');
 var router = express.Router();
 const { NOTICES } = require('../../db/models');
+var multer = require('multer');
+const upload = multer({
+  storage: multer.diskStorage({
+    // set a localstorage destination
+    //   어떤이름으로 저장할지가 들어있다.
+
+    //위치 지정
+    destination: (req, file, done) => {
+      done(null, "uploads/");
+    }
+  })
+});
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   console.log("project notice list process");
 
   NOTICES.findAll({
@@ -18,7 +30,6 @@ router.get('/', function(req, res, next) {
   }).catch(err => {
     console.error(err);
   })
-  
 });
 
 router.get('/detail', function(req, res) {
@@ -35,19 +46,19 @@ router.get('/detail', function(req, res) {
     })
   });
 
-router.post('/', function(req,res) {
-  console.log('create notice')
-
+router.post('/',upload.single('noticeFiles'),function(req,res) {
+  console.log('create notice');
+  console.log(req)
   NOTICES.create({
     PROJECT_ID: req.query.pid,
     TITLE: req.body.title,
     CONTENT: req.body.content,
     AUTHOR_ID: req.user.ID,
     AUTHOR: req.user.NAME,
-    FILEURL: 'url'
+    FILEURL: req.file.path
   }).then(data => {
     res.redirect('/project/notices?pid='+req.query.pid);
-  })
-})
+  });  
+});
 
 module.exports = router;
