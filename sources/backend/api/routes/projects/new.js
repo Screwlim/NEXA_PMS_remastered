@@ -40,13 +40,22 @@ router.post('/', function(req, res) {
       ISPM: 1
     })
   }).then(data=> {
-    req.body.invited.forEach(function(invitedUser){
+    if(Array.isArray(req.body.invited)) {
+      req.body.invited.forEach(function(invitedUser){
+        INVITES.create({
+          PROJECT_ID: newProj.ID,
+          SEND_USER_ID: req.user.ID,
+          RECV_USER_ID: invitedUser
+        })
+      });  
+    } else {
       INVITES.create({
         PROJECT_ID: newProj.ID,
         SEND_USER_ID: req.user.ID,
-        RECV_USER_ID: invitedUser
-      })
-    });
+        RECV_USER_ID: req.body.invited
+      });
+    }
+    
   })
 
   res.redirect('../inprogress');
