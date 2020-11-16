@@ -64,5 +64,10 @@ db.PROJECTS.belongsTo(db.USERS,{foreignKey:'CREATOR_ID', targetKey: 'ID'});
 db.PROJECTS.hasMany(db.ATTENDANCES, {foreignKey: 'PROJECT_ID', sourceKey: 'ID'});
 db.ATTENDANCES.belongsTo(db.PROJECTS, {foreignKey: 'PROJECT_ID', targetKey: 'ID'});
 
+// db.USERS.hasMany(db.INVITES, {foreignKey: 'RECV_USER_ID', sourceKey: 'ID'});
+// db.INVITES.belongsTo(db.USERS, {foreignKey: 'RECV_USER_ID', targetKey: 'ID'});
+
+db.USERS.hasMany(db.INVITES, {foreignKey: 'SEND_USER_ID', sourceKey: 'ID'});
+db.INVITES.belongsTo(db.USERS, {foreignKey: 'SEND_USER_ID', targetKey: 'ID'});
 
 module.exports = db;
