@@ -53,16 +53,19 @@ router.post('/', function(req, res) {
         PROJECT_ID: req.query.pid,
         SEND_USER_ID: req.user.ID,
         RECV_USER_ID: invitedUser
-      });
+      }).then(data => {
+        res.redirect('/project/members?pid='+req.query.pid);
+      })
     });  
   } else {
     INVITES.create({
       PROJECT_ID: req.query.pid,
       SEND_USER_ID: req.user.ID,
       RECV_USER_ID: req.body.invited
-    });
+    }).then(data => {
+      res.redirect('/project/members?pid='+req.query.pid);
+    })
   }
-  res.redirect('/project/members?pid='+req.query.pid);
 });
 
 module.exports = router;

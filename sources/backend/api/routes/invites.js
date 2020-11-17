@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {INVITES, USERS, PROJECTS, ATTENDANCES} = require('../db/models');
-const { Op, DataTypes } = require('sequelize');
+const { Op } = require('sequelize');
 
 router.get('/', function(req, res) {
   console.log("invites list page");
