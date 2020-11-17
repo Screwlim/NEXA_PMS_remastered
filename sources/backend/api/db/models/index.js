@@ -70,4 +70,7 @@ db.ATTENDANCES.belongsTo(db.PROJECTS, {foreignKey: 'PROJECT_ID', targetKey: 'ID'
 db.USERS.hasMany(db.INVITES, {foreignKey: 'SEND_USER_ID', sourceKey: 'ID'});
 db.INVITES.belongsTo(db.USERS, {foreignKey: 'SEND_USER_ID', targetKey: 'ID'});
 
+db.PROJECTS.hasMany(db.INVITES, {foreignKey: 'PROJECT_ID', sourceKey: 'ID'});
+db.INVITES.belongsTo(db.PROJECTS, {foreignKey: 'PROJECT_ID', targetKey: 'ID'});
+
 module.exports = db;
