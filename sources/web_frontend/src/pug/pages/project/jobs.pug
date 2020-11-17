@@ -107,7 +107,7 @@ block content
                                         if job.NUM_TASKS == '0'    
                                             td 준비 단계
                                         else
-                                            td #{job.NUM_DONE_TASKS / job.NUM_TASKS}%                                                                                
+                                            td #{Math.round(job.NUM_DONE_TASKS*100 / job.NUM_TASKS)}%                                                                                
                             
 //- * * * * * * * *
 //- * * Footer  * *
