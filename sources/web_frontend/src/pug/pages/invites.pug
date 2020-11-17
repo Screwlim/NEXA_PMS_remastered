@@ -1,0 +1,142 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '초대 현황'
+
+//- Add CSS for third party plugins used on this page
+append css
+    //- Load dataTables CSS via CDN
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white',
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/sidenav.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-light',
+        user: user.NAME
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: '',
+        pageIcon: 'activity',
+        breadcrumbs: false
+    })
+
+    script.
+        function invite_reply(inviterId, invitedProj, answer){
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/invites");
+
+            var hf1 = document.createElement("input");
+            hf1.setAttribute("type", "hidden");
+            hf1.setAttribute("name", "inviter_id");
+            hf1.setAttribute("value", inviterId);
+            form.appendChild(hf1);
+
+            var hf2 = document.createElement("input");
+            hf2.setAttribute("type", "hidden");
+            hf2.setAttribute("name", "invited_project");
+            hf2.setAttribute("value", invitedProj);
+            form.appendChild(hf2);
+
+            var hf3 = document.createElement("input");
+            hf3.setAttribute("type", "hidden");
+            hf3.setAttribute("name", "answer");
+            hf3.setAttribute("value", answer);
+            form.appendChild(hf3);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+
+    // Main page content
+    .container.mt-n10
+        .row
+            .col-xxl-12.col-xl-12.mb-12
+                .card
+                    .card-body.p-5
+                        .d-flex.align-items-center
+                            img.img-fluid.mb-4(src='../assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
+                            h1 총 #{invites.length}개의 초대가 있습니다.
+                        hr            
+                        .col-xxl-9.col-xl-12.mb-9
+                            if invites.length != 0
+                                each invite in invites
+                                    .d-flex.align-items-center.justify-content-between.mb-4
+                                        .d-flex.align-items-center.flex-shrink-0.mr-3
+                                            .avatar.avatar-xl.mr-3.bg-gray-200
+                                                img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-6.png', alt='')
+                                            .d-flex.flex-column.font-weight-bold
+                                                div #{invite.USER.NAME}님이 #{invite.PROJECT.NAME}에 초대하셨습니다.
+                                                .small.text-muted.line-height-normal 초대 날짜: #{invite.createdAt.getFullYear()}/#{invite.createdAt.getMonth()}/#{invite.createdAt.getDate()}
+                                        div
+                                            button.btn.btn-outline-red(type='button', onclick="invite_reply("+invite.USER.ID+","+invite.PROJECT.ID+",-1)") 거절하기
+                                            button.btn.btn-outline-blue(type='button', onclick="invite_reply("+invite.USER.ID+","+invite.PROJECT.ID+",1)") 수락하기
+               
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
+
+append scripts
+
