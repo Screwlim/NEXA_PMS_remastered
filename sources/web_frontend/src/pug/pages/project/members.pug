@@ -81,57 +81,19 @@ block content
                         | 현재 멤버
                     .card-body
                         // Item 1
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-1.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='#exampleModalScrollable') Sid Rooney
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople1.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople1')
-                                    a.dropdown-item(href='#!') 게시글 조회
-                        // Item 3
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-3.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='#exampleModalScrollable') Kaia Smyth
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople3.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople3')
-                                    a.dropdown-item(href='#!') 게시글 조회
-                        // Item 4
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-4.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='#exampleModalScrollable') Kerri Kearney
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople4.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople4')
-                                    a.dropdown-item(href='#!') 게시글 조회
-                        // Item 5
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-5.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='#exampleModalScrollable') Georgina Findlay
-                                    .small.text-muted.line-height-normal Position
-                            .dropdown.no-caret
-                                button#dropdownPeople5.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='more-vertical')
-                                .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownPeople5')
-                                    a.dropdown-item(href='#!') 게시글 조회
+                        each member in members
+                            .d-flex.align-items-center.justify-content-between.mb-4
+                                .d-flex.align-items-center.flex-shrink-0.mr-3
+                                    .avatar.avatar-xl.mr-3.bg-gray-200
+                                        img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-1.png', alt='')
+                                    .d-flex.flex-column.font-weight-bold
+                                        if (member.ISPM == 1)
+                                            a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='userInfo') #{member.USER.NAME} (PM)
+                                        else
+                                            a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='userInfo') #{member.USER.NAME}                                            
+                                        .small.text-muted.line-height-normal #{member.USER.COMPANY}
+                                
+                        
                 
             .col-xxl-12.col-xl-12.mb-6
                 .card
@@ -139,7 +101,7 @@ block content
                         img.img-fluid.mb-4(src='../assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
                         h5 팀원 초대하기
                         p.mb-4 새로운 멤버를 초대합니다.
-                        a.btn.btn-sm.btn-primary.p-3.line-height-normal(href='#!') Invite
+                        a.btn.btn-sm.btn-primary.p-3.line-height-normal(data-toggle="modal", href='#inviteModal') Invite
                 
             .col-xxl-12.col-xl-12.mb-6
                 .card.mb-4
@@ -147,31 +109,28 @@ block content
                         | 초대 현황
                     .card-body
                         // Item 2
-                        .d-flex.align-items-center.justify-content-between.mb-4
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1 Keelan Garza
-                                    .small.text-muted.line-height-normal 대기중
-                            .dropdown.no-caret
-                                button#dropdownPeople2.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='trash')
+                        if invites.length != 0
+                            each invited in invites
+                                .d-flex.align-items-center.justify-content-between.mb-4
+                                    .d-flex.align-items-center.flex-shrink-0.mr-3
+                                        .avatar.avatar-xl.mr-3.bg-gray-200
+                                            img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
+                                        .d-flex.flex-column.font-weight-bold
+                                            a.text-dark.line-height-normal.mb-1 #{invited.USER.NAME}
+                                            if invited.STATUS == 0
+                                                .small.text-muted.line-height-normal 대기중
+                                            else if invited.STATUS == -1
+                                                .small.text-muted.line-height-normal 거절
+                                    .dropdown.no-caret
+                                        button#dropdownPeople2.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                            i(data-feather='trash')
+                        else
+                            div 초대를 기다리고 있는 멤버가 없습니다!
                         
-                        // Item 6
-                        .d-flex.align-items-center.justify-content-between
-                            .d-flex.align-items-center.flex-shrink-0.mr-3
-                                .avatar.avatar-xl.mr-3.bg-gray-200
-                                    img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-6.png', alt='')
-                                .d-flex.flex-column.font-weight-bold
-                                    a.text-dark.line-height-normal.mb-1 Wilf Ingram
-                                    .small.text-muted.line-height-normal 취소(PM 불허)
-                            .dropdown.no-caret
-                                button#dropdownPeople6.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    i(data-feather='trash')
+           
                 
-                //- Modal
-                #exampleModalScrollable.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+                //- userinfo Modal
+                .modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
                     .modal-dialog.modal-dialog-scrollable(role='document')
                         .modal-content
                             .modal-header
@@ -179,10 +138,79 @@ block content
                                 button.close(type='button', data-dismiss='modal', aria-label='Close')
                                     span(aria-hidden='true') ×
                             .modal-body
-                                | ...
+                            | ...
                             .modal-footer
                                 button.btn.btn-secondary(type='button') 메세지 보내기
                                 button.btn.btn-primary(type='button', data-dismiss='modal') 닫기
+                
+                //- Invite Modal
+                .modal.fade(id='inviteModal', tabindex='-1', role='dialog', aria-labelledby='inviteModal', aria-hidden='true')
+                    .modal-dialog.modal-xl.modal-dialog-scrollable(role='document')
+                        .modal-content
+                            form(method="POST")
+                                div.form#invitedlist
+                                .modal-header
+                                    h5#inviteModal.modal-title 새로운 팀원 초대하기
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') ×
+                                .modal-body
+                                    h3 멤버 초대
+                                        .datatable
+                                            table#inviteTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
+                                                thead
+                                                    tr
+                                                        th id
+                                                        th 이름
+                                                        th 회사
+                                                        th 직책
+                                                        th email
+                                                        th Actions
+
+                                                tfoot
+                                                    tr
+                                                        th id
+                                                        th 이름
+                                                        th 회사
+                                                        th 직책
+                                                        th email
+                                                        th Actions
+
+                                                tbody
+                                                    if userstoinvite.length != 0
+                                                        each userToInvite in userstoinvite                                                        
+                                                            tr
+                                                                td #{userToInvite.ID}
+                                                                td #{userToInvite.NAME}
+                                                                td #{userToInvite.COMPANY}
+                                                                td #{userToInvite.POSITION}
+                                                                td #{userToInvite.EMAIL}            
+                                                                td
+                                                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2.invite(type='button')
+                                                                        i(data-feather='user-plus')
+                                    h3 초대 목록
+                                        .datatable        
+                                            table#invitedTable.table.table-bordered.table-hover(width='100%', cellspacing='0')  
+                                                thead
+                                                    tr
+                                                        th id
+                                                        th 이름
+                                                        th 회사
+                                                        th 직책
+                                                        th email
+                                                        th Actions
+                                                tfoot
+                                                    tr
+                                                        th id
+                                                        th 이름
+                                                        th 회사
+                                                        th 직책
+                                                        th email
+                                                        th Actions
+                                                tbody
+
+                                .modal-footer
+                                    button.btn.btn-success(type='submit') 초대하기
+                                    button.btn.btn-primary(type='button', data-dismiss='modal') 닫기
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
@@ -197,14 +225,14 @@ block footer
         footerStyle: 'footer-light'
     })
 
+
 append scripts
+    //- Load Moment.js and Date Range Picker via CDN
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
-    //- Load custom Chart.js styling and demo data
-    script(src='assets/demo/chart-area-demo.js')
-    script(src='assets/demo/chart-pie-demo.js')
     //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='assets/demo/datatables-demo.js')
+    script(src='https://code.jquery.com/jquery-3.5.1.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load Date Range Picker initialization script
+    script(src='/assets/demo/datatables-invite.js')
