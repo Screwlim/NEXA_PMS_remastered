@@ -55,6 +55,10 @@ module.exports = function(sequelize, DataTypes) {
     TAG: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    STATUS: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
