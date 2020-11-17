@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS, ACTIVITYS, POST_TASK} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS} = require('../../../db/models');
+const { Op } = require('sequelize');
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("task page");
@@ -58,8 +60,39 @@ router.post('/', function(req, res) {
     FILEURL: 'url'
   }).then(data => {
 
-    res.redirect('/project/job/task?pid'+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid)
+    res.redirect('/project/job/task?pid='+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid)
   })
+})
+
+router.get('/done', function(req,res){
+  console.log('task done process');
+
+  TASKS.findOne({
+    where: {
+      [Op.and] : [
+        {JOB_ID : req.query.jid}, 
+        {ID : req.query.tid} 
+      ]
+    }
+  }).then(data => {
+    data.STATUS = 1;
+    data.save()
+  }).then(data=>{
+    JOBS.findOne({
+      where: {ID: req.query.jid}
+    }).then(data => {
+      data.NUM_DONE_TASKS = data.NUM_DONE_TASKS + 1;
+      data.save();
+      PROJECTS.findOne({
+        where: {ID : req.query.pid}
+      }).then(data => {
+        data.NUM_DONE_TASKS = data.NUM_DONE_TASKS + 1;
+        data.save();
+      })
+    })
+  }).then(data=> {
+    res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
+  });
 })
 
 module.exports = router;
