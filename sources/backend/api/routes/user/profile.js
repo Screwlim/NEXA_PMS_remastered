@@ -17,7 +17,6 @@ router.post('/', function(req, res) {
     }
   }).then(data => {
     data.NAME = req.body.name,
-    data.EMAIL = req.body.email,
     data.COMPANY = req.body.company,
     data.POSITION = req.body.position,
     data.PHONENUMBER = req.body.phonenumber,
