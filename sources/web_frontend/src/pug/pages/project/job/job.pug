@@ -72,7 +72,7 @@ block content
         pid: pid,
     })
 
-        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/tcreate?pid='+pid+'&jid='+jid) 새로운 task 생성
+        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/tcreate?pid='+pid+'&jid='+jid) task 완료
     
     
         
@@ -107,8 +107,12 @@ block content
                     a.card-footer.small.text-muted(href='/project/job/job_post?pid='+pid+'&jid='+jid) post 추가하기 
         .row
             .col-xxl-12.col-xl-8.mb-6
-                .card.mb-8
-                    .card-header task 목록
+                .card.card-header-actions.mb-4
+                    .card-header
+                        | task 목록
+                        a.small.mb-1small.text-arrow-icon(href='/project/job/tcreate?pid='+pid+'&jid='+jid)
+                            | 새로운 task 생성
+                            i(data-feather='arrow-right')
                     .card-body
                         .datatable
                             table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')
@@ -118,14 +122,14 @@ block content
                                         th 제목
                                         th 기간
                                         th 최근 업데이트
-                                        th 진행도                                
+                                        th 상태                                
                                 tfoot
                                     tr
                                         th 작성자
                                         th 제목
                                         th 기간
                                         th 최근 업데이트
-                                        th 진행도
+                                        th 상태
                                 tbody
                                     if tasks.length != 0
                                         each task in tasks
@@ -135,11 +139,11 @@ block content
                                                     a(href='/project/job/task?pid='+pid+'&jid='+job.ID+'&tid='+task.ID, title='#{task.TITLE}') #{task.TITLE}
                                                 td #{task.START_DATE.getFullYear()}/#{task.START_DATE.getMonth()}/#{task.START_DATE.getDate()}  -  #{task.END_DATE.getFullYear()}/#{task.END_DATE.getMonth()}/#{task.END_DATE.getDate()}
                                                 td #{task.updatedAt.getFullYear()}/#{task.updatedAt.getMonth()}/#{task.updatedAt.getDate()} #{task.updatedAt.getHours()}:#{task.updatedAt.getMinutes()}:#{task.updatedAt.getSeconds()}
-                                                td status val?                                    
-                                                //- if job.NUM_TASKS == 0    
-                                                //-     td 준비 단계
-                                                //- else
-                                                //-     td #{job.NUM_DONE_TASKS / job.NUM_TASKS}
+                                                //- td status val?                                    
+                                                if task.STATUS == 0    
+                                                    td 진행 중
+                                                else if task.STATUS == 1
+                                                    td 완료                                              
                                     else
                                         tr
                                             p 아직 업무가 없습니다.                
@@ -155,10 +159,9 @@ block content
                         .modal-header
                             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
-                            hr.mt-0.mb-4
                             pre #{post.CONTENT}
                         .modal-footer
-                            button.btn.btn-secondary(type='button') 수정
+                            //- button.btn.btn-secondary(type='button') 수정
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
 
 //- * * * * * * * *
@@ -180,4 +183,4 @@ append scripts
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load dataTables demo data
-    script(src='/assets/demo/datatables.js')
+    script(src='../../../../assets/demo/datatables.js')

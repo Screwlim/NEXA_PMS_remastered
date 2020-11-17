@@ -76,9 +76,9 @@ block content
                             .form-group.col-md-6
                                 label(for='taskTitle').small.mb-1 제목
                                 input#taskTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
-                            .form-group.col-md-6
+                            .form-group.col-md-10
                                 label(for='taskDesc').small.mb-1 내용
-                                input#taskDesc.form-control(type='text', name='desc', placeholder='내용을 입력해 주세요')
+                                textarea#taskDesc.form-control(rows='10', name='desc', placeholder='내용을 입력해 주세요')
                     .card.mb-4
                         .card-header 상세
                         .card-body
@@ -92,8 +92,7 @@ block content
                                         label.small.mb-1(for='end_date') 종료 날짜
                                         input#inputEnddate.form-contorl(type='date', name='end_date')
             .col-lg-4
-                .card.mb-4
-                    button.btn.btn-primary(type='submit') 생성하기
+                button.btn.btn-primary(type='submit') 생성하기
             
 //- * * * * * * * *
 //- * * Footer  * *

@@ -66,14 +66,14 @@ block content
         pageHeaderBg: 'bg-gradient-primary-to-secondary',
         pageHeaderSpacing: 'pb-10',
         pageHeaderContainer: 'container',
-        pageSubtitle: 'Example dashboard overview and content summary',
+        pageSubtitle: '',
         pageIcon: 'activity',
         isTask: true,
         pid: pid,
         job: job
     })
 
-        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createActivity') 새로운 activity 등록
+        a.btn.btn-light.btn-sm(href='#!') 완료하기
 
     // Main page content
     .container.mt-n10
@@ -95,20 +95,22 @@ block content
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card.card-header-actions.h-100.card-scrollable
-                    .card-header activity 기록
-                        .dropdown.no-caret
-                            button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                i.text-gray-500(data-feather='more-vertical')
-                            .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
-                                h6.dropdown-header Filter Activity:
-                                a.dropdown-item(href='#!')
-                                    span.badge.badge-green-soft.text-green.my-1 Commerce
-                                a.dropdown-item(href='#!')
-                                    span.badge.badge-blue-soft.text-blue.my-1 Reporting
-                                a.dropdown-item(href='#!')
-                                    span.badge.badge-yellow-soft.text-yellow.my-1 Server
-                                a.dropdown-item(href='#!')
-                                    span.badge.badge-purple-soft.text-purple.my-1 Users
+                    .card-header 
+                        | activity 기록
+                        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createActivity') 새로운 activity 등록
+                        //- .dropdown.no-caret
+                        //-     button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        //-         i.text-gray-500(data-feather='more-vertical')
+                        //-     .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
+                        //-         h6.dropdown-header Filter Activity:
+                        //-         a.dropdown-item(href='#!')
+                        //-             span.badge.badge-green-soft.text-green.my-1 Commerce
+                        //-         a.dropdown-item(href='#!')
+                        //-             span.badge.badge-blue-soft.text-blue.my-1 Reporting
+                        //-         a.dropdown-item(href='#!')
+                        //-             span.badge.badge-yellow-soft.text-yellow.my-1 Server
+                        //-         a.dropdown-item(href='#!')
+                        //-             span.badge.badge-purple-soft.text-purple.my-1 Users
                     .card-body
                         .timeline
                             if acts.length != 0
@@ -133,7 +135,7 @@ block content
 
     // CREATE activity modal
     #createActivity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
-        .modal-dialog.modal-dialog-scrollable(role='document')
+        .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
             .modal-content
                 form(method="POST")
                     .modal-header
@@ -141,16 +143,19 @@ block content
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
-                        hr.mt-0.mb-4
                         .row
-                            .col-lg-8
+                            .col-lg-12
                                 .form-group.col-md-12
                                     label(for='actTitle').small.mb-1 제목
                                     input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
                                 .form-group.col-md-12
                                     label(for='actDetail').small.mb-1 내용
-                                    textarea#jobDesc.form-control(rows='5', type='textarea', name='contents', placeholder='내용을 입력하세요')
-                                
+                                    textarea#jobDesc.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
+                        .row
+                            .form-group.col-md-12
+                                label(for='postFile').small.mb-1 파일첨부                            
+                                input#postFile.form-control-file(type='file', name='noticeFiles' enctype="multipart/form-data")
+
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') 생성하기
@@ -165,12 +170,13 @@ block content
                             h5#exampleModalScrollableTitle.modal-title #{act.TITLE}
                             button.close(type='button', data-dismiss='modal', aria-label='Close')
                                 span(aria-hidden='true') ×
+                        .modal-header
+                            pre 작성자 : #{act.AUTHOR}   |   작성일 : #{act.createdAt.getFullYear()}/#{act.createdAt.getMonth()}/#{act.createdAt.getDate()} #{act.createdAt.getHours()}:#{act.createdAt.getMinutes()}:#{act.createdAt.getSeconds()}   |   수정일 : #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()}/#{act.updatedAt.getDate()} #{act.updatedAt.getHours()}:#{act.updatedAt.getMinutes()}:#{act.updatedAt.getSeconds()}
                         .modal-body
-                            hr.mt-0.mb-4
-                            p #{act.CONTENTS}
+                            pre #{act.CONTENTS}
                         .modal-footer
-                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                            button.btn.btn-primary(type='button') 확인
+                            //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.btn.btn-primary(type='button', data-dismiss='modal') 확인
     // post_task modal create
     if posts.length != 0
         each post in posts
@@ -184,10 +190,9 @@ block content
                         .modal-header
                             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
-                            hr.mt-0.mb-4
                             pre #{post.CONTENT}
                         .modal-footer
-                            button.btn.btn-secondary(type='button') 수정하기
+                            //- button.btn.btn-secondary(type='button') 수정하기
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인   
 //- * * * * * * * *
 //- * * Footer  * *

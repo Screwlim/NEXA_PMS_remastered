@@ -111,19 +111,20 @@ block content
                         // Item 2
                         if invites.length != 0
                             each invited in invites
-                                .d-flex.align-items-center.justify-content-between.mb-4
-                                    .d-flex.align-items-center.flex-shrink-0.mr-3
-                                        .avatar.avatar-xl.mr-3.bg-gray-200
-                                            img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
-                                        .d-flex.flex-column.font-weight-bold
-                                            a.text-dark.line-height-normal.mb-1 #{invited.USER.NAME}
-                                            if invited.STATUS == 0
-                                                .small.text-muted.line-height-normal 대기중
-                                            else if invited.STATUS == -1
-                                                .small.text-muted.line-height-normal 거절
-                                    .dropdown.no-caret
-                                        button#dropdownPeople2.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                            i(data-feather='trash')
+                                if invited.STATUS != 1
+                                    .d-flex.align-items-center.justify-content-between.mb-4
+                                        .d-flex.align-items-center.flex-shrink-0.mr-3
+                                            .avatar.avatar-xl.mr-3.bg-gray-200
+                                                img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
+                                            .d-flex.flex-column.font-weight-bold
+                                                a.text-dark.line-height-normal.mb-1 #{invited.USER.NAME}
+                                                if invited.STATUS == 0
+                                                    .small.text-muted.line-height-normal 대기중
+                                                else if invited.STATUS == -1
+                                                    .small.text-muted.line-height-normal 거절
+                                        .dropdown.no-caret
+                                            button#dropdownPeople2.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                                i(data-feather='trash')
                         else
                             div 초대를 기다리고 있는 멤버가 없습니다!
                         
