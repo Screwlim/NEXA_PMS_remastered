@@ -32,9 +32,10 @@ mixin topnav(options)
                 a#navbarDropdownAlerts.btn.btn-icon.btn-transparent-dark.dropdown-toggle(href='javascript:void(0);', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                     i(data-feather='bell')
                 .dropdown-menu.dropdown-menu-right.border-0.shadow.animated--fade-in-up(aria-labelledby='navbarDropdownAlerts')
-                    h6.dropdown-header.dropdown-notifications-header
+                    a.dropdown-header.dropdown-notifications-header(href="/invites")
                         i.mr-2(data-feather='bell')
                         | Alerts Center
+                        i(data-feather='arrow-right')
                     //- Example Alert 1
                     a.dropdown-item.dropdown-notifications-item(href='#!')
                         .dropdown-notifications-item-icon.bg-warning
@@ -107,8 +108,8 @@ mixin topnav(options)
                     h6.dropdown-header.d-flex.align-items-center
                         img.dropdown-user-img(src='https://source.unsplash.com/QAB-WJcbgJk/60x60')
                         .dropdown-user-details
-                            .dropdown-user-details-name Valerie Luna
-                            .dropdown-user-details-email vluna@aol.com
+                            .dropdown-user-details-name #{user.NAME}
+                            .dropdown-user-details-email #{user.EMAIL}
                     .dropdown-divider
                     a.dropdown-item(href='/user/profile')
                         .dropdown-item-icon
