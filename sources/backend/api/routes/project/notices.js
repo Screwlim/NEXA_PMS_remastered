@@ -55,7 +55,7 @@ router.post('/',upload.single('noticeFiles'),function(req,res) {
     CONTENT: req.body.content,
     AUTHOR_ID: req.user.ID,
     AUTHOR: req.user.NAME,
-    FILEURL: req.file.path
+    FILEURL: 'req.file.path'
   }).then(data => {
     res.redirect('/project/notices?pid='+req.query.pid);
   });  
