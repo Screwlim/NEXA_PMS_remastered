@@ -97,9 +97,9 @@ block content
                                     else if proj.STATUS == '1'
                                         | 현재 상태 : 완료
                                     br
-                                    | 기간 :#{proj.START_DATE.getFullYear()}/#{proj.START_DATE.getMonth()}/#{proj.START_DATE.getDate()}  -  #{proj.END_DATE.getFullYear()}/#{proj.END_DATE.getMonth()}/#{proj.END_DATE.getDate()}
+                                    | 기간 :#{proj.START_DATE.getFullYear()}/#{proj.START_DATE.getMonth()+1}/#{proj.START_DATE.getDate()}  -  #{proj.END_DATE.getFullYear()}/#{proj.END_DATE.getMonth()+1}/#{proj.END_DATE.getDate()}
                                     br
-                                    | 최근 업데이트 : #{proj.updatedAt.getFullYear()}/#{proj.updatedAt.getMonth()}/#{proj.updatedAt.getDate()} #{proj.updatedAt.getHours()}:#{proj.updatedAt.getMinutes()}:#{proj.updatedAt.getSeconds()}
+                                    | 최근 업데이트 : #{proj.updatedAt.getFullYear()}/#{proj.updatedAt.getMonth()+1}/#{proj.updatedAt.getDate()} #{proj.updatedAt.getHours()}:#{proj.updatedAt.getMinutes()}:#{proj.updatedAt.getSeconds()}
                                 a.card-footer(href='/project?pid='+proj.ID)
                                     .d-flex.align-items-center.justify-content-between.small.text-body
                                         | 프로젝트로 이동

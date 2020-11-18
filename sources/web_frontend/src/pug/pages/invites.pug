@@ -119,7 +119,7 @@ block content
                                                 img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-6.png', alt='')
                                             .d-flex.flex-column.font-weight-bold
                                                 div #{invite.USER.NAME}님이 #{invite.PROJECT.NAME}에 초대하셨습니다.
-                                                .small.text-muted.line-height-normal 초대 날짜: #{invite.createdAt.getFullYear()}/#{invite.createdAt.getMonth()}/#{invite.createdAt.getDate()}
+                                                .small.text-muted.line-height-normal 초대 날짜: #{invite.createdAt.getFullYear()}/#{invite.createdAt.getMonth()+1}/#{invite.createdAt.getDate()}
                                         div
                                             button.btn.btn-outline-red(type='button', onclick="invite_reply("+invite.USER.ID+","+invite.PROJECT.ID+",-1)") 거절하기
                                             button.btn.btn-outline-blue(type='button', onclick="invite_reply("+invite.USER.ID+","+invite.PROJECT.ID+",1)") 수락하기

@@ -137,8 +137,8 @@ block content
                                                 td #{task.AUTHOR}
                                                 td 
                                                     a(href='/project/job/task?pid='+pid+'&jid='+job.ID+'&tid='+task.ID, title='#{task.TITLE}') #{task.TITLE}
-                                                td #{task.START_DATE.getFullYear()}/#{task.START_DATE.getMonth()}/#{task.START_DATE.getDate()}  -  #{task.END_DATE.getFullYear()}/#{task.END_DATE.getMonth()}/#{task.END_DATE.getDate()}
-                                                td #{task.updatedAt.getFullYear()}/#{task.updatedAt.getMonth()}/#{task.updatedAt.getDate()} #{task.updatedAt.getHours()}:#{task.updatedAt.getMinutes()}:#{task.updatedAt.getSeconds()}
+                                                td #{task.START_DATE.getFullYear()}/#{task.START_DATE.getMonth()+1}/#{task.START_DATE.getDate()}  -  #{task.END_DATE.getFullYear()}/#{task.END_DATE.getMonth()+1}/#{task.END_DATE.getDate()}
+                                                td #{task.updatedAt.getFullYear()}/#{task.updatedAt.getMonth()+1}/#{task.updatedAt.getDate()} #{task.updatedAt.getHours()}:#{task.updatedAt.getMinutes()}:#{task.updatedAt.getSeconds()}
                                                 //- td status val?                                    
                                                 if task.STATUS == 0    
                                                     td 진행 중
@@ -157,7 +157,7 @@ block content
                             button.close(type='button', data-dismiss='modal', aria-label='Close')
                                 span(aria-hidden='true') × 
                         .modal-header
-                            pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
+                            pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             pre #{post.CONTENT}
                         .modal-footer

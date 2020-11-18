@@ -78,8 +78,8 @@ block content
                     h2.my-3 #{notice.TITLE}
             .card-body
                 h4 작성자 : #{notice.AUTHOR}
-                h5 작성일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
-                h5 수정일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
+                h5 작성일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
+                h5 수정일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
                 p.lead.mb-5 #{notice.CONTENT}
                 .alert.alert-primary.alert-icon.mb-0(role='alert')
                     .alert-icon-aside

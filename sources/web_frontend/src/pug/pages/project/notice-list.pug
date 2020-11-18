@@ -100,7 +100,7 @@ block content
                                         td 
                                             a(href='/project/notices/detail?pid='+pid+'&nid='+notice.ID, title='#{job.TITLE}') #{notice.TITLE}
                                         td #{notice.AUTHOR}
-                                        td #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}                                  
+                                        td #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}                                  
 
     
     #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='noticeCreate', aria-hidden='true')

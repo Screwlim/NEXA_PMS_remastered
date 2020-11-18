@@ -118,7 +118,7 @@ block content
                                     .timeline-item
                                         .timeline-item-marker
                                             .timeline-item-marker-text
-                                                | #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()}/#{act.updatedAt.getDate()} 
+                                                | #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()+1}/#{act.updatedAt.getDate()} 
                                                 | #{act.updatedAt.getHours()}:#{act.updatedAt.getMinutes()}:#{act.updatedAt.getSeconds()}
                                             .timeline-item-marker-indicator.bg-primary-soft.text-primary
                                                 i(data-feather='flag')
@@ -171,7 +171,7 @@ block content
                             button.close(type='button', data-dismiss='modal', aria-label='Close')
                                 span(aria-hidden='true') ×
                         .modal-header
-                            pre 작성자 : #{act.AUTHOR}   |   작성일 : #{act.createdAt.getFullYear()}/#{act.createdAt.getMonth()}/#{act.createdAt.getDate()} #{act.createdAt.getHours()}:#{act.createdAt.getMinutes()}:#{act.createdAt.getSeconds()}   |   수정일 : #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()}/#{act.updatedAt.getDate()} #{act.updatedAt.getHours()}:#{act.updatedAt.getMinutes()}:#{act.updatedAt.getSeconds()}
+                            pre 작성자 : #{act.AUTHOR}   |   작성일 : #{act.createdAt.getFullYear()}/#{act.createdAt.getMonth()+1}/#{act.createdAt.getDate()} #{act.createdAt.getHours()}:#{act.createdAt.getMinutes()}:#{act.createdAt.getSeconds()}   |   수정일 : #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()+1}/#{act.updatedAt.getDate()} #{act.updatedAt.getHours()}:#{act.updatedAt.getMinutes()}:#{act.updatedAt.getSeconds()}
                         .modal-body
                             pre #{act.CONTENTS}
                         .modal-footer
@@ -188,7 +188,7 @@ block content
                             button.close(type='button', data-dismiss='modal', aria-label='Close')
                                 span(aria-hidden='true') ×
                         .modal-header
-                            pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
+                            pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             pre #{post.CONTENT}
                         .modal-footer
