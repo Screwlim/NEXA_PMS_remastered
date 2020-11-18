@@ -103,7 +103,7 @@ block content
                                     if job.NUM_TASKS == '0'
                                         | 0%
                                     else
-                                        | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                        | #{Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)}%
                                 .progress.mb-3
                                     .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)+'%', aria-valuenow=job.NUM_DONE_TASKS/job.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
                         else
