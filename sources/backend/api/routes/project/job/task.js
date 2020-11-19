@@ -95,4 +95,36 @@ router.get('/done', function(req,res){
   });
 })
 
+router.get('/notDone', function(req,res){
+  console.log('task not done process');
+
+  TASKS.findOne({
+    where: {
+      [Op.and] : [
+        {JOB_ID : req.query.jid}, 
+        {ID : req.query.tid} 
+      ]
+    }
+  }).then(data => {
+    data.STATUS = 0;
+    data.save()
+  }).then(data=>{
+    JOBS.findOne({
+      where: {ID: req.query.jid}
+    }).then(data => {
+      data.NUM_DONE_TASKS = data.NUM_DONE_TASKS - 1;
+      data.save();
+      PROJECTS.findOne({
+        where: {ID : req.query.pid}
+      }).then(data => {
+        data.NUM_DONE_TASKS = data.NUM_DONE_TASKS - 1;
+        data.save();
+      })
+    })
+  }).then(data=> {
+    res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
+  });
+})
+
+
 module.exports = router;
