@@ -14,6 +14,7 @@ router.get('/', function(req, res) {
     }
   }).then(data => {
     userlist = data;
+    console.log(userlist.isArray)
     INVITES.findAll({
       include : [{
         model : USERS
@@ -31,7 +32,6 @@ router.get('/', function(req, res) {
           PROJECT_ID: req.query.pid
         }
       }).then(data => {
-        console.log(data);
         res.render('project/members', {
           pid: req.query.pid,
           user: req.user,
@@ -45,8 +45,6 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  console.log(`invite 값: ${req.body.invited}`);
-
   if(Array.isArray(req.body.invited)) {
     req.body.invited.forEach(function(invitedUser){
       INVITES.create({
