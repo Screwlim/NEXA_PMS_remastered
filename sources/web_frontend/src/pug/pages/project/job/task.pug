@@ -73,10 +73,10 @@ block content
         job: job
     })
 
-    if task.STATUS != 0
-        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/notDone?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료 취소        
-    else
-        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/done?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료하기
+        if task.STATUS != 0
+            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/notDone?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료 취소        
+        else
+            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/done?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료하기
 
     // Main page content
     .container.mt-n10
