@@ -1,23 +1,20 @@
 var express = require('express');
 var router = express.Router();
-const {ATTENDANCES, USERS, INVITES} = require('../../db/models');
-const { Op } = require('sequelize');
+const {ATTENDANCES, USERS, INVITES, sequelize} = require('../../db/models');
+const { Op, QueryTypes } = require('sequelize');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("인원 관리 process");
-  USERS.findAll({
-    where: { 
-      ID : {
-        [Op.not] : req.user.ID 
-      }
-    }
-  }).then(data => {
+  sequelize.query(
+    'select * from USERS where ID not in ( select RECV_USER_ID from INVITES WHERE PROJECT_ID = '+ req.query.pid +' AND STATUS != -1 )',
+    {type : QueryTypes.SELECT}
+  ).then(data => {
     userlist = data;
-    console.log(userlist.isArray)
     INVITES.findAll({
       include : [{
-        model : USERS
+        model : USERS,
+        on : sequelize.where(sequelize.col("INVITES.RECV_USER_ID"), "=", sequelize.col("ID")),
       }],
       where: {
         PROJECT_ID : req.query.pid

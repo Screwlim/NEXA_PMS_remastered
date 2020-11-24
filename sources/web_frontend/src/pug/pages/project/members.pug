@@ -179,16 +179,15 @@ block content
                                                 tbody
                                                     if userstoinvite.length != 0
                                                         each userToInvite in userstoinvite
-                                                            if !(userToInvite in members)                                                     
-                                                                tr
-                                                                    td #{userToInvite.ID}
-                                                                    td #{userToInvite.NAME}
-                                                                    td #{userToInvite.COMPANY}
-                                                                    td #{userToInvite.POSITION}
-                                                                    td #{userToInvite.EMAIL}            
-                                                                    td
-                                                                        button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2.invite(type='button')
-                                                                            i(data-feather='user-plus')
+                                                            tr
+                                                                td #{userToInvite.ID}
+                                                                td #{userToInvite.NAME}
+                                                                td #{userToInvite.COMPANY}
+                                                                td #{userToInvite.POSITION}
+                                                                td #{userToInvite.EMAIL}            
+                                                                td
+                                                                    button.btn.btn-datatable.btn-icon.btn-transparent-dark.mr-2.invite(type='button')
+                                                                        i(data-feather='user-plus')
                                     h3 초대 목록
                                         .datatable        
                                             table#invitedTable.table.table-bordered.table-hover(width='100%', cellspacing='0')  
