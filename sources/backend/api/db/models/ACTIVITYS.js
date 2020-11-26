@@ -48,15 +48,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(20),
       allowNull: true
     },
-    FILEURL: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    TAG: {
+    FILES: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      defaultValue: 0
     },
     STATUS: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
+    TAG: {
       type: DataTypes.INTEGER,
       allowNull: true
     }

@@ -8,11 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    TYPE: {
+    SRC_TYPE: {
       type: DataTypes.CHAR(1),
       allowNull: true
     },
-    SRC: {
+    SRC_ID: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
@@ -24,8 +24,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     PATH: {
       type: DataTypes.STRING(500),
+      allowNull: true
+    },
+    original_NAME: {
+      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {
