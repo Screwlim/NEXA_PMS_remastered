@@ -1,7 +1,23 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS, FILE} = require('../../../db/models');
 const { Op } = require('sequelize');
+var multer = require('multer');
+const path = require("path");
+
+const upload = multer({
+  storage: multer.diskStorage({
+    //위치 지정
+    destination: (req, file, done) => {
+      done(null, "uploads/");
+    }, 
+    filename: (req, file, done) => {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      // cb(null, new Date().valueOf() + path.extname(file.originalname));
+    }
+  })
+});
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -23,23 +39,27 @@ router.get('/', function(req, res) {
         Acts = data;
         POST_TASK.findAll({
           where: {TASK_ID: req.query.tid}
-        }).then(data => {
-          console.log('search done');
-          console.log(Job);
-          console.log(Task);
-          console.log(Acts)
-          console.log(data);
-
-          res.render('project/job/task',{
-            user: req.user,
-            pid: req.query.pid,
-            jid: req.query.jid,
-            job: Job,
-            task: Task,
-            acts: Acts,
-            posts: data
+        }).then(data=>{
+          Posts = data
+          FILE.findAll({
+            where: {
+              [Op.or] : [
+                {SRC_TYPE: 2},
+                {SRC_TYPE: 3}
+              ]
+            }
+          }).then(data => {
+            res.render('project/job/task',{
+              user: req.user,
+              pid: req.query.pid,
+              jid: req.query.jid,
+              job: Job,
+              task: Task,
+              acts: Acts,
+              posts: Posts,
+              files: data
+            })
           })
-
         })
     })
   }).catch(err => {
@@ -48,7 +68,7 @@ router.get('/', function(req, res) {
 })
 });
 
-router.post('/', function(req, res) {
+router.post('/', upload.array('activityFiles'),function(req, res) {
   console.log('create activity process');
 
   ACTIVITYS.create({
@@ -57,10 +77,23 @@ router.post('/', function(req, res) {
     CONTENTS: req.body.contents,
     AUTHOR: req.user.NAME,
     AUTHOR_ID: req.user.ID,
-    FILEURL: 'url'
+    FILEURL: req.files.length
   }).then(data => {
-
-    res.redirect('/project/job/task?pid='+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid)
+    if (req.files.length != 0){
+      req.files.forEach(element => {
+        FILE.create({
+          SRC_TYPE: 2,
+          SRC_ID: data.ID,
+          PATH: element.path,
+          original_NAME: element.originalname
+        })
+      });
+    }
+    else{
+      console.log("no file attached");
+    }
+  }).then(()=>{
+    res.redirect('/project/job/task?pid='+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid);
   })
 })
 
