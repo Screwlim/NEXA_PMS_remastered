@@ -83,10 +83,13 @@ block content
                 p.lead.mb-5 #{notice.CONTENT}
                 .alert.alert-primary.alert-icon.mb-0(role='alert')
                     .alert-icon-aside
-                        i(data-feather='alert-triangle')
+                        i(data-feather='folder') 첨부파일
                     .alert-icon-content
-                        h5.alert-heading Article Alert
-                        | #{notice.FILEURL}
+                        if files.length != 0
+                            each file in files
+                                a.alert-heading(href='#!') #{file.original_NAME}  
+                                br
+                        else
 
 
 //- * * * * * * * *

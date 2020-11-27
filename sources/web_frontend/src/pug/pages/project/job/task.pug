@@ -178,6 +178,10 @@ block content
                         .modal-body
                             pre #{act.CONTENTS}
                         .modal-footer
+                            each file in files
+                                if file.SRC_ID == act.ID
+                                    a(href='!#') #{file.original_NAME}
+                        .modal-footer
                             //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
     // post_task modal create
@@ -194,6 +198,10 @@ block content
                             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             pre #{post.CONTENT}
+                        .modal-footer
+                            each file in files
+                                if file.SRC_ID == post.ID
+                                    a(href='!#') #{file.original_NAME}
                         .modal-footer
                             //- button.btn.btn-secondary(type='button') 수정하기
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인   

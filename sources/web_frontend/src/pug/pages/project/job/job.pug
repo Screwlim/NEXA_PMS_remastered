@@ -161,6 +161,13 @@ block content
                         .modal-body
                             pre #{post.CONTENT}
                         .modal-footer
+                            if files.length != 0
+                                each file in files
+                                    if file.SRC_ID == post.ID
+                                        a(href='#!') #{file.original_NAME}
+                            else
+                                div no files
+                        .modal-footer
                             //- button.btn.btn-secondary(type='button') 수정
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
 
