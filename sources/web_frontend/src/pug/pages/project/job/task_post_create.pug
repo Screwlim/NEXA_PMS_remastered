@@ -66,7 +66,7 @@ block content
 
     // Main page content
     .container.mt-4
-        form(method="POST")
+        form(method="POST", enctype="multipart/form-data")
             hr.mt-0.mb-4
             .row
                 .col-lg-8
@@ -80,8 +80,8 @@ block content
                                 label(for='postContent').small.mb-1 내용
                                 textarea#postContent.form-control(rows='10', name='cont', placeholder='내용을 입력하세요')        
                             .form-group.col-md-6
-                                label(for='postFile').small.mb-1 파일첨부
-                                input#postFile.form-control-file(type='file', name='file')                         
+                                label(for='postFiles').small.mb-1 파일첨부
+                                input#postFile.form-control-file(type='file', name='postFiles' multiple)                         
             .col-lg-4
                 .card.mb-4
                     button.btn.btn-primary(type='submit') 생성하기

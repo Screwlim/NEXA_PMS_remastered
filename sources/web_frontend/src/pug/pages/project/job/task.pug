@@ -140,7 +140,7 @@ block content
     #createActivity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
         .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
             .modal-content
-                form(method="POST")
+                form(method="POST", enctype="multipart/form-data")
                     .modal-header
                         h5#exampleModalScrollableTitle.modal-title Modal title
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -156,8 +156,8 @@ block content
                                     textarea#jobDesc.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
                         .row
                             .form-group.col-md-12
-                                label(for='postFile').small.mb-1 파일첨부                            
-                                input#postFile.form-control-file(type='file', name='noticeFiles' enctype="multipart/form-data")
+                                label(for='activityFiles').small.mb-1 파일첨부                            
+                                input#postFile.form-control-file(type='file', name='activityFiles' multiple)
 
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close

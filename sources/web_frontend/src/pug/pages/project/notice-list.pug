@@ -106,7 +106,7 @@ block content
     #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='noticeCreate', aria-hidden='true')
         .modal-dialog.modal-dialog-scrollable.modal-lg(role='document')
             .modal-content
-                form(method="POST")
+                form(method="POST", enctype="multipart/form-data")
                     .modal-header
                         h5#exampleModalScrollableTitle.modal-title 공지사항 작성
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -123,7 +123,7 @@ block content
                         .row
                             .form-group.col-md-10
                                 label(for='postFile').small.mb-1 파일첨부                            
-                                input#postFile.form-control-file(type='file', name='noticeFiles' enctype="multipart/form-data")
+                                input#postFile.form-control-file(type='file', name='noticeFiles' multiple)
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') 생성하기 
