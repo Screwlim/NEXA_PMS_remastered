@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     SRC_TYPE: {
-      type: DataTypes.CHAR(1),
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     SRC_ID: {
