@@ -43,6 +43,7 @@ router.post('/', upload.array('postFiles') ,function(req, res) {
           SRC_TYPE: 1,
           SRC_ID: data.ID,
           PATH: element.path,
+          server_NAME: element.filename,
           original_NAME: element.originalname
         })
       });

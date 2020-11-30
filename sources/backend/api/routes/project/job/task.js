@@ -85,6 +85,7 @@ router.post('/', upload.array('activityFiles'),function(req, res) {
           SRC_TYPE: 2,
           SRC_ID: data.ID,
           PATH: element.path,
+          server_NAME: element.filename,
           original_NAME: element.originalname
         })
       });

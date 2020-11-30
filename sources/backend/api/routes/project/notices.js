@@ -77,6 +77,7 @@ router.post('/',upload.array('noticeFiles'),function(req,res) {
           SRC_TYPE: 0,
           SRC_ID: data.ID,
           PATH: element.path,
+          server_NAME: element.filename,
           original_NAME: element.originalname
         })
       });
