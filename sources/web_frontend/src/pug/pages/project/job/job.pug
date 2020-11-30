@@ -164,7 +164,7 @@ block content
                             if files.length != 0
                                 each file in files
                                     if file.SRC_ID == post.ID
-                                        a(href='#!') #{file.original_NAME}
+                                        a(href='/download/'+file.server_NAME) #{file.original_NAME}
                             else
                                 div no files
                         .modal-footer

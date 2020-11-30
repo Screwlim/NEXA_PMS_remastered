@@ -180,7 +180,7 @@ block content
                         .modal-footer
                             each file in files
                                 if file.SRC_ID == act.ID
-                                    a(href='!#') #{file.original_NAME}
+                                    a(href='/download/'+file.server_NAME) #{file.original_NAME}
                         .modal-footer
                             //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
@@ -201,7 +201,7 @@ block content
                         .modal-footer
                             each file in files
                                 if file.SRC_ID == post.ID
-                                    a(href='!#') #{file.original_NAME}
+                                    a(href='/download/'+file.server_NAME) #{file.original_NAME}
                         .modal-footer
                             //- button.btn.btn-secondary(type='button') 수정하기
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인   
