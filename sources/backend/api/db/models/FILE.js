@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
     original_NAME: {
       type: DataTypes.STRING(100),
       allowNull: true
+    },
+    server_NAME: {
+      type: DataTypes.STRING(200),
+      allowNull: true
     }
   }, {
     sequelize,
