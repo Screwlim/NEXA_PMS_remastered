@@ -1,0 +1,132 @@
+//- * * * * * * * *
+//- * * Layout  * *
+//- * * * * * * * *
+
+//- The page layout is set using the Pug `extends` directive with a path to a layout template
+//- All of the layout options are contained in src/pug/layouts
+extends ../../layouts/dashboard.pug
+
+//- * * * * * * * *
+//- * * Config  * *
+//- * * * * * * * *
+
+//- These are page-level configuration options that should be set for each page
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '프로젝트 설정'
+
+//- Add CSS for third party plugins used on this page
+append css
+    //- Load Date Range Picker via CDN
+    link(href='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css', rel='stylesheet', crossorigin='anonymous')
+
+//- * * * * * * * *
+//- * * Topnav  * *
+//- * * * * * * * *
+
+//- Define the `block topnav` from the layout
+block topnav
+
+    //- Bring in the sidenav mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+//- * * * * * * * *
+//- * * Sidenav * *
+//- * * * * * * * *
+
+//- Define the `block sidenav` from the layout
+//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
+block sidenav
+    include ../mixins/sidenav-proj.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: proj.ID
+    })
+
+//- * * * * * * * * * * *
+//- * * Page Content  * *
+//- * * * * * * * * * * *
+
+//- Define the main `block content` from the layout
+block content
+
+    //- Bring in the page header mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
+    include ../mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: '프로젝트 설정 페이지 입니다.',
+        pageIcon: 'settings',
+        breadcrumbs: false
+    })
+
+    //- script.
+    //-     function getFormatDate(date){
+    //-         var year = date.getFullYear();
+    //-         var month = (1 + date.getMonth());
+    //-         month = month >= 10 ? month : '0' + month;
+    //-         var day = date.getDate();
+    //-         day = day >= 10 ? day : '0' + day;
+    //-         return year + '-' + month + '-' + day;
+    //-     }
+
+    //-     var s_date = getFormatDate(proj.START_DATE);
+    //-     var e_date = getFormatDate(proj.END_DATE)
+    // Main page content
+    .container.mt-4
+        
+        hr.mt-0.mb-4
+        .row            
+            .col-xl-12
+                // Account details card
+                .card.mb-4
+                    .card-header 프로젝트 설정
+                    .card-body
+                        form(method='post')
+                            // Form Row
+                            .form-row
+                                // Form Group (first name)
+                                .form-group.col-md-6
+                                    label.small.mb-1(for='projectName') 이름
+                                    input#projectName.form-control(type='text', value=proj.NAME, name='name')
+                                
+                            // Form Row        
+                            .form-row
+                                // Form Group (organization name)
+                                .form-group.col-md-6
+                                    label.small.mb-1(for='projectDesc') 요약
+                                    input#projectDesc.form-control(type='text', value=proj.DESCRIPTION, name='company')
+                                
+                            // Form Group (email address)
+                            .form-group
+                                .form-row
+                                    .form-group.col-md-6                                
+                                        label.small.mb-1(for='inputStartdate') 시작 날짜
+                                        input#inputStartdate.form-contorl(type='date', value=proj.START_DATE.getFullYear() + "-" + ("00" + (proj.START_DATE.getMonth() + 1)).slice(-2) + "-" + ("00" + proj.START_DATE.getDate()).slice(-2), name='start_date')
+                                .form-row
+                                    .form-group.col-md-6
+                                        label.small.mb-1(for='inputEnddate') 종료 날짜
+                                        input#inputEnddate.form-contorl(type='date', value=proj.END_DATE.getFullYear() + "-" + ("00" + (proj.END_DATE.getMonth() + 1)).slice(-2) + "-" + ("00" + proj.END_DATE.getDate()).slice(-2), name='end_date')
+                            // Save changes button
+                            button.btn.btn-primary(type='submit') 수정사항 저장하기
+
+//- * * * * * * * *
+//- * * Footer  * *
+//- * * * * * * * *
+
+//- Define the `block footer` from the layout
+block footer
+    //- Bring in the footer mixin and configure
+    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
+    include ../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
