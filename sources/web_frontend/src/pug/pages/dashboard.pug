@@ -59,6 +59,29 @@ block sidenav
 
 //- Define the main `block content` from the layout
 block content
+    script.
+        setInterval(function(){
+            
+            var now = new Date();
+            var date = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate() // 현재 날짜
+            var h = now.getHours();
+            var m = now.getMinutes();
+            var s = now.getSeconds();
+            var amPm = 'AM'; // 초기값 AM
+
+            if (s < 10)
+                s = ('0' +  s);
+            if (m < 10)
+                m = ('0' + m);
+
+            if(h >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+                amPm = 'PM';
+                if (h < 10)
+                    s = '0' + h
+            }
+
+            document.getElementById('clock').innerHTML = date +'  '+ h + ":" + m + ":" + s +'  '+ amPm;
+        },1000);
 
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
@@ -72,21 +95,12 @@ block content
         pageIcon: 'activity',
         breadcrumbs: false
     })
+        div(style="width:400px; height:50px; line-height:50px; color:white;font-size:30px; text-align:center;" id="clock")
 
-        button#reportrange.btn.btn-white.btn-sm.line-height-normal.p-3
-            i.mr-2.text-primary(data-feather='calendar')
-            span
-            i.ml-1(data-feather='chevron-down')
-    
-    //- - var user1 = user
-    //- - console.log(user1)
-    //- script.
-    //-     var datas = JSON.parse(`${window.user}`)
-    //-     //- console.log(datas)
-    //- script.
-    //-     var data = JSON.parse('!{JSON.stringify(user)}');
-    //-     //var data = '!{user}';
-    //-     console.log(data.NAME)
+        //- button#reportrange.btn.btn-white.btn-sm.line-height-normal.p-3
+        //-     i.mr-2.text-primary(data-feather='calendar')
+        //-     span
+        //-     i.ml-1(data-feather='chevron-down')
 
 
     // Main page content
@@ -306,6 +320,9 @@ block footer
     +footer({
         footerStyle: 'footer-light'
     })
+
+
+
 
 //- Add JS for third party plugins used on this page
 append scripts
