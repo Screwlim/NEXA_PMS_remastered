@@ -18,13 +18,21 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='activity')
                     | 진행 프로젝트
+
                 .sidenav-menu-heading
                     | 프로젝트 관리
+
                 a.nav-link(href='/projects/list')
+                    .nav-link-icon
+                        i(data-feather='folder')
                     | 프로젝트 조회
                 a.nav-link(href='/projects/new')
+                    .nav-link-icon
+                        i(data-feather='folder-plus')
                     | 프로젝트 생성
                 a.nav-link(href='#!')
+                    .nav-link-icon    
+                        i(data-feather='folder-minus')                    
                     | 프로젝트 삭제
 
         .sidenav-footer
