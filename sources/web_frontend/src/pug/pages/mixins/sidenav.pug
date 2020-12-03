@@ -18,21 +18,14 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='activity')
                     | 진행 프로젝트
-
-                a.nav-link.collapsed(href='javascript:void(0);', data-toggle='collapse', data-target='#collapseDashboards', aria-expanded='false', aria-controls='collapseDashboards')
-                    .nav-link-icon
-                        i(data-feather='sliders')
+                .sidenav-menu-heading
                     | 프로젝트 관리
-                    .sidenav-collapse-arrow
-                        i.fas.fa-angle-down
-                #collapseDashboards.collapse(data-parent='#accordionSidenav')
-                    nav.sidenav-menu-nested.nav.accordion#accordionSidenavPages
-                        a.nav-link(href='/projects/list')
-                            | 프로젝트 조회
-                        a.nav-link(href='/projects/new')
-                            | 프로젝트 생성
-                        a.nav-link(href='#!')
-                            | 프로젝트 삭제
+                a.nav-link(href='/projects/list')
+                    | 프로젝트 조회
+                a.nav-link(href='/projects/new')
+                    | 프로젝트 생성
+                a.nav-link(href='#!')
+                    | 프로젝트 삭제
 
         .sidenav-footer
             
