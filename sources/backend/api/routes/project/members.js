@@ -7,7 +7,7 @@ const { Op, QueryTypes } = require('sequelize');
 router.get('/', function(req, res) {
   console.log("인원 관리 process");
   sequelize.query(
-    'select * from USERS where ID not in ( select RECV_USER_ID from INVITES WHERE PROJECT_ID = '+ req.query.pid +' AND STATUS != -1 )',
+    'select * from USERS where ID not in ( select RECV_USER_ID from INVITES WHERE PROJECT_ID = '+ req.query.pid +' AND STATUS != -1 ) AND ID != '+req.user.ID,
     {type : QueryTypes.SELECT}
   ).then(data => {
     userlist = data;
