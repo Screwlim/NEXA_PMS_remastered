@@ -29,7 +29,7 @@ router.post('/', function(req,res) {
     console.log(req.body.start_date)
     console.log(req.body.end_date)
     data.NAME = req.body.name,
-    data.DESCRIPTION = req.body.desc,
+    data.DESCRIPTION = req.body.projectDesc,
     data.START_DATE = req.body.start_date,
     data.END_DATE = req.body.end_date
     data.save();
