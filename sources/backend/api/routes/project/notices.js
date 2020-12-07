@@ -1,6 +1,6 @@
 const express = require('express');
 var router = express.Router();
-const { NOTICES, FILE } = require('../../db/models');
+const { NOTICES, FILE, COMMENTS_NOTICES } = require('../../db/models');
 var multer = require('multer');
 const path = require("path");
 
@@ -48,12 +48,20 @@ router.get('/detail', function(req, res) {
          SRC_ID: data.ID
       }
     }).then((data) => {
-      res.render('project/notice-detail',{
-        user: req.user,
-        pid: req.query.pid,
-        notice: notice,
-        files: data
-      });
+      files = data
+      COMMENTS_NOTICES.findAll({
+        where: {
+          NOTICE_ID: req.query.nid
+        }
+      }).then(data=>{
+        res.render('project/notice-detail',{
+          user: req.user,
+          pid: req.query.pid,
+          notice: notice,
+          files: files,
+          comments: data
+        });
+      })
     });
   });
 });
