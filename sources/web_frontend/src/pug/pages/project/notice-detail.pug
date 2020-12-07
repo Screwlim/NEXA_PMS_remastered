@@ -90,7 +90,23 @@ block content
                                 a.alert-heading(href='/download/'+file.server_NAME) #{file.original_NAME}  
                                 br
                         else
-
+            .card-footer
+                form(method="POST", action='/comment/'+pid+'/'+0+'/'+notice.ID)
+                    .row
+                        textarea#form-control.col-10(name='comment', row=2, placeholder='댓글을 입력하세요')
+                        button.btn.btn-primary.col-2(type='submit') 등록
+                hr.mt-0.mb-4
+                if comments.length != 0
+                    each comment in comments
+                        .comment-group.col-12
+                            .row
+                                .avatar
+                                    img.avatar-img.img-fluid(src='path/to/image')
+                                label(for='comment').mb-1 #{comment.AUTHOR} 
+                                .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
+                            pre.comment #{comment.CONTENT}
+                else
+                    p.d-flex.justify-content-center 댓글이 없습니다.
 
 //- * * * * * * * *
 //- * * Footer  * *
