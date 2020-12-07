@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS, FILE} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS, FILE, COMMENTS_ACTIVITY, COMMENTS_TASK} = require('../../../db/models');
 const { Op } = require('sequelize');
 var multer = require('multer');
 const path = require("path");
@@ -37,30 +37,55 @@ router.get('/', function(req, res) {
         where: {TASK_ID: Task.ID}
       }).then(data =>{
         Acts = data;
+        Act_ids = [];
+        Acts.forEach(act => {
+          Act_ids.push(act.ID);
+        })
         POST_TASK.findAll({
           where: {TASK_ID: req.query.tid}
         }).then(data=>{
           Posts = data
           FILE.findAll({
             where: {
-              [Op.or] : [
-                {SRC_TYPE: 2},
-                {SRC_TYPE: 3}
-              ]
+                SRC_TYPE: 2
             }
           }).then(data => {
-            res.render('project/job/task',{
-              user: req.user,
-              pid: req.query.pid,
-              jid: req.query.jid,
-              job: Job,
-              task: Task,
-              acts: Acts,
-              posts: Posts,
-              files: data
+            post_files = data;
+            FILE.findAll({
+              where: {
+                SRC_TYPE: 3
+            }
+          }).then(data=>{
+            act_files = data;
+            console.log(act_files);
+            COMMENTS_ACTIVITY.findAll({
+              where: {ID: Act_ids}
+            }).then(data =>{
+              act_comments = data;
+              COMMENTS_TASK.findAll({
+                where: {
+                  TASK_ID: req.query.tid
+                }
+              }).then(data =>{
+                res.render('project/job/task',{
+                  user: req.user,
+                  pid: req.query.pid,
+                  jid: req.query.jid,
+                  job: Job,
+                  task: Task,
+                  acts: Acts,
+                  posts: Posts,
+                  post_files: post_files,
+                  act_files: act_files,
+                  act_comments: act_comments,
+                  post_comments: data,
+                  comments : data
+                })
+              })
             })
-          })
+          })          
         })
+      })
     })
   }).catch(err => {
     console.error(err)
@@ -82,7 +107,7 @@ router.post('/', upload.array('activityFiles'),function(req, res) {
     if (req.files.length != 0){
       req.files.forEach(element => {
         FILE.create({
-          SRC_TYPE: 2,
+          SRC_TYPE: 3,
           SRC_ID: data.ID,
           PATH: element.path,
           server_NAME: element.filename,
