@@ -10,6 +10,7 @@ const projects = require('./projects');
 const dashboard = require('./dashboard');
 const invites = require('./invites');
 const download = require('./download');
+const comment = require('./comment');
 
 router.use('/', main);
 router.use('/user', user);
@@ -20,5 +21,6 @@ router.use('/projects', projects);
 router.use('/dashboard', dashboard);
 router.use('/invites', invites);
 router.use('/download', download);
+router.use('/comment', comment);
 
 module.exports = router;
