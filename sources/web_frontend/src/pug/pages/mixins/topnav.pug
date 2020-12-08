@@ -103,10 +103,10 @@ mixin topnav(options)
             //- User Dropdown
             li.nav-item.dropdown.no-caret.mr-2.dropdown-user
                 a#navbarDropdownUserImage.btn.btn-icon.btn-transparent-dark.dropdown-toggle(href='javascript:void(0);', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                    img.img-fluid(src='https://source.unsplash.com/QAB-WJcbgJk/60x60')
+                    img.img-fluid(src=user.prof_img_url)
                 .dropdown-menu.dropdown-menu-right.border-0.shadow.animated--fade-in-up(aria-labelledby='navbarDropdownUserImage')
                     h6.dropdown-header.d-flex.align-items-center
-                        img.dropdown-user-img(src='https://source.unsplash.com/QAB-WJcbgJk/60x60')
+                        img.dropdown-user-img(src=user.prof_img_url)
                         .dropdown-user-details
                             .dropdown-user-details-name #{user.NAME}
                             .dropdown-user-details-email #{user.EMAIL}

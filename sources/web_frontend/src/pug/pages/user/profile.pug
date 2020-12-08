@@ -67,26 +67,27 @@ block content
 
     // Main page content
     .container.mt-4
-
-        hr.mt-0.mb-4
-        .row
-            .col-xl-4
-                // Profile picture card
-                .card
-                    .card-header Profile Picture
-                    .card-body.text-center
-                        // Profile picture image
-                        img.img-account-profile.rounded-circle.mb-2(src='https://source.unsplash.com/QAB-WJcbgJk/300x300', alt='')
-                        // Profile picture help block
-                        .small.font-italic.text-muted.mb-4 JPG or PNG no larger than 5 MB
-                        // Profile picture upload button
-                        button.btn.btn-primary(type='button') Upload new image
-            .col-xl-8
-                // Account details card
-                .card.mb-4
-                    .card-header Account Details
-                    .card-body
-                        form(method='post')
+        form(method='post', enctype="multipart/form-data")
+            hr.mt-0.mb-4
+            .row
+                .col-xl-4
+                    // Profile picture card
+                    .card
+                        .card-header Profile Picture
+                        .card-body.text-center
+                            // Profile picture image
+                            img.img-account-profile.rounded-circle.mb-2(src=user.prof_img_url, alt='no image')
+                            // Profile picture help block
+                            .small.font-italic.text-muted.mb-4 JPG or PNG no larger than 5 MB
+                            // Profile picture upload button
+                            .form-group
+                                label.btn.btn-primary Upload new image
+                                    input.form-control-file(type='file', name='profileImage', style="width:100%;display:none")                         
+                .col-xl-8
+                    // Account details card
+                    .card.mb-4
+                        .card-header Account Details
+                        .card-body
                             // Form Row
                             .form-row
                                 // Form Group (first name)
