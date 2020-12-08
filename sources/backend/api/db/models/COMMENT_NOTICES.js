@@ -28,10 +28,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID'
       }
     },
-    AUTHOR: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
     CONTENT: {
       type: DataTypes.STRING(512),
       allowNull: true

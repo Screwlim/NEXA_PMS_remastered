@@ -44,6 +44,11 @@ module.exports = function(sequelize, DataTypes) {
     SNSID: {
       type: DataTypes.STRING(30),
       allowNull: true
+    },
+    prof_img_url: {
+      type: DataTypes.STRING(200),
+      allowNull: false,
+      defaultValue: "../../assets/img/default_prof.png"
     }
   }, {
     sequelize,
