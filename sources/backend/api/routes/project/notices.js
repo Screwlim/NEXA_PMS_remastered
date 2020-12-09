@@ -1,6 +1,6 @@
 const express = require('express');
 var router = express.Router();
-const { NOTICES, FILE, COMMENTS_NOTICES } = require('../../db/models');
+const { NOTICES, FILE, COMMENTS_NOTICES, USERS } = require('../../db/models');
 var multer = require('multer');
 const path = require("path");
 
@@ -50,6 +50,9 @@ router.get('/detail', function(req, res) {
     }).then((data) => {
       files = data
       COMMENTS_NOTICES.findAll({
+        include:[{
+            model: USERS
+        }],
         where: {
           NOTICE_ID: req.query.nid
         }

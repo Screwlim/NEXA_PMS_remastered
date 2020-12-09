@@ -28,12 +28,12 @@ router.post('/:pid/:src_type/:src_id', function(req, res) {
       })
 
       break;
-    case 2:
+    case '2':
       COMMENTS_TASK.create({
         
       })
       break;
-    case 3:
+    case '3':
       COMMENTS_ACTIVITY.create({
 
       })
