@@ -99,12 +99,14 @@ block content
                 if comments.length != 0
                     each comment in comments
                         .comment-group.col-12
+                            hr.mt-0.mb-4
                             .row
                                 .avatar
-                                    img.avatar-img.img-fluid(src='path/to/image')
-                                label(for='comment').mb-1 #{comment.AUTHOR} 
-                                .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
+                                    img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
+                                .mb-1 #{comment.USER.NAME} 
                             pre.comment #{comment.CONTENT}
+                            .row.small.text-muted.justify-content-end 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
+
                 else
                     p.d-flex.justify-content-center 댓글이 없습니다.
 
