@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { ATTENDANCES } = require('../db/models');
+const { Op } = require('sequelize');
 
 const main = require('./main');
 const user = require('./user');
@@ -18,7 +20,29 @@ router.use('/', main);
 router.use('/user', user);
 router.use('/auth', auth);
 router.use('/inprogress', inprogress);
-router.use('/projects', projects);
+
+//set pid param value for later use
+//& check the authorization to access the project
+router.use('/projects/:pid', function(req, res, next){
+
+    ATTENDANCES.findOne({
+        where: {
+            [Op.and] : [
+                {PROJECT_ID: req.params.pid},
+                {USER_ID: req.user.ID}
+            ]
+        }
+    }).then(data => {
+        if(data){
+            req.pid = req.params.pid;
+            next();
+        }else{
+            console.log("you don't belong to this project")
+            res.status(403).render('./err/error-403.pug');
+        }
+    })
+}, projects);
+
 router.use('/dashboard', dashboard);
 router.use('/invites', invites);
 router.use('/download', download);
