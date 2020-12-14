@@ -1,5 +1,5 @@
 var express = require('express');
-const { isLoggedIn } = require('../middleware');
+const { isLoggedIn } = require('./middleware');
 const { PROJECTS, ATTENDANCES } = require('../db/models');
 const { Op } = require('sequelize');
 var router = express.Router();

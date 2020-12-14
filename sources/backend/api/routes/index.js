@@ -11,7 +11,7 @@ const invites = require('./invites');
 const download = require('./download');
 const comment = require('./comment');
 const proj_create = require('./proj_create');
-const proj_delete = require('./proj-delete');
+const proj_delete = require('./proj_delete');
 const proj_list = require('./proj_list');
 
 router.use('/', main);
@@ -23,7 +23,7 @@ router.use('/dashboard', dashboard);
 router.use('/invites', invites);
 router.use('/download', download);
 router.use('/comment', comment);
-router.use('/proj-create', proj_create);
+router.use('/proj_create', proj_create);
 router.use('/proj_delete', proj_delete);
 router.use('/proj_list', proj_list)
 module.exports = router;
