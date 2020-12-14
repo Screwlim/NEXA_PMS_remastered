@@ -3,7 +3,7 @@ exports.isLoggedIn = (req, res, next) => {
       console.log(`user ${req.user.NAME} authorized`)
       next();
     } else {
-      res.status(403).render('./err/error-403.html');
+      res.status(403).render('./err/error-403.pug');
     }
   };
   
