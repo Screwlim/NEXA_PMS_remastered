@@ -11,23 +11,23 @@ mixin sidenav(options)
                     | Main Dashboard
                 .sidenav-menu-heading
                     | 프로젝트 관리
-                a.nav-link(href='/project?pid='+options.pid)
+                a.nav-link(href='/projects/'+options.pid)
                     .nav-link-icon
                         i(data-feather='map')
                     | 프로젝트 Dashboard
-                a.nav-link(href='/project/jobs?pid='+options.pid)
+                a.nav-link(href='/projects/'+options.pid+'/jobs')
                     .nav-link-icon
                         i(data-feather='monitor')
                     | 업무조회
-                a.nav-link(href='/project/notices?pid='+options.pid)
+                a.nav-link(href='/projects/'+options.pid+'/notices')
                     .nav-link-icon
                         i(data-feather='info')
                     | 공지사항
-                a.nav-link(href='/project/members?pid='+options.pid)
+                a.nav-link(href='/projects/'+options.pid+'/members')
                     .nav-link-icon
                         i(data-feather='users')
                     | 멤버조회
-                a.nav-link(href='/project/settings?pid='+options.pid)
+                a.nav-link(href='/projects/'+options.pid+'/settings')
                     .nav-link-icon
                         i(data-feather='settings')
                     | 프로젝트 설정
