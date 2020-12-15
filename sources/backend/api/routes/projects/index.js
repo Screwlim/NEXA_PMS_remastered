@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const deleteproj = require('./delete.js');
-const list = require('./list.js')
-const newproj = require('./new.js')
+const proj_dashboard = require('./proj_dashboard.js')
+const notices = require('./notices.js')
+const jobs = require('./jobs')
+const members = require('./members.js')
+const settings = require('./settings')
 
-router.use('/delete', deleteproj);
-router.use('/list', list);
-router.use('/new', newproj);
+router.use('/', proj_dashboard);
+router.use('/notices', notices);
+router.use('/jobs', jobs);
+router.use('/members', members);
+router.use('/settings', settings);
 
 module.exports = router;
