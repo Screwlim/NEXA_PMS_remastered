@@ -85,7 +85,7 @@ block content
                             .d-flex.align-items-center.justify-content-between.mb-4
                                 .d-flex.align-items-center.flex-shrink-0.mr-3
                                     .avatar.avatar-xl.mr-3.bg-gray-200
-                                        img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-1.png', alt='')
+                                        img.avatar-img.img-fluid(src=member.USER.prof_img_url, alt='')
                                     .d-flex.flex-column.font-weight-bold
                                         if (member.ISPM == 1)
                                             a.text-dark.line-height-normal.mb-1(data-toggle='modal', data-target='userInfo') #{member.USER.NAME} (PM)
@@ -98,7 +98,7 @@ block content
             .col-xxl-12.col-xl-12.mb-6
                 .card
                     .card-body.text-center.p-5
-                        img.img-fluid.mb-4(src='../assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
+                        img.img-fluid.mb-4(src='/assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
                         h5 팀원 초대하기
                         p.mb-4 새로운 멤버를 초대합니다.
                         a.btn.btn-sm.btn-primary.p-3.line-height-normal(data-toggle="modal", href='#inviteModal') Invite
@@ -115,7 +115,7 @@ block content
                                     .d-flex.align-items-center.justify-content-between.mb-4
                                         .d-flex.align-items-center.flex-shrink-0.mr-3
                                             .avatar.avatar-xl.mr-3.bg-gray-200
-                                                img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-2.png', alt='')
+                                                img.avatar-img.img-fluid(src=invited.USER.prof_img_url, alt='')
                                             .d-flex.flex-column.font-weight-bold
                                                 a.text-dark.line-height-normal.mb-1 #{invited.USER.NAME}
                                                 if invited.STATUS == 0
