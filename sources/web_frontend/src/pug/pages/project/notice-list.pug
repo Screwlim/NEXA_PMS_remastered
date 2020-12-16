@@ -1,48 +1,21 @@
-//- * * * * * * * *
-//- * * Layout  * *
-//- * * * * * * * *
-
-//- The page layout is set using the Pug `extends` directive with a path to a layout template
-//- All of the layout options are contained in src/pug/layouts
 extends ../../layouts/dashboard.pug
 
-//- * * * * * * * *
-//- * * Config  * *
-//- * * * * * * * *
-
-//- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
     - var pageTitle = '공지사항'
 
 append css
-    //- Load dataTables CSS via CDN
     link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
 
-//- * * * * * * * *
-//- * * Topnav  * *
-//- * * * * * * * *
-
-//- Define the `block topnav` from the layout
 block topnav
 
-    //- Bring in the sidenav mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/topnav.pug
     +topnav({
         topnavStyle: 'navbar-light bg-white'
     })
 
-//- * * * * * * * *
-//- * * Sidenav * *
-//- * * * * * * * *
-
-//- Define the `block sidenav` from the layout
-//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
 block sidenav
 
-    //- Bring in the sidenav mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/sidenav-proj.pug
     +sidenav({
         sidenavStyle: 'sidenav-dark',
@@ -50,15 +23,8 @@ block sidenav
         pid: pid
     })
 
-//- * * * * * * * * * * *
-//- * * Page Content  * *
-//- * * * * * * * * * * *
-
-//- Define the main `block content` from the layout
 block content
 
-    //- Bring in the page header mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/headers/header-default.pug
     +header({
         pageHeaderStyle: 'page-header-dark',
@@ -70,8 +36,7 @@ block content
         breadcrumbs: false
     })
 
-        
-        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#noticeCreate') 새로운 공지사항 등록
+        a.btn.btn-light.btn-sm(href='notices/notice-create') 새로운 공지사항 등록
 
     // Main page content
     .container.mt-n10
@@ -98,52 +63,12 @@ block content
                                     tr
                                         td #{notice.AUTHOR}
                                         td 
-                                            a(href='/project/notices/detail?pid='+pid+'&nid='+notice.ID, title='#{job.TITLE}') #{notice.TITLE}
+                                            a(href='/projects/'+pid+'/notices/'+notice.ID, title='#{job.TITLE}') #{notice.TITLE}
                                         td #{notice.AUTHOR}
                                         td #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}                                  
 
-    
-    #noticeCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='noticeCreate', aria-hidden='true')
-        .modal-dialog.modal-dialog-scrollable.modal-lg(role='document')
-            .modal-content
-                form(method="POST", enctype="multipart/form-data")
-                    .modal-header
-                        h5#exampleModalScrollableTitle.modal-title 공지사항 작성
-                        button.close(type='button', data-dismiss='modal', aria-label='Close')
-                            span(aria-hidden='true') ×
-                    .modal-body
-                        .row
-                            .form-group.col-md-6
-                                label(for='noticeTitle').small.mb-1 제목
-                                input#title.form-control(type='text', name='title', placeholder='제목을 입력하세요')
-                        .row    
-                            .form-group.col-md-10
-                                label(for='noticeContent').small.mb-1 내용
-                                textarea#content.form-control(name='content', placeholder='내용을 입력하세요')
-                        .row
-                            .form-group.col-md-10
-                                label(for='noticeFile').small.mb-1 파일첨부                            
-                                input#postFile.form-control-file(type='file', name='noticeFiles' multiple)
-                    .modal-footer
-                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                        button.btn.btn-primary(type='submit') 생성하기 
-//- * * * * * * * *
-//- * * Footer  * *
-//- * * * * * * * *
-
-//- Define the `block footer` from the layout
 block footer
-
-    //- Bring in the footer mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
     include ../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
     })
-
-append scripts
-    //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='/assets/demo/datatables.js')

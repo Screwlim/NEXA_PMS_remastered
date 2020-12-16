@@ -1,44 +1,18 @@
-//- * * * * * * * *
-//- * * Layout  * *
-//- * * * * * * * *
-
-//- The page layout is set using the Pug `extends` directive with a path to a layout template
-//- All of the layout options are contained in src/pug/layouts
 extends ../../layouts/dashboard.pug
 
-//- * * * * * * * *
-//- * * Config  * *
-//- * * * * * * * *
-
-//- These are page-level configuration options that should be set for each page
 block config
     - var navPosition = 'nav-fixed'
     - var pageTitle = '공지사항'
 
-//- * * * * * * * *
-//- * * Topnav  * *
-//- * * * * * * * *
-
-//- Define the `block topnav` from the layout
 block topnav
 
-    //- Bring in the sidenav mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/topnav.pug
     +topnav({
         topnavStyle: 'navbar-light bg-white'
     })
 
-//- * * * * * * * *
-//- * * Sidenav * *
-//- * * * * * * * *
-
-//- Define the `block sidenav` from the layout
-//- Note: The chosen page layout must have a `block sidenav` or no sidenav will appear
 block sidenav
 
-    //- Bring in the sidenav mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/sidenav-proj.pug
     +sidenav({
         sidenavStyle: 'sidenav-dark',
@@ -46,15 +20,8 @@ block sidenav
         pid: pid
     })
 
-//- * * * * * * * * * * *
-//- * * Page Content  * *
-//- * * * * * * * * * * *
-
-//- Define the main `block content` from the layout
 block content
 
-    //- Bring in the page header mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../mixins/headers/header-default.pug
     +header({
         pageHeaderStyle: 'page-header-dark',
@@ -72,15 +39,22 @@ block content
         // Knowledge base article
         .card.mb-4
             .card-header.d-flex.align-items-center
-                a.btn.btn-transparent-dark.btn-icon(href='/project/notices?pid='+pid)
+                a.p-2.btn.btn-transparent-dark.btn-icon(href='/projects/'+pid+'notices')
                     i(data-feather='arrow-left')
-                .ml-3
+                .ml-3.p-2
                     h2.my-3 #{notice.TITLE}
+                if user.ID == notice.AUTHOR_ID
+                    .ml-auto.p-2.dropdown.no-caret
+                        button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            i.text-primary(data-feather='more-vertical')
+                        .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
+                            a.dropdown-item(href='') 수정하기
+                            a.dropdown-item(href='') 삭제하기
             .card-body
                 h4 작성자 : #{notice.AUTHOR}
                 h5 작성일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
                 h5 수정일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  
-                p.lead.mb-5 #{notice.CONTENT}
+                pre.lead.mb-5 #{notice.CONTENT}
                 .alert.alert-primary.alert-icon.mb-0(role='alert')
                     .alert-icon-aside
                         i(data-feather='folder') 첨부파일
@@ -110,16 +84,16 @@ block content
                 else
                     p.d-flex.justify-content-center 댓글이 없습니다.
 
-//- * * * * * * * *
-//- * * Footer  * *
-//- * * * * * * * *
-
-//- Define the `block footer` from the layout
 block footer
 
-    //- Bring in the footer mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
     include ../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
     })
+
+append scripts
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables.js')
