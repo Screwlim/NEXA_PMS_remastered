@@ -19,17 +19,16 @@ const upload = multer({
   })
 });
 
-/* GET users listing. */
 router.get('/', function(req, res) {
   console.log("task page");
   var Job;
   var Task;
   JOBS.findOne({
-    where: {ID: req.query.jid}
+    where: {ID: req.jid}
   }).then(data => {
     Job = data;
     TASKS.findOne({
-      where: {ID: req.query.tid}
+      where: {ID: req.tid}
     }).then(data => {
       Task = data;
       ACTIVITYS.findAll({
@@ -41,7 +40,7 @@ router.get('/', function(req, res) {
           Act_ids.push(act.ID);
         })
         POST_TASK.findAll({
-          where: {TASK_ID: req.query.tid}
+          where: {TASK_ID: req.tid}
         }).then(data=>{
           Posts = data
           FILE.findAll({
@@ -63,13 +62,13 @@ router.get('/', function(req, res) {
               act_comments = data;
               COMMENTS_TASK.findAll({
                 where: {
-                  TASK_ID: req.query.tid
+                  TASK_ID: req.tid
                 }
               }).then(data =>{
                 res.render('project/job/task',{
                   user: req.user,
-                  pid: req.query.pid,
-                  jid: req.query.jid,
+                  pid: req.pid,
+                  jid: req.jid,
                   job: Job,
                   task: Task,
                   acts: Acts,
@@ -92,11 +91,11 @@ router.get('/', function(req, res) {
 })
 });
 
-router.post('/', upload.array('activityFiles'),function(req, res) {
+router.post('/activitys', upload.array('activityFiles'),function(req, res) {
   console.log('create activity process');
 
   ACTIVITYS.create({
-    TASK_ID: req.query.tid,
+    TASK_ID: req.tid,
     TITLE: req.body.title,
     CONTENTS: req.body.contents,
     AUTHOR: req.user.NAME,
@@ -118,9 +117,40 @@ router.post('/', upload.array('activityFiles'),function(req, res) {
       console.log("no file attached");
     }
   }).then(()=>{
-    res.redirect('/project/job/task?pid='+req.query.pid+'&jid='+req.query.jid+'&tid='+req.query.tid);
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.jid+'/tasks/'+req.tid);
   })
 })
+
+
+router.post('/posts',upload.array('postFiles'), function(req, res) {
+  console.log('in post-job creating process')
+  POST_TASK.create({
+    TASK_ID: req.tid,
+    TITLE: req.body.title,
+    CONTENT: req.body.contents, 
+    AUTHOR: req.user.NAME,
+    AUTHOR_ID: req.user.ID,
+    FILEURL: req.files.length
+  }).then((data)=> {
+    if (req.files.length != 0){
+      req.files.forEach(element => {
+        FILE.create({
+          SRC_TYPE: 2,
+          SRC_ID: data.ID,
+          PATH: element.path,
+          server_NAME: element.filename,
+          original_NAME: element.originalname
+        })
+      });
+    }
+    else{
+      console.log("no file attached");
+    }
+  }).then(()=>{
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.jid+'/tasks/'+req.tid);
+  });
+
+});
 
 router.get('/done', function(req,res){
   console.log('task done process');
@@ -128,8 +158,8 @@ router.get('/done', function(req,res){
   TASKS.findOne({
     where: {
       [Op.and] : [
-        {JOB_ID : req.query.jid}, 
-        {ID : req.query.tid} 
+        {JOB_ID : req.jid}, 
+        {ID : req.tid} 
       ]
     }
   }).then(data => {
@@ -137,19 +167,19 @@ router.get('/done', function(req,res){
     data.save()
   }).then(data=>{
     JOBS.findOne({
-      where: {ID: req.query.jid}
+      where: {ID: req.jid}
     }).then(data => {
       data.NUM_DONE_TASKS = data.NUM_DONE_TASKS + 1;
       data.save();
       PROJECTS.findOne({
-        where: {ID : req.query.pid}
+        where: {ID : req.pid}
       }).then(data => {
         data.NUM_DONE_TASKS = data.NUM_DONE_TASKS + 1;
         data.save();
       })
     })
   }).then(data=> {
-    res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.jid);
   });
 })
 
@@ -159,8 +189,8 @@ router.get('/notDone', function(req,res){
   TASKS.findOne({
     where: {
       [Op.and] : [
-        {JOB_ID : req.query.jid}, 
-        {ID : req.query.tid} 
+        {JOB_ID : req.jid}, 
+        {ID : req.tid} 
       ]
     }
   }).then(data => {
@@ -168,19 +198,19 @@ router.get('/notDone', function(req,res){
     data.save()
   }).then(data=>{
     JOBS.findOne({
-      where: {ID: req.query.jid}
+      where: {ID: req.jid}
     }).then(data => {
       data.NUM_DONE_TASKS = data.NUM_DONE_TASKS - 1;
       data.save();
       PROJECTS.findOne({
-        where: {ID : req.query.pid}
+        where: {ID : req.pid}
       }).then(data => {
         data.NUM_DONE_TASKS = data.NUM_DONE_TASKS - 1;
         data.save();
       })
     })
   }).then(data=> {
-    res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.jid);
   });
 })
 

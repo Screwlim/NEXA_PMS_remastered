@@ -58,6 +58,12 @@ block sidenav
 //- Define the main `block content` from the layout
 block content
 
+    script.
+        function postComment(){
+            var txt = document.getElementsByClassName('comment').value;
+            console.log(txt);
+        }
+
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include ../../mixins/headers/header-breadcrumb.pug
@@ -94,8 +100,7 @@ block content
                                             i.flex-shrink-0.ml-4(data-feather='chevron-right')
                         else
                             p 등록된 Post가 없습니다.
-                    a.card-footer.small.text-muted(href='/project/job/task_post?pid='+pid+'&jid='+jid+'&tid='+task.ID) post 추가하기 
-        .row
+                    button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
             .col-xxl-12.col-xl-8.mb-6
                 .card.card-header-actions.h-100.card-scrollable
                     .card-header 
@@ -137,10 +142,10 @@ block content
                                 p 등록된 활동이 없습니다.            
 
     // CREATE activity modal
-    #createActivity.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+    #createActivity.modal.fade(role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
         .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
             .modal-content
-                form(method="POST", enctype="multipart/form-data")
+                form(method="POST",action='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/activitys',  enctype="multipart/form-data")
                     .modal-header
                         h5#exampleModalScrollableTitle.modal-title Modal title
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -163,11 +168,39 @@ block content
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                         button.btn.btn-primary(type='submit') 생성하기
 
+    // create job post modal
+    #createPost.modal.fade(role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
+            .modal-content
+                form(method="POST", action='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/posts', enctype="multipart/form-data")
+                    .modal-header
+                        h5#exampleModalScrollableTitle.modal-title Post 생성
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        .row
+                            .col-lg-12
+                                .form-group.col-md-12
+                                    label(for='postTitle').small.mb-1 제목
+                                    input#jobTitle.form-control(type='text', name='title', placeholder='제목을 입력하세요')
+                                .form-group.col-md-12
+                                    label(for='postContent').small.mb-1 내용
+                                    textarea#jobDesc.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
+                        .row
+                            .form-group.col-md-12
+                                label(for='postFiles').small.mb-1 파일첨부                            
+                                input#postFile.form-control-file(type='file', name='postFiles' multiple)
+
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') 생성하기
+
+
     // Activity Read modal
     if acts.length != 0
         each act in acts
             .modal.fade(data-backdrop='static', id='Activity'+act.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
-                .modal-dialog.modal-lg.modal-dialog-scrollable.modal-dialog-centered(role='document')
+                .modal-dialog.modal-xl.modal-dialog-scrollable.modal-dialog-centered(role='document')
                     .modal-content
                         .modal-header
                             h5#exampleModalScrollableTitle.modal-title #{act.TITLE}
@@ -177,14 +210,34 @@ block content
                             pre 작성자 : #{act.AUTHOR}   |   작성일 : #{act.createdAt.getFullYear()}/#{act.createdAt.getMonth()+1}/#{act.createdAt.getDate()} #{act.createdAt.getHours()}:#{act.createdAt.getMinutes()}:#{act.createdAt.getSeconds()}   |   수정일 : #{act.updatedAt.getFullYear()}/#{act.updatedAt.getMonth()+1}/#{act.updatedAt.getDate()} #{act.updatedAt.getHours()}:#{act.updatedAt.getMinutes()}:#{act.updatedAt.getSeconds()}
                         .modal-body
                             pre #{act.CONTENTS}
-                        .modal-footer
-                            each file in files
+                            hr.mt-0.mb-4
+                            |  첨부파일
+                            br
+                            each file in act_files
                                 if file.SRC_ID == act.ID
                                     a(href='/download/'+file.server_NAME) #{file.original_NAME}
+                                    br
+                            hr.mt-0.mb-4
+                            .row
+                                textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
+                            hr.mt-0.mb-4
+                            if act_comments.length != 0
+                                each comment in act_comments
+                                    .comment-group.col-12
+                                        .row
+                                            .avatar
+                                                //- img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
+                                            //- label(for='comment').mb-1 #{comment.USER.NAME} 
+                                            .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
+                                        pre.comment #{comment.CONTENT}
+                            else
+                                p.d-flex.justify-content-center 댓글이 없습니다.
                         .modal-footer
                             //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
-    // post_task modal create
+
+    // post_task read modal
     if posts.length != 0
         each post in posts
             .modal.fade(data-backdrop='static', id='Post'+post.ID, tabindex='-1', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
@@ -198,30 +251,36 @@ block content
                             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             pre #{post.CONTENT}
-                        .modal-footer
-                            each file in files
+                            hr.mt-0.mb-4
+                            |  첨부파일
+                            br
+                            each file in post_files
                                 if file.SRC_ID == post.ID
                                     a(href='/download/'+file.server_NAME) #{file.original_NAME}
+                                    br
+                            hr.mt-0.mb-4
+                            .row
+                                textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
+                            hr.mt-0.mb-4
+                            if post_comments.length != 0
+                                each comment in post_comments
+                                    .comment-group.col-12
+                                        .row
+                                            .avatar
+                                                img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
+                                            label(for='comment').mb-1 #{comment.USER.NAME} 
+                                            .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
+                                        pre.comment #{comment.CONTENT}
+                            else
+                                p.d-flex.justify-content-center 댓글이 없습니다.
                         .modal-footer
-                            //- button.btn.btn-secondary(type='button') 수정하기
+                            button.btn.btn-secondary(type='button') 수정하기
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인   
-//- * * * * * * * *
-//- * * Footer  * *
-//- * * * * * * * *
 
-//- Define the `block footer` from the layout
 block footer
 
-    //- Bring in the footer mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
-    include ../../mixins/footer.pug
+   include ../../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
     })
-
-append scripts
-    //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='/assets/demo/datatables-demo.js')

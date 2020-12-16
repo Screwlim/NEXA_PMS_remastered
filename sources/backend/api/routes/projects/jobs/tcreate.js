@@ -4,17 +4,16 @@ const {TASKS, JOBS, PROJECTS} = require('../../../db/models');
 
 router.get('/', function(req, res) {
   console.log("업무 생성 page");
-  res.render('project/job/tcreate',{
+  res.render('project/job/task-create',{
     user: req.user,
-    pid: req.query.pid
+    pid: req.pid
   });
 });
 
 router.post('/', function(req, res) {
   console.log('in task creating process')
-
   TASKS.create({
-    JOB_ID: req.query.jid,
+    JOB_ID: req.jid,
     TITLE: req.body.title,
     START_DATE: req.body.start_date,
     END_DATE: req.body.end_date,
@@ -25,15 +24,15 @@ router.post('/', function(req, res) {
     STATUS: 0
   }).then(data => {
     JOBS.increment('NUM_TASKS', {
-      where: {ID: req.query.jid}
+      where: {ID: req.jid}
     })
   }).then(data=> {
     PROJECTS.increment('NUM_TASKS', {
-      where: {ID: req.query.pid}
+      where: {ID: req.pid}
     })
   })
 
-  res.redirect('/project/job?pid='+req.query.pid+'&jid='+req.query.jid);
+  res.redirect('/projects/'+req.pid+'/jobs/'+req.jid);
 });
 
 

@@ -104,13 +104,15 @@ block content
                         else
                             p 등록된 Post가 없습니다.
                         
-                    a.card-footer.small.text-muted(href='/project/job/job_post?pid='+pid+'&jid='+jid) post 추가하기 
+                    //- a.card-footer.small.text-muted(data-toggle='modal', data-target='#createActivity') 새로운 post 등록
+                    a.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
+ 
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card.card-header-actions.mb-4
                     .card-header
                         | task 목록
-                        a.small.mb-1small.text-arrow-icon(href='/project/job/tcreate?pid='+pid+'&jid='+jid)
+                        a.small.mb-1small.text-arrow-icon(href='/projects/'+pid+'/jobs/'+job.ID+'/task-create')
                             | 새로운 task 생성
                             i(data-feather='arrow-right')
                     .card-body
@@ -170,16 +172,37 @@ block content
                         .modal-footer
                             //- button.btn.btn-secondary(type='button') 수정
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
+    
+    
+    // create job post modal
+    #createPost.modal.fade(role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
+            .modal-content
+                form(method="POST", action='/projects/'+pid+'/jobs/'+jid+'/posts', enctype="multipart/form-data")
+                    .modal-header
+                        h5#exampleModalScrollableTitle.modal-title Post 생성
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        .row
+                            .col-lg-12
+                                .form-group.col-md-12
+                                    label(for='postTitle').small.mb-1 제목
+                                    input#jobTitle.form-control(type='text', name='postTitle', placeholder='제목을 입력하세요')
+                                .form-group.col-md-12
+                                    label(for='postContent').small.mb-1 내용
+                                    textarea#jobDesc.form-control(rows='8', type='textarea', name='postContent', placeholder='내용을 입력하세요')
+                        .row
+                            .form-group.col-md-12
+                                label(for='postFiles').small.mb-1 파일첨부                            
+                                input#postFile.form-control-file(type='file', name='postFiles' multiple)
 
-//- * * * * * * * *
-//- * * Footer  * *
-//- * * * * * * * *
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='submit') 생성하기
 
-//- Define the `block footer` from the layout
 block footer
 
-    //- Bring in the footer mixin and configure
-    //- For all available config options for this mixin, visit https://docs.startbootstrap.co/sb-admin-pro/
     include ../../mixins/footer.pug
     +footer({
         footerStyle: 'footer-light'
@@ -190,4 +213,4 @@ append scripts
     script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
     script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
     //- Load dataTables demo data
-    script(src='../../../../assets/demo/datatables.js')
+    script(src='/assets/demo/datatables.js')

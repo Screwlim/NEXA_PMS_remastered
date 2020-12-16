@@ -1,6 +1,23 @@
 var express = require('express');
 var router = express.Router();
 const {JOBS, TASKS, POST_JOB, FILE} = require('../../../db/models');
+var multer = require('multer');
+const path = require("path");
+
+const upload = multer({
+  storage: multer.diskStorage({
+    //위치 지정
+    destination: (req, file, done) => {
+      done(null, "uploads/");
+    }, 
+    filename: (req, file, done) => {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      // cb(null, new Date().valueOf() + path.extname(file.originalname));
+    }
+  })
+});
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("업무조회 page");
@@ -19,7 +36,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:jid', function(req, res) {
-  console.log("job page");
+  console.log('job'+req.params.jid+'page');
 
   JOBS.findOne({
     where: {ID: req.params.jid}
@@ -38,10 +55,6 @@ router.get('/:jid', function(req, res) {
             SRC_TYPE: 1
           }
         }).then((data)=>{
-          console.log(Job);
-          console.log(Posts);
-          console.log(Tasks);
-          console.log(data);
           res.render('project/job/job',{
             user: req.user,
             pid: req.pid,
@@ -56,5 +69,36 @@ router.get('/:jid', function(req, res) {
     });
   });
 });
+
+//create job_post
+router.post('/:jid/posts', upload.array('postFiles') ,function(req, res) {
+  console.log('in post-job creating process')
+  POST_JOB.create({
+    JOB_ID: req.params.jid,
+    TITLE: req.body.postTitle,
+    CONTENT: req.body.postContent, 
+    AUTHOR: req.user.NAME,
+    AUTHOR_ID: req.user.ID,
+    FILES: req.files.length
+  }).then((data)=> {
+    if (req.files.length != 0){
+      req.files.forEach(element => {
+        FILE.create({
+          SRC_TYPE: 1,
+          SRC_ID: data.ID,
+          PATH: element.path,
+          server_NAME: element.filename,
+          original_NAME: element.originalname
+        })
+      });
+    }
+    else{
+      console.log("no file attached");
+    }
+  }).then(()=>{
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.params.jid);
+  });
+});
+
 
 module.exports = router;
