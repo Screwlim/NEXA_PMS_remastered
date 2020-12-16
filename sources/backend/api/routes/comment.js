@@ -16,7 +16,7 @@ router.post('/:pid/:src_type/:src_id', function(req, res) {
         AUTHOR: req.user.NAME,
         CONTENT: req.body.comment
       }).then(()=> {
-        res.redirect('/project/notices/detail?pid='+req.params.pid+'&nid='+req.params.src_id);
+        res.redirect('/projects/'+req.params.pid+'/notices/'+req.params.src_id);
       })
 
 
@@ -26,7 +26,6 @@ router.post('/:pid/:src_type/:src_id', function(req, res) {
       COMMENTS_JOB.create({
 
       })
-
       break;
     case '2':
       COMMENTS_TASK.create({
@@ -35,7 +34,7 @@ router.post('/:pid/:src_type/:src_id', function(req, res) {
       break;
     case '3':
       COMMENTS_ACTIVITY.create({
-
+        
       })
       break;
     default:
