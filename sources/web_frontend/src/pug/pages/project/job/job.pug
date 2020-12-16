@@ -136,7 +136,7 @@ block content
                                             tr 
                                                 td #{task.AUTHOR}
                                                 td 
-                                                    a(href='/project/job/task?pid='+pid+'&jid='+job.ID+'&tid='+task.ID, title='#{task.TITLE}') #{task.TITLE}
+                                                    a(href='/projects/'+pid+'/jobs/'+job.ID+'/tasks/'+task.ID, title='#{task.TITLE}') #{task.TITLE}
                                                 td #{task.START_DATE.getFullYear()}/#{task.START_DATE.getMonth()+1}/#{task.START_DATE.getDate()}  -  #{task.END_DATE.getFullYear()}/#{task.END_DATE.getMonth()+1}/#{task.END_DATE.getDate()}
                                                 td #{task.updatedAt.getFullYear()}/#{task.updatedAt.getMonth()+1}/#{task.updatedAt.getDate()} #{task.updatedAt.getHours()}:#{task.updatedAt.getMinutes()}:#{task.updatedAt.getSeconds()}
                                                 //- td status val?                                    
