@@ -36,6 +36,16 @@ router.get('/', function(req, res) {
   });
 });
 
+
+
+router.get('/notice-create', function(req, res){
+  res.render('project/notice-create',{
+    user: req.user, 
+    pid: req.pid
+  });
+});
+
+
 router.get('/:nid', function(req, res) {
   console.log("project notice detail process");
   NOTICES.findOne({
@@ -69,16 +79,12 @@ router.get('/:nid', function(req, res) {
   });
 });
 
-router.get('/create', function(req, res){
-  
-});
-
 router.post('/',upload.array('noticeFiles'),function(req,res) {
   console.log('create notice');
   console.log('number of files : ' + req.files.length);
   console.log(req.files)
   NOTICES.create({
-    PROJECT_ID: req.query.pid,
+    PROJECT_ID: req.pid,
     TITLE: req.body.title,
     CONTENT: req.body.content,
     AUTHOR_ID: req.user.ID,
