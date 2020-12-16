@@ -30,10 +30,10 @@ mixin header(options)
 
                 ol.breadcrumb.mb-0.mt-4
                     li.breadcrumb-item
-                        a(href='/project/jobs?pid='+pid) 업무조회
+                        a(href='/projects/'+pid+'/jobs') 업무조회
                     if options.isTask
                         li.breadcrumb-item
-                            a(href='/project/job?pid='+pid+'&jid='+job.ID) #{job.TITLE}
+                            a(href='/projects/'+pid+'/jobs/'+job.ID) #{job.TITLE}
                         li.breadcrumb-item.active #{pageTitle}                        
                     else
                         li.breadcrumb-item.active #{pageTitle}
