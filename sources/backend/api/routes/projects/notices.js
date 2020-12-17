@@ -29,7 +29,8 @@ router.get('/', function(req, res) {
     res.render('project/notice-list',{
       user: req.user,
       pid: req.pid,
-      notices: data
+      notices: data,
+      isPM: req.isPM
     });
   }).catch(err => {
     console.error(err);
@@ -41,7 +42,8 @@ router.get('/', function(req, res) {
 router.get('/notice-create', function(req, res){
   res.render('project/notice-create',{
     user: req.user, 
-    pid: req.pid
+    pid: req.pid,
+    isPM: req.isPM
   });
 });
 
@@ -72,7 +74,8 @@ router.get('/:nid', function(req, res) {
           pid: req.pid,
           notice: notice,
           files: files,
-          comments: data
+          comments: data,
+          isPM: req.isPM
         });
       })
     });

@@ -23,7 +23,8 @@ router.get('/', function(req, res) {
   res.render('project/job/job_post_create',{
     user: req.user,
     pid: req.query.pid,
-    jid: req.query.jid
+    jid: req.query.jid,
+    isPM: req.isPM
   });
 });
 

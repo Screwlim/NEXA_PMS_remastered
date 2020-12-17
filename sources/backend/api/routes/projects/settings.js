@@ -13,7 +13,8 @@ router.get('/', function(req, res) {
     console.log(data)
     res.render('project/settings',{
       user: req.user,
-      proj: data
+      proj: data,
+      isPM: req.isPM
     });
   });
 });

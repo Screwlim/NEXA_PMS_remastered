@@ -29,7 +29,8 @@ router.get('/', function(req, res) {
     res.render('project/jobs',{
       pid: req.pid,
       user: req.user,
-      jobs: Jobs
+      jobs: Jobs,
+      isPM: req.isPM
     });
   })
   
@@ -62,7 +63,8 @@ router.get('/:jid', function(req, res) {
             job: Job,
             posts: Posts,
             tasks: Tasks,
-            files: data
+            files: data,
+            isPM: req.isPM
           });
         });
       })

@@ -77,7 +77,8 @@ router.get('/', function(req, res) {
                   act_files: act_files,
                   act_comments: act_comments,
                   post_comments: data,
-                  comments : data
+                  comments : data,
+                  isPM: req.isPM
                 })
               })
             })

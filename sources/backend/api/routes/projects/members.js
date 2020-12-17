@@ -34,7 +34,8 @@ router.get('/', function(req, res) {
           user: req.user,
           members: data, 
           invites: invited_list,
-          userstoinvite: userlist
+          userstoinvite: userlist,
+          isPM: req.isPM
         });
       });
     });

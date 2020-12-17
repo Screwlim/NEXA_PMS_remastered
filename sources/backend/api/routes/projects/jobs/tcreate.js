@@ -6,7 +6,8 @@ router.get('/', function(req, res) {
   console.log("업무 생성 page");
   res.render('project/job/task-create',{
     user: req.user,
-    pid: req.pid
+    pid: req.pid,
+    isPM: req.isPM
   });
 });
 

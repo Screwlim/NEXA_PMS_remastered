@@ -27,10 +27,11 @@ mixin sidenav(options)
                     .nav-link-icon
                         i(data-feather='users')
                     | 멤버조회
-                a.nav-link(href='/projects/'+options.pid+'/settings')
-                    .nav-link-icon
-                        i(data-feather='settings')
-                    | 프로젝트 설정
+                if(options.isPM)
+                    a.nav-link(href='/projects/'+options.pid+'/settings')
+                        .nav-link-icon
+                            i(data-feather='settings')
+                        | 프로젝트 설정
         .sidenav-footer
             
             .sidenav-footer-content
