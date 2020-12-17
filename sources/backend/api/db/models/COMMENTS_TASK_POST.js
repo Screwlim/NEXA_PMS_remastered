@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('COMMENTS_TASK', {
+  return sequelize.define('COMMENTS_TASK_POST', {
     ID: {
       autoIncrement: true,
       type: DataTypes.INTEGER.UNSIGNED,
