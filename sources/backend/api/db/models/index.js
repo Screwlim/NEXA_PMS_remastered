@@ -79,11 +79,11 @@ db.COMMENTS_ACTIVITY.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'I
 db.USERS.hasMany(db.COMMENTS_NOTICES, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
 db.COMMENTS_NOTICES.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
 
-db.USERS.hasMany(db.COMMENTS_JOB, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
-db.COMMENTS_JOB.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
+db.USERS.hasMany(db.COMMENTS_JOB_POST, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
+db.COMMENTS_JOB_POST.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
 
-db.USERS.hasMany(db.COMMENTS_TASK, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
-db.COMMENTS_TASK.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
+db.USERS.hasMany(db.COMMENTS_TASK_POST, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
+db.COMMENTS_TASK_POST.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
 
 
 module.exports = db;
