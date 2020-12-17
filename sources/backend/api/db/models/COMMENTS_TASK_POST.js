@@ -42,6 +42,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'COMMENTS_TASK'
+    tableName: 'COMMENTS_TASK_POST'
   });
 };
