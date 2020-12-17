@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    TASK_ID: {
+    POST_ID: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
