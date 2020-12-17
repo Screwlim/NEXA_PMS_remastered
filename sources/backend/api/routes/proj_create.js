@@ -55,9 +55,7 @@ router.post('/', function(req, res) {
         RECV_USER_ID: req.body.invited
       });
     }
-    
+    res.redirect('/projects/'+newProj.ID);
   })
-
-  res.redirect('/projects');
 });
 module.exports = router;
