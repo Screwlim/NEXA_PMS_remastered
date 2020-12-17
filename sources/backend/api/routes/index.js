@@ -35,6 +35,12 @@ router.use('/projects/:pid', function(req, res, next){
     }).then(data => {
         if(data){
             req.pid = req.params.pid;
+            if(data.ISPM==1){
+                req.isPM = true;
+            }else{
+                req.isPM = false;
+            }
+
             next();
         }else{
             console.log("you don't belong to this project")
