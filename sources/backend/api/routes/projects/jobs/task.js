@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS, FILE, COMMENTS_ACTIVITY, COMMENTS_TASK} = require('../../../db/models');
+const {JOBS, TASKS, ACTIVITYS, POST_TASK, PROJECTS, FILE, COMMENTS_ACTIVITY} = require('../../../db/models');
 const { Op } = require('sequelize');
 var multer = require('multer');
 const path = require("path");
@@ -59,27 +59,18 @@ router.get('/', function(req, res) {
             COMMENTS_ACTIVITY.findAll({
               where: {ID: Act_ids}
             }).then(data =>{
-              act_comments = data;
-              COMMENTS_TASK.findAll({
-                where: {
-                  TASK_ID: req.tid
-                }
-              }).then(data =>{
-                res.render('project/job/task',{
-                  user: req.user,
-                  pid: req.pid,
-                  jid: req.jid,
-                  job: Job,
-                  task: Task,
-                  acts: Acts,
-                  posts: Posts,
-                  post_files: post_files,
-                  act_files: act_files,
-                  act_comments: act_comments,
-                  post_comments: data,
-                  comments : data,
-                  isPM: req.isPM
-                })
+              res.render('project/job/task',{
+                user: req.user,
+                pid: req.pid,
+                jid: req.jid,
+                job: Job,
+                task: Task,
+                acts: Acts,
+                posts: Posts,
+                post_files: post_files,
+                act_files: act_files,
+                act_comments: data,
+                isPM: req.isPM
               })
             })
           })          
