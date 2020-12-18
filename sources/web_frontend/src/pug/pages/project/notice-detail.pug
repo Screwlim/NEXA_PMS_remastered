@@ -66,15 +66,16 @@ block content
                                 br
                         else
             .card-footer
-                form(method="POST", action='/comment/'+pid+'/'+0+'/'+notice.ID)
+                form(method="POST", action='/comments/notices/'+notice.ID)
                     .row
                         textarea#form-control.col-10(name='comment', row=2, placeholder='댓글을 입력하세요')
+                        input(type='hidden', name='pid', value=pid)
                         button.btn.btn-primary.col-2(type='submit') 등록
                 hr.mt-0.mb-4
                 if comments.length != 0
                     each comment in comments
                         .comment-group.col-12
-                            hr.mt-0.mb-4
+                            hr
                             .row
                                 .avatar
                                     img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
