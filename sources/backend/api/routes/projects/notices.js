@@ -63,7 +63,7 @@ router.get('/:nid', function(req, res) {
       files = data
       COMMENTS_NOTICES.findAll({
         include:[{
-            model: USERS
+          model: USERS
         }],
         where: {
           NOTICE_ID: req.params.nid
