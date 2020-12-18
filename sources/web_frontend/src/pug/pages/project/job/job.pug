@@ -58,6 +58,7 @@ block sidenav
 
 //- Define the main `block content` from the layout
 block content
+    
 
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
@@ -73,23 +74,80 @@ block content
         pid: pid,
     })
 
-        //a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/tcreate?pid='+pid+'&jid='+jid) task 완료
-    
-    
-        
+
+    script.
+        function getPost(post_id){
+            
+            var comment = document.getElementById('comments'+post_id);
+
+            fetch('/comments/job_posts/'+post_id).then(function(response){
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            console.log(elements.updatedAt)
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            })
+        }          
 
     // Main page content
     .container.mt-n10
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card
-                    .card-body.d-flex.justify-content-center.flex-column
-                        .d-flex.align-items-center.justify-content-between
-                            .mr-3
-                                i.feather-xl.text-green.mb-3(data-feather='layout')
-                                h5 진행상황
-                            .mr-3
-                                h5 
+                    .card-body
+                        h5 진행상황
+                        h4.small
+                            | #{job.TITLE} :
+                            span.float-right.font-weight-bold 
+                            if job.NUM_TASKS == '0'
+                                | 0%
+                            else
+                                | #{Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)}%
+                        .progress.mb-4
+                            .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
         .row
             .col-xxl-12.col-xl-8.mb-6
                 .card.card-scrollable
@@ -97,7 +155,7 @@ block content
                     .card-body
                         if posts.length != 0
                             each post in posts
-                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Post'+post.ID)
+                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Post'+post.ID, onclick='getPost('+post.ID+')')
                                     .card-body
                                         .d-flex.align-items-center.justify-content-between
                                             .h5.card-title.mb-0 #{post.TITLE}
@@ -163,17 +221,49 @@ block content
                             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
                         .modal-body
                             pre #{post.CONTENT}
-                        .modal-footer
+                            hr.mt-0.mb-4
+                            |  첨부파일
+                            br
                             if files.length != 0
                                 each file in files
                                     if file.SRC_ID == post.ID
                                         a(href='/download/'+file.server_NAME) #{file.original_NAME}
                             else
                                 div no files
+                            hr
+                            form(method="POST", action='/comments/job-posts/'+post.ID, onclick="getPost("+post.ID+")")
+                                .row
+                                    textarea#form-control.col-10(name='comment', row=2, placeholder='댓글을 입력하세요')
+                                    input(type='hidden', name='pid', value=pid)
+                                    button.btn.btn-primary.col-2(type='submit') 등록
+                            hr.mt-0.mb-4
+                            br
+                            .comments(id='comments'+post.ID)
+
                         .modal-footer
                             //- button.btn.btn-secondary(type='button') 수정
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
-    
+    //- #jobPost.modal
+    //-     .modal-content
+    //-         .modal-header
+    //-             h5#exampleModalScrollableTitle.modal-title #{post.TITLE}
+    //-             button.close(type='button', data-dismiss='modal', aria-label='Close')
+    //-                 span(aria-hidden='true') × 
+    //-         .modal-header
+    //-             pre 작성자 : #{post.AUTHOR}   |   작성일 : #{post.createdAt.getFullYear()}/#{post.createdAt.getMonth()+1}/#{post.createdAt.getDate()} #{post.createdAt.getHours()}:#{post.createdAt.getMinutes()}:#{post.createdAt.getSeconds()}   |   수정일 : #{post.updatedAt.getFullYear()}/#{post.updatedAt.getMonth()+1}/#{post.updatedAt.getDate()} #{post.updatedAt.getHours()}:#{post.updatedAt.getMinutes()}:#{post.updatedAt.getSeconds()}
+    //-         .modal-body
+    //-             pre #{post.CONTENT}
+    //-         .modal-footer
+    //-             if files.length != 0
+    //-                 each file in files
+    //-                     if file.SRC_ID == post.ID
+    //-                         a(href='/download/'+file.server_NAME) #{file.original_NAME}
+    //-             else
+    //-                 div no files
+    //-         .modal-footer
+    //-             //- button.btn.btn-secondary(type='button') 수정
+    //-             button.btn.btn-primary(type='button', data-dismiss='modal') 확인            
+
     
     // create job post modal
     #createPost.modal.fade(role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
