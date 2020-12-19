@@ -76,11 +76,17 @@ block content
 
 
     script.
+        
         function getPost(post_id){
             
             var comment = document.getElementById('comments'+post_id);
 
+            while(comment.firstChild){
+                comment.removeChild(comment.lastChild);
+            }
+
             fetch('/comments/job_posts/'+post_id).then(function(response){
+                
 
                 response.json().then(data =>{
                     if(data.length == 0){
@@ -131,7 +137,7 @@ block content
                 });
             })
         }          
-
+        
     // Main page content
     .container.mt-n10
         .row
