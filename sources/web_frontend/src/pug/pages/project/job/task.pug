@@ -60,10 +60,127 @@ block sidenav
 block content
 
     script.
-        function postComment(){
-            var txt = document.getElementsByClassName('comment').value;
-            console.log(txt);
-        }
+        function getActivity(post_id){
+            
+            var comment = document.getElementById('activity_comments'+post_id);
+
+            while(comment.firstChild){
+                comment.removeChild(comment.lastChild);
+            }
+
+            fetch('/comments/activitys/'+post_id).then(function(response){
+                
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            console.log(elements.updatedAt)
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            })
+        } 
+
+        function getTaskPost(post_id){
+            
+            var comment = document.getElementById('task_comments'+post_id);
+
+            while(comment.firstChild){
+                comment.removeChild(comment.lastChild);
+            }
+
+            fetch('/comments/task_posts/'+post_id).then(function(response){
+                
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            console.log(elements.updatedAt)
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            })
+        } 
 
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
@@ -223,17 +340,8 @@ block content
                                 textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
                                 button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
                             hr.mt-0.mb-4
-                            if act_comments.length != 0
-                                each comment in act_comments
-                                    .comment-group.col-12
-                                        .row
-                                            .avatar
-                                                //- img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
-                                            //- label(for='comment').mb-1 #{comment.USER.NAME} 
-                                            .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
-                                        pre.comment #{comment.CONTENT}
-                            else
-                                p.d-flex.justify-content-center 댓글이 없습니다.
+                            br
+                            .comments(id='activity_comments'+act.ID)
                         .modal-footer
                             //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
@@ -264,17 +372,8 @@ block content
                                 textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
                                 button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
                             hr.mt-0.mb-4
-                            if post_comments.length != 0
-                                each comment in post_comments
-                                    .comment-group.col-12
-                                        .row
-                                            .avatar
-                                                img.avatar-img.img-fluid(src=comment.USER.prof_img_url)
-                                            label(for='comment').mb-1 #{comment.USER.NAME} 
-                                            .small 작성일 : #{comment.createdAt.getFullYear()}/#{comment.createdAt.getMonth()+1}/#{comment.createdAt.getDate()} #{comment.createdAt.getHours()}:#{comment.createdAt.getMinutes()}:#{comment.createdAt.getSeconds()} 
-                                        pre.comment #{comment.CONTENT}
-                            else
-                                p.d-flex.justify-content-center 댓글이 없습니다.
+                            br
+                            .comments(id='task_comments'+post.ID)
                         .modal-footer
                             button.btn.btn-secondary(type='button') 수정하기
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인   
