@@ -77,7 +77,19 @@ block content
 
     script.
         
-        function getPost(post_id){
+        function postComment(post_id){
+                
+            fetch('/comments/job_posts/'+post_id,{
+                method: 'POST',
+                headers:{
+                    
+                }
+            }).then(function(response){
+            }
+        )}
+
+
+        function getComments(post_id){
             
             var comment = document.getElementById('comments'+post_id);
 
@@ -161,7 +173,7 @@ block content
                     .card-body
                         if posts.length != 0
                             each post in posts
-                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Post'+post.ID, onclick='getPost('+post.ID+')')
+                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle="modal", href='#Post'+post.ID, onclick='getComments('+post.ID+')')
                                     .card-body
                                         .d-flex.align-items-center.justify-content-between
                                             .h5.card-title.mb-0 #{post.TITLE}
@@ -237,9 +249,9 @@ block content
                             else
                                 div no files
                             hr
-                            form(method="POST", action='/comments/job-posts/'+post.ID, onclick="getPost("+post.ID+")")
+                            form(method="POST", action='/comments/job-posts/'+post.ID)
                                 .row
-                                    textarea#form-control.col-10(name='comment', row=2, placeholder='댓글을 입력하세요')
+                                    textarea.form-control.col-10(name='comment', row=2, placeholder='댓글을 입력하세요')
                                     input(type='hidden', name='pid', value=pid)
                                     button.btn.btn-primary.col-2(type='submit') 등록
                             hr.mt-0.mb-4

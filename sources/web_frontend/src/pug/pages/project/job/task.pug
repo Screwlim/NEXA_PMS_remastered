@@ -60,7 +60,7 @@ block sidenav
 block content
 
     script.
-        function getActivity(post_id){
+        function getActivityComments(post_id){
             
             var comment = document.getElementById('activity_comments'+post_id);
 
@@ -121,7 +121,7 @@ block content
             })
         } 
 
-        function getTaskPost(post_id){
+        function getTaskPostComments(post_id){
             
             var comment = document.getElementById('task_comments'+post_id);
 
@@ -211,7 +211,7 @@ block content
                     .card-body
                         if posts.length != 0
                             each post in posts
-                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle='modal', href='#Post'+post.ID)
+                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle='modal', href='#Post'+post.ID, onclick='getTaskPostComments('+post.ID+')')
                                     .card-body
                                         .d-flex.align-items-center.justify-content-between
                                             .h5.card-title.mb-0 #{post.TITLE}
@@ -250,7 +250,7 @@ block content
                                                 i(data-feather='flag')
                                         .timeline-item-content.pt-0
                                             .card.shadow-sm
-                                                a.card-body(data-toggle="modal", href='#Activity'+act.ID)
+                                                a.card-body(data-toggle="modal", href='#Activity'+act.ID, onclick='getActivityComments('+act.ID+')' )
                                                     h5.text-primary #{act.TITLE}
                                                     //- if act.CONTENT.length > 30
                                                     //-     | #{act.CONTENT.substring(0,30)}...
@@ -307,7 +307,7 @@ block content
                         .row
                             .form-group.col-md-12
                                 label(for='postFiles').small.mb-1 파일첨부                            
-                                input#postFile.form-control-file(type='file', name='postFiles' multiple)
+                                input.postFile.form-control-file(type='file', name='postFiles' multiple)
 
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
@@ -337,8 +337,8 @@ block content
                                     br
                             hr.mt-0.mb-4
                             .row
-                                textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
-                                button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
+                                textarea.form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='getActivityComments('+act.ID+')') 등록
                             hr.mt-0.mb-4
                             br
                             .comments(id='activity_comments'+act.ID)
@@ -369,8 +369,8 @@ block content
                                     br
                             hr.mt-0.mb-4
                             .row
-                                textarea#form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
-                                button.btn.btn-primary.col-2(type='button', onclick='postComment()') 등록
+                                textarea.form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='getPostTaskComments('+post.ID+')') 등록
                             hr.mt-0.mb-4
                             br
                             .comments(id='task_comments'+post.ID)
