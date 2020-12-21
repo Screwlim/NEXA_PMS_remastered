@@ -59,6 +59,8 @@ block sidenav
 
 //- Define the main `block content` from the layout
 block content
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
+    
     script.
         setInterval(function(){
             
@@ -85,10 +87,10 @@ block content
                     s = '0' + h
             }
             var dates = year + "-" + month + "-" + date // 현재 날짜
-
             document.getElementById('clock').innerHTML = dates +'  '+ h + ":" + m + ":" + s;
         },1000);
 
+        
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
     include mixins/headers/header-default.pug
@@ -122,7 +124,46 @@ block content
                                     p.text-gray-700.mb-0 현재 #{projs.length}개의 프로젝트가 진행중 입니다.
                             .col-xl-4.col-xxl-12.text-center
                                 img.img-fluid(src='assets/img/freepik/at-work-pana.svg', style='max-width: 26rem')
-            .col-xxl-4.col-xl-6.mb-4
+            
+
+            .col-xxl-8.col-xl-8.mb-4
+                .card.card-scrollable.card-header-actions.h-100
+                    .card-header
+                        | 프로젝트 진행현황
+                        .dropdown.no-caret
+                            button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                i.text-gray-500(data-feather='more-vertical')
+                            .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
+                                a.dropdown-item(href='#!')
+                                    .dropdown-item-icon
+                                        i.text-gray-500(data-feather='list')
+                                    | Manage Tasks
+                                a.dropdown-item(href='#!')
+                                    .dropdown-item-icon
+                                        i.text-gray-500(data-feather='plus-circle')
+                                    | Add New Task
+                                a.dropdown-item(href='#!')
+                                    .dropdown-item-icon
+                                        i.text-gray-500(data-feather='minus-circle')
+                                    | Delete Tasks
+                    .card-body
+                        if projs.length != 0
+                            each proj in projs
+                                h4.small
+                                    | #{proj.NAME} :
+                                    span.float-right.font-weight-bold 
+                                    if proj.NUM_TASKS == '0'
+                                        | 0%
+                                    else
+                                        | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                .progress.mb-4
+                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                    a.card-footer(href='/inprogress')
+                        .d-flex.align-items-center.justify-content-between.small.text-body
+                            | 진행중인 프로젝트 보기
+                            i(data-feather='arrow-right')
+        .row
+            .col-xxl-4.col-xl-4.mb-4
                 .card.card-header-actions.h-100
                     .card-header
                         | 최근 업무 기록
@@ -203,117 +244,79 @@ block content
                                     | New order placed!
                                     a.font-weight-bold.text-dark(href='#!') Order #2911 
                                     | has been successfully placed.
-                            // Timeline Item 6
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 1 day
-                                    .timeline-item-marker-indicator.bg-purple
-                                .timeline-item-content
-                                    | Details for
-                                    a.font-weight-bold.text-dark(href='#!') Marketing and Planning Meeting 
-                                    | have been updated.
-                            // Timeline Item 7
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 2 days
-                                    .timeline-item-marker-indicator.bg-green
-                                .timeline-item-content
-                                    | New order placed!
-                                    a.font-weight-bold.text-dark(href='#!') Order #2910 
-                                    | has been successfully placed.
-            .col-xxl-4.col-xl-6.mb-4
-                .card.card-header-actions.h-100
-                    .card-header
-                        | 프로젝트 진행현황
-                        .dropdown.no-caret
-                            button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                i.text-gray-500(data-feather='more-vertical')
-                            .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
-                                a.dropdown-item(href='#!')
-                                    .dropdown-item-icon
-                                        i.text-gray-500(data-feather='list')
-                                    | Manage Tasks
-                                a.dropdown-item(href='#!')
-                                    .dropdown-item-icon
-                                        i.text-gray-500(data-feather='plus-circle')
-                                    | Add New Task
-                                a.dropdown-item(href='#!')
-                                    .dropdown-item-icon
-                                        i.text-gray-500(data-feather='minus-circle')
-                                    | Delete Tasks
+            .col-xxl-8.col-xl-8.mb-4
+                // Pie chart with legend example
+                .card.h-100
+                    .card-header projects pie chart
                     .card-body
-                        if projs.length != 0
-                            each proj in projs
-                                h4.small
-                                    | #{proj.NAME} :
-                                    span.float-right.font-weight-bold 
-                                    if proj.NUM_TASKS == '0'
-                                        | 0%
-                                    else
-                                        | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
-                                .progress.mb-4
-                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
-                    a.card-footer(href='/inprogress')
-                        .d-flex.align-items-center.justify-content-between.small.text-body
-                            | 진행중인 프로젝트 보기
-                            i(data-feather='arrow-right')
+                        //- .chart-pie.mb-4
+                        //-     canvas#myPieChart(width='100%', height='50')
+                        //- .list-group.list-group-flush
+                        //-     if projs.length != 0
+                        //-         each proj in projs                            
+                        //-             .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
+                        //-                 .mr-3
+                        //-                     i.fas.fa-circle.fa-sm.mr-1.text-blue
+                        //-                     | #{proj.NAME}
+                        //-                 .font-weight-500.text-dark 55%
+                        canvas#myPieChart
 
-        // Example Colored Cards for Dashboard Demo
-        .row
-            .col-xxl-3.col-lg-6
-                .card.bg-primary.text-white.mb-4
-                    .card-body
-                        .d-flex.justify-content-between.align-items-center
-                            .mr-3
-                                .text-white-75.small 정상 프로젝트
-                                .text-lg.font-weight-bold 2개
-                            i.feather-xl.text-white-50(data-feather='play-circle')
-                    .card-footer.d-flex.align-items-center.justify-content-between
-                        a(href='#').small.text-white.stretched-link
-                            | View Report
-                        .small.text-white
-                            i.fas.fa-angle-right
-            .col-xxl-3.col-lg-6
-                .card.bg-danger.text-white.mb-4
-                    .card-body
-                        .d-flex.justify-content-between.align-items-center
-                            .mr-3
-                                .text-white-75.small 지연 프로젝트
-                                .text-lg.font-weight-bold 1개
-                            i.feather-xl.text-white-50(data-feather='minus-circle')
-                    .card-footer.d-flex.align-items-center.justify-content-between
-                        a(href='#').small.text-white.stretched-link
-                            | View Report
-                        .small.text-white
-                            i.fas.fa-angle-right
-            .col-xxl-3.col-lg-6
-                .card.bg-success.text-white.mb-4
-                    .card-body
-                        .d-flex.justify-content-between.align-items-center
-                            .mr-3
-                                .text-white-75.small 완료 프로젝트
-                                .text-lg.font-weight-bold 11
-                            i.feather-xl.text-white-50(data-feather='check-circle')
-                    .card-footer.d-flex.align-items-center.justify-content-between
-                        a(href='#').small.text-white.stretched-link
-                            | View Tasks
-                        .small.text-white
-                            i.fas.fa-angle-right
-            .col-xxl-3.col-lg-6
-                .card.bg-warning.text-white.mb-4
-                    .card-body
-                        .d-flex.justify-content-between.align-items-center
-                            .mr-3
-                                .text-white-75.small 취소 프로젝트
-                                .text-lg.font-weight-bold 8
-                            i.feather-xl.text-white-50(data-feather='x-circle')
-                    .card-footer.d-flex.align-items-center.justify-content-between
-                        a(href='#').small.text-white.stretched-link
-                            | View Requests
-                        .small.text-white
-                            i.fas.fa-angle-right
+            
+
+    
+    //chart script
+    script.
+        var ctx = document.getElementById("myPieChart");
+        var x = !{JSON.stringify(proj)}
+
+        const colors = [
+
+        ]
+        var projLabel = [];
+        var projData = [];
+        var bgColor = [];
+        var bgColorlist = [
+            "rgba(255, 22, 103, 1)",
+            "rgba(0, 97, 242, 1)",
+            "rgba(255, 159, 63, 1)",
+            "rgba(0, 172, 105, 1)",
+            "rgba(255, 205, 86, 1)",
+            "rgba(88, 0, 232, 1)",
+            "rgba(153, 102, 255, 1)"
+        ];
+        
+        var HoverbgColor = [];
+        var HoverbgColorlist = [
+            "rgba(255, 22, 103, 0.9)",
+            "rgba(0, 97, 242, 0.9)",
+            "rgba(255, 159, 63, 0.9)",
+            "rgba(0, 172, 105, 0.9)",
+            "rgba(255, 205, 86, 0.9)",
+            "rgba(88, 0, 232, 0.9)",
+            "rgba(153, 102, 255, 0.9)"
+        ];
+
+        index = -1;
+        x.forEach(elements=>{
+            index += 1
+            projLabel.push(elements.NAME);
+            projData.push(elements.NUM_TASKS);
+            bgColor.push(bgColorlist[index%7]);
+            HoverbgColor.push(HoverbgColorlist[index%7]);
+        })
+
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: projLabel,
+                datasets: [{
+                    data: projData,
+                    backgroundColor: bgColor,
+                    hoverBackgroundColor: HoverbgColor,
+                    hoverBorderColor: "rgba(234, 236, 244, 1)"
+                }]
+            }
+        });
 
 //- * * * * * * * *
 //- * * Footer  * *
@@ -332,8 +335,13 @@ block footer
 
 //- Add JS for third party plugins used on this page
 append scripts
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
+    //- script(src="https://www.gstatic.com/charts/loader.js")
     //- Load Moment.js and Date Range Picker via CDN
     script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
     script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
     //- Load Date Range Picker initialization script
+
     script(src='assets/demo/date-range-picker-demo.js')
+
+
