@@ -89,7 +89,7 @@ router.post('/task_posts/:id', function(req, res){
     AUTHOR_ID: req.user.ID,
     CONTENT: req.body.comment
   }).then(()=>{
-    COMMENTS_JOB_POST.findAll({
+    COMMENTS_TASK_POST.findAll({
       include:[{
         model: USERS,
       }],
@@ -122,16 +122,16 @@ router.get('/activitys/:id', function(req, res){
 
 router.post('/activitys/:id', function(req, res){
   COMMENTS_ACTIVITY.create({
-    POST_ID: req.params.id,
+    ACTIVITY_ID: req.params.id,
     AUTHOR_ID: req.user.ID,
     CONTENT: req.body.comment
   }).then(()=>{
-    COMMENTS_JOB_POST.findAll({
+    COMMENTS_ACTIVITY.findAll({
       include:[{
         model: USERS,
       }],
       where:{
-        POST_ID: req.params.id
+        ACTIVITY_ID: req.params.id
       }
     }).then(data=>{
       console.log(data);
