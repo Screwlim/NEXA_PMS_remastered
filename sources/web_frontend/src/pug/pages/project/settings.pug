@@ -69,24 +69,10 @@ block content
         breadcrumbs: false
     })
 
-    //- script.
-    //-     function getFormatDate(date){
-    //-         var year = date.getFullYear();
-    //-         var month = (1 + date.getMonth());
-    //-         month = month >= 10 ? month : '0' + month;
-    //-         var day = date.getDate();
-    //-         day = day >= 10 ? day : '0' + day;
-    //-         return year + '-' + month + '-' + day;
-    //-     }
-
-    //-     var s_date = getFormatDate(proj.START_DATE);
-    //-     var e_date = getFormatDate(proj.END_DATE)
     // Main page content
-    .container.mt-4
-        
-        hr.mt-0.mb-4
+    .container.mt-4        
         .row            
-            .col-xl-12
+            .col-xl-8
                 // Account details card
                 .card.mb-4
                     .card-header 프로젝트 설정
@@ -118,7 +104,53 @@ block content
                                         input#inputEnddate.form-contorl(type='date', value=proj.END_DATE.getFullYear() + "-" + ("00" + (proj.END_DATE.getMonth() + 1)).slice(-2) + "-" + ("00" + proj.END_DATE.getDate()).slice(-2), name='end_date')
                             // Save changes button
                             button.btn.btn-primary(type='submit') 수정사항 저장하기
+            .col-lg-4
+                // Two factor authentication card
+                .card.mb-4
+                    .card-header 프로젝트 완료 처리
+                    .card-body
+                        p 프로젝트의 진행도 여부에 상관없이 즉시 완료처리 됩니다. 
+                        a.btn.btn-success.text-white(data-toggle="modal", href='#projDone') #{proj.NAME}을 완료합니다.
+                // Delete account card
+                .card.mb-4
+                    .card-header 프로젝트 중단 하기
+                    .card-body
+                        p 프로젝트가 취소되면
+                        a.btn.btn-danger.text-white(data-toggle="modal", href='#projCancel') #{proj.NAME}을 중단합니다.
 
+    #projDone.modal.fade(data-backdrop='static', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-centered(role='document')            
+            .modal-content
+                .modal-header
+                    h5#exampleModalScrollableTitle.modal-title #{proj.NAME}
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') × 
+                .modal-body
+                    p #{proj.NAME}을 현재 상태에서 완료처리 합니다.
+                    | 현재 진행률과 상관없이 완료처리가 되며, 완료된 프로젝트 목록에서 조회할 수 있습니다.
+                    button.btn.btn-success.text-white(type='button') #{proj.NAME}을 완료합니다.
+
+                .modal-footer
+                    //- button.btn.btn-secondary(type='button') 수정
+                    button.btn.btn-primary(type='button', data-dismiss='modal') 닫기 
+    
+    #projCancel.modal.fade(data-backdrop='static', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-centered(role='document')            
+            .modal-content
+                .modal-header
+                    h5#exampleModalScrollableTitle.modal-title #{proj.NAME}
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') × 
+                .modal-body
+                    p #{proj.NAME}을 현재 상태에서 즁단합니다.
+                    | 프로젝트를 취소한 후에는 추가적인 멤버 초대, 업무 진행 및 작성을 진행할 수 없습니다.
+                    button.btn.btn-danger.text-white(data-toggle="modal", href='#!') #{proj.NAME}을 중단합니다.
+
+                .modal-footer
+                    //- button.btn.btn-secondary(type='button') 수정
+                    button.btn.btn-primary(type='button', data-dismiss='modal') 닫기
+
+            
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
