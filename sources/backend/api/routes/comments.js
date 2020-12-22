@@ -6,19 +6,17 @@ const {COMMENTS_ACTIVITY, COMMENTS_JOB_POST, COMMENTS_NOTICES, COMMENTS_TASK_POS
 
 //notice comments
 router.get('/notices/:nid', function(req, res) {
-  console.log('notice comment in')
   COMMENT_NOTICES.findAll({
     where: {
       NOTICE_ID: req.params.nid,
     }
   }).then((data)=> {
-    res.json(JSON.stringify(data));
+    res.json(data);
   })
 
 });//no use currently
 
 router.post('/notices/:nid', function(req, res) {
-  console.log('notice commnet 작성');
   COMMENTS_NOTICES.create({
     NOTICE_ID: req.params.nid,
     AUTHOR_ID: req.user.ID,
@@ -30,7 +28,6 @@ router.post('/notices/:nid', function(req, res) {
 
 //job post comments
 router.get('/job_posts/:post_id', function(req, res){
-  console.log('job comments called');
   COMMENTS_JOB_POST.findAll({
     include:[{
       model: USERS,
@@ -39,13 +36,11 @@ router.get('/job_posts/:post_id', function(req, res){
       POST_ID: req.params.post_id
     }
   }).then(data=>{
-    console.log(data);
     res.json(data);
   })
 })
 
-router.post('/job-posts/:post_id', function(req, res){
-  console.log('job comments added & called');
+router.post('/job_posts/:post_id', function(req, res){
   COMMENTS_JOB_POST.create({
     POST_ID: req.params.post_id,
     AUTHOR_ID: req.user.ID,
@@ -59,7 +54,6 @@ router.post('/job-posts/:post_id', function(req, res){
         POST_ID: req.params.post_id
       }
     }).then(data=>{
-      console.log(data);
       res.json(data);
     })
   })
@@ -68,7 +62,6 @@ router.post('/job-posts/:post_id', function(req, res){
 
 //task_post comments
 router.get('/task_posts/:post_id', function(req, res){
-  console.log('job comments called');
   COMMENTS_TASK_POST.findAll({
     include:[{
       model: USERS,
@@ -77,13 +70,11 @@ router.get('/task_posts/:post_id', function(req, res){
       POST_ID: req.params.post_id
     }
   }).then(data=>{
-    console.log(data);
     res.json(data);
   })
 })
 
-router.post('/task_posts/:id', function(req, res){
-
+router.post('/task_posts/:post_id', function(req, res){
   COMMENTS_TASK_POST.create({
     POST_ID: req.params.post_id,
     AUTHOR_ID: req.user.ID,
@@ -97,7 +88,6 @@ router.post('/task_posts/:id', function(req, res){
         POST_ID: req.params.post_id
       }
     }).then(data=>{
-      console.log(data);
       res.json(data);
     })
   }) 
@@ -106,7 +96,6 @@ router.post('/task_posts/:id', function(req, res){
 
 //activity comments
 router.get('/activitys/:id', function(req, res){
-  console.log('job comments called');
   COMMENTS_ACTIVITY.findAll({
     include:[{
       model: USERS,
@@ -115,7 +104,6 @@ router.get('/activitys/:id', function(req, res){
       ACTIVITY_ID: req.params.id
     }
   }).then(data=>{
-    console.log(data);
     res.json(data);
   })
 })
@@ -134,7 +122,6 @@ router.post('/activitys/:id', function(req, res){
         ACTIVITY_ID: req.params.id
       }
     }).then(data=>{
-      console.log(data);
       res.json(data);
     })
   })
