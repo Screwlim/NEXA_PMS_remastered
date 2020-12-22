@@ -198,9 +198,9 @@ block content
     })
 
         if task.STATUS != 0
-            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/notDone?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료 취소        
+            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/notDone') 완료 취소        
         else
-            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/project/job/task/done?pid='+pid+'&jid='+jid+'&tid='+task.ID) 완료하기
+            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/Done') 완료하기
 
     // Main page content
     .container.mt-n10
