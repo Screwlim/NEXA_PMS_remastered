@@ -12,7 +12,7 @@ router.get('/', isLoggedIn,function(req, res) {
       model: ATTENDANCES,
       where: {USER_ID : req.user.ID}
     }],
-    where : { [Op.or] : [{STATUS : 0}, {STATUS : -2}]}
+    where : { [Op.or] : [{STATUS : 0}, {STATUS : -1}]}
   }).then(projlist => {
     res.render('inprogress',{projs: projlist, user: req.user});
   })
