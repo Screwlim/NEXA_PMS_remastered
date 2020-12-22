@@ -60,9 +60,209 @@ block sidenav
 block content
 
     script.
+        
+        function postTaskComment(post_id){
+
+            var comment_content = document.getElementById('task_comment_input'+post_id).value;
+            document.getElementById('task_comment_input'+post_id).value = "";
+
+            data = {comment: comment_content};
+
+            fetch('/comments/task_posts/'+post_id,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'    
+                },
+                body: JSON.stringify(data)
+            }).then(function(response){
+                var comment = document.getElementById('task_comments'+post_id);
+
+                while(comment.firstChild){
+                    comment.removeChild(comment.lastChild);
+                }
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            }
+        )}
+
+
+        function getTaskComments(post_id){
+            
+            var comment = document.getElementById('task_comments'+post_id);
+
+            while(comment.firstChild){
+                comment.removeChild(comment.lastChild);
+            }
+
+            fetch('/comments/task_posts/'+post_id).then(function(response){
+                
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            })
+        }
+
+        function postActivityComment(act_id){
+
+            var comment_content = document.getElementById('act_comment_input'+act_id).value;
+            document.getElementById('act_comment_input'+act_id).value = "";
+
+            data = {comment: comment_content};
+
+            fetch('/comments/activitys/'+act_id,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'    
+                },
+                body: JSON.stringify(data)
+            }).then(function(response){
+                var comment = document.getElementById('act_comments'+act_id);
+
+                while(comment.firstChild){
+                    comment.removeChild(comment.lastChild);
+                }
+
+                response.json().then(data =>{
+                    if(data.length == 0){
+                        var no_comment = document.createElement("div");
+                        no_comment.innerHTML = "댓글이 없습니다.";
+
+                        comment.appendChild(no_comment);
+                    }else{
+                        data.forEach(elements => {
+                            var new_comment = document.createElement("div");
+                            new_comment.classList.add('comment-group', 'col-12');
+
+                            var line = document.createElement("hr");
+                            var row = document.createElement("div");
+                            row.classList.add('row');
+
+                            var avatar = document.createElement("div");
+                            avatar.classList.add('avatar');
+
+                            var prof_img = document.createElement("img");
+                            prof_img.classList.add('avatar', 'img-fluid');
+                            prof_img.setAttribute("src", elements.USER.prof_img_url);
+
+                            var name = document.createElement("div");
+                            name.classList.add('mb-1');
+                            name.innerHTML = elements.USER.NAME;
+
+                            avatar.appendChild(prof_img);
+
+                            row.appendChild(avatar);
+                            row.appendChild(name);
+
+                            var contents = document.createElement("pre");
+                            contents.innerHTML = elements.CONTENT
+
+                            var date = document.createElement("div");
+                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
+                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
+                            new_comment.appendChild(line);
+                            new_comment.appendChild(row);
+                            new_comment.appendChild(contents);
+                            new_comment.appendChild(date);
+
+                            comment.appendChild(new_comment);
+                        })
+                    }  
+                });
+            }
+        )}
+
         function getActivityComments(post_id){
             
-            var comment = document.getElementById('activity_comments'+post_id);
+            var comment = document.getElementById('act_comments'+post_id);
 
             while(comment.firstChild){
                 comment.removeChild(comment.lastChild);
@@ -121,66 +321,6 @@ block content
             })
         } 
 
-        function getTaskPostComments(post_id){
-            
-            var comment = document.getElementById('task_comments'+post_id);
-
-            while(comment.firstChild){
-                comment.removeChild(comment.lastChild);
-            }
-
-            fetch('/comments/task_posts/'+post_id).then(function(response){
-                
-
-                response.json().then(data =>{
-                    if(data.length == 0){
-                        var no_comment = document.createElement("div");
-                        no_comment.innerHTML = "댓글이 없습니다.";
-
-                        comment.appendChild(no_comment);
-                    }else{
-                        data.forEach(elements => {
-                            var new_comment = document.createElement("div");
-                            new_comment.classList.add('comment-group', 'col-12');
-
-                            var line = document.createElement("hr");
-                            var row = document.createElement("div");
-                            row.classList.add('row');
-
-                            var avatar = document.createElement("div");
-                            avatar.classList.add('avatar');
-
-                            var prof_img = document.createElement("img");
-                            prof_img.classList.add('avatar', 'img-fluid');
-                            prof_img.setAttribute("src", elements.USER.prof_img_url);
-
-                            var name = document.createElement("div");
-                            name.classList.add('mb-1');
-                            name.innerHTML = elements.USER.NAME;
-
-                            avatar.appendChild(prof_img);
-
-                            row.appendChild(avatar);
-                            row.appendChild(name);
-
-                            var contents = document.createElement("pre");
-                            contents.innerHTML = elements.CONTENT
-
-                            var date = document.createElement("div");
-                            date.classList.add('row', 'small', 'text-muted', 'justify-content-end');
-                            date.innerHTML = elements.updatedAt.substr(0,10) +"  "+ elements.updatedAt.substr(11,8);
-                            console.log(elements.updatedAt)
-                            new_comment.appendChild(line);
-                            new_comment.appendChild(row);
-                            new_comment.appendChild(contents);
-                            new_comment.appendChild(date);
-
-                            comment.appendChild(new_comment);
-                        })
-                    }  
-                });
-            })
-        } 
 
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
@@ -211,7 +351,7 @@ block content
                     .card-body
                         if posts.length != 0
                             each post in posts
-                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle='modal', href='#Post'+post.ID, onclick='getTaskPostComments('+post.ID+')')
+                                a.card.card-icon.lift.lift-sm.mb-4(data-toggle='modal', href='#Post'+post.ID, onclick='getTaskComments('+post.ID+')')
                                     .card-body
                                         .d-flex.align-items-center.justify-content-between
                                             .h5.card-title.mb-0 #{post.TITLE}
@@ -252,10 +392,6 @@ block content
                                             .card.shadow-sm
                                                 a.card-body(data-toggle="modal", href='#Activity'+act.ID, onclick='getActivityComments('+act.ID+')' )
                                                     h5.text-primary #{act.TITLE}
-                                                    //- if act.CONTENT.length > 30
-                                                    //-     | #{act.CONTENT.substring(0,30)}...
-                                                    //- else
-                                                    //-     | #{act.CONTENT}...
                             else
                                 p 등록된 활동이 없습니다.            
 
@@ -273,10 +409,10 @@ block content
                             .col-lg-12
                                 .form-group.col-md-12
                                     label(for='actTitle').small.mb-1 제목
-                                    input#jobTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
+                                    input#actTitle.form-control(type='text', name='title', placeholder='업무명을 입력하세요')
                                 .form-group.col-md-12
                                     label(for='actDetail').small.mb-1 내용
-                                    textarea#jobDesc.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
+                                    textarea#actDetail.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
                         .row
                             .form-group.col-md-12
                                 label(for='activityFiles').small.mb-1 파일첨부                            
@@ -300,10 +436,10 @@ block content
                             .col-lg-12
                                 .form-group.col-md-12
                                     label(for='postTitle').small.mb-1 제목
-                                    input#jobTitle.form-control(type='text', name='title', placeholder='제목을 입력하세요')
+                                    input#postTitle.form-control(type='text', name='title', placeholder='제목을 입력하세요')
                                 .form-group.col-md-12
                                     label(for='postContent').small.mb-1 내용
-                                    textarea#jobDesc.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
+                                    textarea#postContent.form-control(rows='8', type='textarea', name='contents', placeholder='내용을 입력하세요')
                         .row
                             .form-group.col-md-12
                                 label(for='postFiles').small.mb-1 파일첨부                            
@@ -337,11 +473,11 @@ block content
                                     br
                             hr.mt-0.mb-4
                             .row
-                                textarea.form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
-                                button.btn.btn-primary.col-2(type='button', onclick='getActivityComments('+act.ID+')') 등록
+                                textarea.form-control.col-10(type='text', id='act_comment_input'+act.ID, row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='postActivityComment('+act.ID+')') 등록
                             hr.mt-0.mb-4
                             br
-                            .comments(id='activity_comments'+act.ID)
+                            .comments(id='act_comments'+act.ID)
                         .modal-footer
                             //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                             button.btn.btn-primary(type='button', data-dismiss='modal') 확인
@@ -369,8 +505,8 @@ block content
                                     br
                             hr.mt-0.mb-4
                             .row
-                                textarea.form-control.col-10(type='text', name='comment', row=2, placeholder='댓글을 입력하세요')
-                                button.btn.btn-primary.col-2(type='button', onclick='getPostTaskComments('+post.ID+')') 등록
+                                textarea.form-control.col-10(type='text', id='task_comment_input'+post.ID, row=2, placeholder='댓글을 입력하세요')
+                                button.btn.btn-primary.col-2(type='button', onclick='postTaskComment('+post.ID+')') 등록
                             hr.mt-0.mb-4
                             br
                             .comments(id='task_comments'+post.ID)
