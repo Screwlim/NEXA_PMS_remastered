@@ -345,7 +345,7 @@ block content
     // Main page content
     .container.mt-n10
         .row
-            .col-xxl-12.col-xl-8.mb-6
+            .col-xxl-12.col-xl-12.mb-6
                 .card.card-scrollable
                     .card-header Post
                     .card-body
@@ -359,7 +359,7 @@ block content
                         else
                             p 등록된 Post가 없습니다.
                     button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
-            .col-xxl-12.col-xl-8.mb-6
+            .col-xxl-12.col-xl-12.mb-6
                 .card.card-header-actions.h-100.card-scrollable
                     .card-header 
                         | activity 기록
@@ -401,7 +401,7 @@ block content
             .modal-content
                 form(method="POST",action='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/activitys',  enctype="multipart/form-data")
                     .modal-header
-                        h5#exampleModalScrollableTitle.modal-title Modal title
+                        h5#exampleModalScrollableTitle.modal-title activity 등록
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
@@ -427,7 +427,7 @@ block content
         .modal-dialog.modal-lg.modal-dialog-scrollable(role='document')
             .modal-content
                 form(method="POST", action='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/posts', enctype="multipart/form-data")
-                    .modal-header
+                    .modal-header task post 등록
                         h5#exampleModalScrollableTitle.modal-title Post 생성
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
