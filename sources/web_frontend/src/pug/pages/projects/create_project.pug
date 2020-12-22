@@ -94,15 +94,15 @@ block content
 
         //moveTab function
         function moveTab(from, to, last) {
+            console.log(last)
             var buttons = document.querySelectorAll('#step');
-            console.log(buttons);
             var fromTab = document.getElementById('wizard'+from+'-tab');
             var toTab = document.getElementById('wizard'+to+'-tab');
             fromTab.classList.remove('active');
             toTab.classList.add('active');
             fromTab.setAttribute('aria-selected', 'false');
             toTab.setAttribute('aria-selected', 'true');
-
+            
             for (var i = 0; i < buttons.length; i++){
                 buttons[i].classList.remove('active');
             }
@@ -112,11 +112,19 @@ block content
                 const desc = document.getElementById('description').value;
                 const sdate = document.getElementById('inputStartdate').value;
                 const edate = document.getElementById('inputEnddate').value;
+                const invited = document.querySelectorAll("#invitedlist input[name=invited]");
+                var list = []
+
+                invited.forEach(function(invitedUser){
+                    list.push(invitedUser.getAttribute("username"));
+                })
 
                 document.getElementById("pnameShow").innerText = pnameout;
                 document.getElementById("descShow").innerText = desc;
                 document.getElementById("sDateShow").innerText = sdate;
                 document.getElementById("eDateShow").innerText = edate;
+                document.getElementById("invitedShow").innerText = list;
+
             }
         }
 
