@@ -19,15 +19,15 @@ router.get('/', isLoggedIn,function(req, res) {
       proj = data
       LOG.findAll({
         where: {USER_ID : req.user.ID}
+      }).then(data => {
+        console.log(proj);
+        console.log(data);
+        res.render('./dashboard',{
+          user : req.user,
+          projs : proj,
+          logs: data
+        });
       })
-    }).then(data => {
-      console.log(proj);
-      console.log(data);
-      res.render('./dashboard',{
-        user : req.user,
-        projs : proj,
-        logs: data
-      });
     })
     
 });
