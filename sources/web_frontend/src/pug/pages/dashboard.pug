@@ -126,7 +126,7 @@ block content
                                 img.img-fluid(src='assets/img/freepik/at-work-pana.svg', style='max-width: 26rem')
             
 
-            .col-xxl-8.col-xl-8.mb-4
+            .col-xxl-8.col-xl-12.mb-4
                 .card.card-scrollable.card-header-actions.h-100
                     .card-header
                         | 프로젝트 진행현황
@@ -149,26 +149,30 @@ block content
                     .card-body
                         if projs.length != 0
                             each proj in projs
-                                h4.small
-                                    | #{proj.NAME} :
-                                    span.float-right.font-weight-bold 
-                                    if proj.NUM_TASKS == '0'
-                                        | 0%
-                                    else
-                                        | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
-                                .progress.mb-4
-                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                a(href='projects/'+proj.ID)
+                                    h4.small
+                                        | #{proj.NAME} :
+                                        span.float-right.font-weight-bold 
+                                        if proj.NUM_TASKS == '0'
+                                            | 0%
+                                        else
+                                            | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                    .progress.mb-4
+                                        if proj.STATUS == 0
+                                            .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                        else if proj.STATUS == -1
+                                            .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
                         else
                             p 진행중인 프로젝트가 없습니다.
                     a.card-footer(href='/inprogress')
                         .d-flex.align-items-center.justify-content-between.small.text-body
-                            | 진행중인 프로젝트 보기
+                            | 진행중인 모든 프로젝트 보기
                             i(data-feather='arrow-right')
         .row
             .col-xxl-4.col-xl-4.mb-4
                 .card.card-header-actions.h-100
                     .card-header
-                        | 최근 업무 기록
+                        | 나의 최근 업무 기록 
                         .dropdown.no-caret
                             button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                                 i.text-gray-500(data-feather='more-vertical')
@@ -184,68 +188,68 @@ block content
                                     span.badge.badge-purple-soft.text-purple.my-1 Users
                     .card-body
                         .timeline.timeline-xs
-                            //- if logs.length != 0
-                            //-     each log in logs
-                            //-         .timeline-item
-                            //-             .timeline-item-marker
-                            //-                 .timeline-item-marker-text
-                            //-                     | 2 days
-                            //-                 .timeline-item-marker-indicator.bg-green
-                            //-             .timeline-item-content
-                            //-                 | New order placed!
-                            //-                 a.font-weight-bold.text-dark(href='#!') Order #2910 
-                            //-                 | has been successfully placed.
-                            //- else
-                            //-     p 아직 활동 사항이 없습니다!
+                            if logs.length != 0
+                                each log in logs
+                                    .timeline-item
+                                        .timeline-item-marker
+                                            .timeline-item-marker-text
+                                                | #{log.createdAt}
+                                            .timeline-item-marker-indicator.bg-green
+                                        .timeline-item-content
+                                            | #{log.ACTION} 
+                                            a.font-weight-bold.text-dark(href=log.URL) #{log.OBJECT_NAME}
+                                            | has been #{log.ACTION}ed
+                            else
+                                p 아직 활동 사항이 없습니다.
 
-                            // Timeline Item 1
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 27 min
-                                    .timeline-item-marker-indicator.bg-green
-                                .timeline-item-content
-                                    | New order placed!
-                                    a.font-weight-bold.text-dark(href='#!') Order #2912 
-                                    | has been successfully placed.
-                            // Timeline Item 2
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 58 min
-                                    .timeline-item-marker-indicator.bg-blue
-                                .timeline-item-content
-                                    | Your
-                                    a.font-weight-bold.text-dark(href='#!') weekly report 
-                                    | has been generated and is ready to view.
-                            // Timeline Item 3
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 2 hrs
-                                    .timeline-item-marker-indicator.bg-purple
-                                .timeline-item-content
-                                    | New user
-                                    a.font-weight-bold.text-dark(href='#!') Valerie Luna 
-                                    | has registered
-                            // Timeline Item 4
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 1 day
-                                    .timeline-item-marker-indicator.bg-yellow
-                                .timeline-item-content
-                                    | Server activity monitor alert
-                            // Timeline Item 5
-                            .timeline-item
-                                .timeline-item-marker
-                                    .timeline-item-marker-text
-                                        | 1 day
-                                    .timeline-item-marker-indicator.bg-green
-                                .timeline-item-content
-                                    | New order placed!
-                                    a.font-weight-bold.text-dark(href='#!') Order #2911 
-                                    | has been successfully placed.
+                            //- // Timeline Item 1
+                            //- .timeline-item
+                            //-     .timeline-item-marker
+                            //-         .timeline-item-marker-text
+                            //-             | 27 min
+                            //-         .timeline-item-marker-indicator.bg-green
+                            //-     .timeline-item-content
+                            //-         | New order placed!
+                            //-         a.font-weight-bold.text-dark(href='#!') Order #2912 
+                            //-         | has been successfully placed.
+                            //- // Timeline Item 2
+                            //- .timeline-item
+                            //-     .timeline-item-marker
+                            //-         .timeline-item-marker-text
+                            //-             | 58 min
+                            //-         .timeline-item-marker-indicator.bg-blue
+                            //-     .timeline-item-content
+                            //-         | Your
+                            //-         a.font-weight-bold.text-dark(href='#!') weekly report 
+                            //-         | has been generated and is ready to view.
+                            //- // Timeline Item 3
+                            //- .timeline-item
+                            //-     .timeline-item-marker
+                            //-         .timeline-item-marker-text
+                            //-             | 2 hrs
+                            //-         .timeline-item-marker-indicator.bg-purple
+                            //-     .timeline-item-content
+                            //-         | New user
+                            //-         a.font-weight-bold.text-dark(href='#!') Valerie Luna 
+                            //-         | has registered
+                            //- // Timeline Item 4
+                            //- .timeline-item
+                            //-     .timeline-item-marker
+                            //-         .timeline-item-marker-text
+                            //-             | 1 day
+                            //-         .timeline-item-marker-indicator.bg-yellow
+                            //-     .timeline-item-content
+                            //-         | Server activity monitor alert
+                            //- // Timeline Item 5
+                            //- .timeline-item
+                            //-     .timeline-item-marker
+                            //-         .timeline-item-marker-text
+                            //-             | 1 day
+                            //-         .timeline-item-marker-indicator.bg-green
+                            //-     .timeline-item-content
+                            //-         | New order placed!
+                            //-         a.font-weight-bold.text-dark(href='#!') Order #2911 
+                            //-         | has been successfully placed.
             .col-xxl-8.col-xl-8.mb-4
                 // Pie chart with legend example
                 .card.h-100
