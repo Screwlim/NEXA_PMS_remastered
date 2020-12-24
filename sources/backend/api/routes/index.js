@@ -18,7 +18,7 @@ const proj_list = require('./proj_list');
 const { checkInvitation } = require('./middleware');
 
 router.use('/',main);
-router.use('/user', user);
+router.use('/user', checkInvitation, user);
 router.use('/auth', auth);
 router.use('/inprogress', checkInvitation, inprogress);
 
