@@ -33,9 +33,10 @@ router.get('/', function(req, res) {
           pid: req.pid,
           user: req.user,
           members: data, 
-          invites: invited_list,
+          invitedlist: invited_list,
           userstoinvite: userlist,
-          isPM: req.isPM
+          isPM: req.isPM,
+          invites: req.invites
         });
       });
     });

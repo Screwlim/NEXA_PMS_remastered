@@ -24,7 +24,8 @@ router.get('/', function(req, res) {
     user: req.user,
     pid: req.query.pid,
     jid: req.query.jid,
-    isPM: req.isPM
+    isPM: req.isPM,
+    invites: req.invites
   });
 });
 

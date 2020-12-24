@@ -28,7 +28,8 @@ router.get('/', function(req, res) {
         jobs: jobs,
         user: req.user,
         pid: proj.ID,
-        isPM: req.isPM
+        isPM: req.isPM,
+        invites: req.invites
       });
     });
   });    

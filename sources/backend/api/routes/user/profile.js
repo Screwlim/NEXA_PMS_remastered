@@ -21,7 +21,10 @@ const upload = multer({
 /* GET users listing. */
 router.get('/', function(req, res) {
   console.log("user profile");
-  res.render('user/profile', {user: req.user});
+  res.render('user/profile', {
+    user: req.user,
+    invites: req.invites
+  });
 });
 
 router.post('/', upload.single('profileImage'), function(req, res) {

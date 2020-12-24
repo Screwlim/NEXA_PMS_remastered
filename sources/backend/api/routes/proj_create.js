@@ -15,7 +15,11 @@ router.get('/', function(req, res) {
       }
     }
   }).then(data=>{
-    res.render('projects/create_project', {user: req.user, invitelist: data});
+    res.render('projects/create_project', {
+      user: req.user, 
+      invitelist: data,
+      invites: req.invites
+    });
   })
 });
 

@@ -7,7 +7,8 @@ router.get('/', function(req, res) {
   res.render('project/job/job-create',{
     user: req.user,
     pid: req.pid,
-    isPM: req.isPM
+    isPM: req.isPM,
+    invites: req.invites
   });
 });
 

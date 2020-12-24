@@ -18,7 +18,11 @@ router.get('/', isLoggedIn,function(req, res, next) {
 
     });
 
-    res.render('projects/list_projects',{projs: projlist, user: req.user});
+    res.render('projects/list_projects',{
+      projs: projlist,
+      user: req.user,
+      invites: req.invites
+    });
     return projlist;
   }
 

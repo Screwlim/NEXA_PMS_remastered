@@ -30,7 +30,8 @@ router.get('/', function(req, res) {
       pid: req.pid,
       user: req.user,
       jobs: Jobs,
-      isPM: req.isPM
+      isPM: req.isPM,
+      invites: req.invites
     });
   })
   
@@ -64,7 +65,8 @@ router.get('/:jid', function(req, res) {
             posts: Posts,
             tasks: Tasks,
             files: data,
-            isPM: req.isPM
+            isPM: req.isPM,
+            invites: req.invites
           });
         });
       })

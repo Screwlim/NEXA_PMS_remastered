@@ -70,7 +70,8 @@ router.get('/', function(req, res) {
                 post_files: post_files,
                 act_files: act_files,
                 act_comments: data,
-                isPM: req.isPM
+                isPM: req.isPM,
+                invites: req.invites
               })
             })
           })          

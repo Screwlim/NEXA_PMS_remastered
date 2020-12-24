@@ -43,7 +43,8 @@ router.get('/', function(req, res) {
     res.render('project/settings',{
       user: req.user,
       proj: data,
-      isPM: req.isPM
+      isPM: req.isPM,
+      invites: req.invites
     });
   });
 });

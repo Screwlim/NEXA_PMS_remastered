@@ -5,9 +5,7 @@ const { Op } = require('sequelize');
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', isLoggedIn,function(req, res) {
-  var projData;
-  
+router.get('/', isLoggedIn,function(req, res) {  
   console.log("dashboard process");
     PROJECTS.findAll({
       include :[{
@@ -22,10 +20,12 @@ router.get('/', isLoggedIn,function(req, res) {
       }).then(data => {
         console.log(proj);
         console.log(data);
+        console.log(req.invites)
         res.render('./dashboard',{
           user : req.user,
           projs : proj,
-          logs: data
+          logs: data,
+          invites: req.invites
         });
       })
     })

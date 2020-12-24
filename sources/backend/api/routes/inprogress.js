@@ -14,7 +14,11 @@ router.get('/', isLoggedIn,function(req, res) {
     }],
     where : { [Op.or] : [{STATUS : 0}, {STATUS : -1}]}
   }).then(projlist => {
-    res.render('inprogress',{projs: projlist, user: req.user});
+    res.render('inprogress',{
+      projs: projlist,
+      user: req.user,
+      invites: req.invites
+    });
   })
 });
 
