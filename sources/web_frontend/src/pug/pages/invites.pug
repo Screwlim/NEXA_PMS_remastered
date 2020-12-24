@@ -116,7 +116,7 @@ block content
                                     .d-flex.align-items-center.justify-content-between.mb-4
                                         .d-flex.align-items-center.flex-shrink-0.mr-3
                                             .avatar.avatar-xl.mr-3.bg-gray-200
-                                                img.avatar-img.img-fluid(src='../assets/img/freepik/profiles/profile-6.png', alt='')
+                                                img.avatar-img.img-fluid(src=invite.USER.prof_img_url, alt='')
                                             .d-flex.flex-column.font-weight-bold
                                                 div #{invite.USER.NAME}님이 #{invite.PROJECT.NAME}에 초대하셨습니다.
                                                 .small.text-muted.line-height-normal 초대 날짜: #{invite.createdAt.getFullYear()}/#{invite.createdAt.getMonth()+1}/#{invite.createdAt.getDate()}
