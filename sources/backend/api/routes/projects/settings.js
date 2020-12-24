@@ -64,7 +64,7 @@ router.post('/', function(req,res) {
       data.END_DATE = req.body.end_date
       data.save();
     }).then(data =>{
-      res.redirect('/project?pid='+req.pid);
+      res.redirect('/projects/'+req.pid);
     })
   }else{
     res.status(403).render('./err/error-403.pug');
