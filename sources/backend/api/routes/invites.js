@@ -6,18 +6,8 @@ const { Op } = require('sequelize');
 router.get('/', function(req, res) {
   console.log("invites list page");
 
-  INVITES.findAll({
-    include : [{
-      model : USERS
-    }, {
-      model: PROJECTS
-    }],
+  res.render('invites', {user: req.user, invites: req.invites});
 
-    where: {RECV_USER_ID: req.user.ID, STATUS: 0}
-  }).then(data => {
-    console.log(data);
-    res.render('invites', {user: req.user, invites: data});
-  })
 });
 
 router.post('/', function(req, res){
