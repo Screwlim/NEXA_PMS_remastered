@@ -80,8 +80,12 @@ block content
                     each proj in projs.rows
                         .col-xl-6.mb-4
                             .card.card-header-actions.h-100
-                                .card-header
-                                    | #{proj.NAME}
+                                if proj.STATUS  == '0'
+                                    .card-header.bg-blue.text-white
+                                        | #{proj.NAME}
+                                else if proj.STATUS == '-1'
+                                    .card-header.bg-yellow.text-white
+                                        | #{proj.NAME}
                                 .card-body
                                     if proj.NUM_TASKS == '0'
                                         | 현재 진행도 : 0%
