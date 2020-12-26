@@ -1,0 +1,66 @@
+extends ../../layouts/dashboard.pug
+
+block config
+    - var navPosition = 'nav-fixed'
+    - var pageTitle = '공지사항 생성'
+
+append css
+    link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+
+block topnav
+
+    include ../mixins/topnav.pug
+    +topnav({
+        topnavStyle: 'navbar-light bg-white'
+    })
+
+block sidenav
+
+    include ../mixins/sidenav-proj.pug
+    +sidenav({
+        sidenavStyle: 'sidenav-dark',
+        user: user.NAME,
+        pid: pid,
+        isPM: isPM
+    })
+
+block content
+
+    include ../mixins/headers/header-default.pug
+    +header({
+        pageHeaderStyle: 'page-header-dark',
+        pageHeaderBg: 'bg-gradient-primary-to-secondary',
+        pageHeaderSpacing: 'pb-10',
+        pageHeaderContainer: 'container',
+        pageSubtitle: 'What are you looking for? Our knowledge base is here to help.',
+        pageIcon: 'life-buoy',
+        breadcrumbs: false
+    })
+
+    // Main page content
+    .container.mt-n10
+        .card
+            form(method="POST", action='/projects/'+pid+'/notices/'+notice.ID+'/fix')
+                .card-header
+                    h5#exampleModalScrollableTitle.modal-title #{notice.TITLE} 수정
+                .card-body
+                    .row
+                        .form-group.col-md-6
+                            label(for='noticeTitle').small.mb-1 제목
+                            input#title.form-control(type='text', name='title', value=notice.TITLE)
+                    .row    
+                        .form-group.col-md-10
+                            label(for='noticeContent').small.mb-1 내용
+                            textarea#content.form-control(name='content', rows=10) #{notice.CONTENT}
+                    .row
+                        .form-group.col-md-10
+                            label(for='noticeFile').small.mb-1 파일첨부                            
+                            input#postFile.form-control-file(type='file', name='noticeFiles' multiple, value=files)
+                .card-footer
+                    button.btn.btn-primary(type='submit') 생성하기 
+block footer
+
+    include ../mixins/footer.pug
+    +footer({
+        footerStyle: 'footer-light'
+    })
