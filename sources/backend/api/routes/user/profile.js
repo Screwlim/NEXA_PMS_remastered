@@ -40,7 +40,9 @@ router.post('/', upload.single('profileImage'), function(req, res) {
     data.POSITION = req.body.position;
     data.PHONENUMBER = req.body.phonenumber;
     data.COMPANYNUMBER = req.body.companynumber;
-    data.prof_img_url = '/assets/img/prof/'+req.file.filename;
+    if(req.file){
+      data.prof_img_url = '/assets/img/prof/'+req.file.filename;
+    }
     data.save();
   }).then(data=>{
     res.redirect('/user/profile');
