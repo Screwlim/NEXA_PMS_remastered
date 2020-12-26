@@ -65,7 +65,7 @@ block content
                                         td #{notice.AUTHOR}
                                         td 
                                             a(href='/projects/'+pid+'/notices/'+notice.ID, title='#{job.TITLE}') #{notice.TITLE}
-                                        td #{notice.AUTHOR}
+                                        td #{notice.createdAt.getFullYear()}/#{notice.createdAt.getMonth()+1}/#{notice.createdAt.getDate()} #{notice.createdAt.getHours()}:#{notice.createdAt.getMinutes()}:#{notice.createdAt.getSeconds()}                                  
                                         td #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}                                  
 
 block footer
@@ -73,3 +73,11 @@ block footer
     +footer({
         footerStyle: 'footer-light'
     })
+
+append scripts
+    //- Load dataTables via CDN
+    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
+    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
+    //- Load dataTables demo data
+    script(src='/assets/demo/datatables.js')
+
