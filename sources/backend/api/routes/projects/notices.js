@@ -85,10 +85,40 @@ router.get('/:nid', function(req, res) {
   });
 });
 
+router.get('/:nid/fix', function(req, res) {
+  console.log("project notice detail process");
+  NOTICES.findOne({
+    where: {ID: req.params.nid}
+  }).then(data => {
+    res.render('project/notice-update',{
+      user: req.user,
+      pid: req.pid,
+      notice: data,
+      isPM: req.isPM,
+      invites: req.invites
+    });
+  })
+});
+
+
+router.post('/:nid/fix', function(req, res) {
+  console.log('notice update')
+  NOTICES.findOne({
+    where: {
+      ID: req.params.nid
+    }
+  }).then(data => {
+    data.TITLE = req.body.title;
+    data.CONTENT = req.body.content;
+    data.save();
+  }).then(data => {
+    res.redirect('/projects/'+req.pid+'/notices/'+req.params.nid);
+  })
+});
+
 router.post('/',upload.array('noticeFiles'),function(req,res) {
   console.log('create notice');
-  console.log('number of files : ' + req.files.length);
-  console.log(req.files)
+  console.log(req.body)
   NOTICES.create({
     PROJECT_ID: req.pid,
     TITLE: req.body.title,
