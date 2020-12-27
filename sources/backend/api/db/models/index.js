@@ -85,5 +85,8 @@ db.COMMENTS_JOB_POST.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'I
 db.USERS.hasMany(db.COMMENTS_TASK_POST, {foreignKey: 'AUTHOR_ID', sourceKey: 'ID'});
 db.COMMENTS_TASK_POST.belongsTo(db.USERS, {foreignKey: 'AUTHOR_ID', targetKey: 'ID'});
 
+db.NOTICES.hasMany(db.COMMENTS_NOTICES, {foreignKey: 'NOTICE_ID', sourceKey: 'ID', onDelete: 'CASCADE'});
+db.COMMENTS_NOTICES.belongsTo(db.NOTICES, {foreignKey: 'NOTICE_ID', targetKey: 'ID', onDelete: 'CASCADE'})
+
 
 module.exports = db;
