@@ -19,6 +19,7 @@ block config
 append css
     //- Load dataTables CSS via CDN
     link(href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css', rel='stylesheet', crossorigin='anonymous')
+    link(href='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css', rel='stylesheet', crossorigin='anonymous')
 
 //- * * * * * * * *
 //- * * Topnav  * *
@@ -58,6 +59,7 @@ block sidenav
 
 //- Define the main `block content` from the layout
 block content
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
 
     //- Bring in the page header mixin and configure
     //- For all available config options for this mixin, visit https://docs.startbootstrap.com/sb-admin-pro/
@@ -93,66 +95,92 @@ block content
                 .card.card-header-actions.mb-4
                     .card-header
                         | 업무별 진행상황
-                        a.small.text-arrow-icon(href='/projects/'+pid+'/jobs/job-create')
-                            | Create New
-                            i(data-feather='arrow-right')
+                        if proj.STATUS == 0 || proj.STATUS == -1
+                            a.small.text-arrow-icon(href='/projects/'+pid+'/jobs/job-create')
+                                | Create New
+                                i(data-feather='arrow-right')
                     .card-body
                         if jobs.length != 0
                             each job in jobs
-                                .d-flex.align-items-center.justify-content-between.small.mb-1
-                                    .font-weight-bold #{job.TITLE}
-                                    if job.NUM_TASKS == '0'
-                                        | 0%
-                                    else
-                                        | #{Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)}%
-                                .progress.mb-3
-                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)+'%', aria-valuenow=job.NUM_DONE_TASKS/job.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                a(href='/projects/'+proj.ID+'/jobs/'+job.ID)
+                                    .d-flex.align-items-center.justify-content-between.small.mb-1
+                                        .font-weight-bold #{job.TITLE}
+                                        if job.NUM_TASKS == '0'
+                                            | 0%
+                                        else
+                                            | #{Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)}%
+                                    .progress.mb-3
+                                        .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((job.NUM_DONE_TASKS*100)/job.NUM_TASKS)+'%', aria-valuenow=job.NUM_DONE_TASKS/job.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
                         else
                             | 아직 등록된 업무가 없습니다.
         .row
-            .col-xxl-12.col-xl-12.mb-6
+            .col-xxl-8.col-xl-8.mb-4
                 // Pie chart with legend example
                 .card.h-100
-                    .card-header 업무별 비중
+                    .card-header 업무 pie chart
                     .card-body
-                        .chart-pie.mb-4
-                            canvas#myPieChart(width='100%', height='50')
-                        .list-group.list-group-flush
-                            .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                .mr-3
-                                    i.fas.fa-circle.fa-sm.mr-1.text-blue
-                                    | Direct
-                                .font-weight-500.text-dark 55%
-                            .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                .mr-3
-                                    i.fas.fa-circle.fa-sm.mr-1.text-purple
-                                    | Social
-                                .font-weight-500.text-dark 15%
-                            .list-group-item.d-flex.align-items-center.justify-content-between.small.px-0.py-2
-                                .mr-3
-                                    i.fas.fa-circle.fa-sm.mr-1.text-green
-                                    | Referral
-                                .font-weight-500.text-dark 30%
-            .col-xxl-12.col-xl-12.mb-6
-                // Tabbed dashboard card example
-                .card.mb-4
-                    .card-header.border-bottom
-                        // Dashboard card navigation
-                        ul.nav.nav-tabs.card-header-tabs#dashboardNav(role='tablist')
-                            li.nav-item.mr-1
-                                a.nav-link.active#overview-pill(href='#overview', data-toggle='tab', role='tab', aria-controls='overview', aria-selected='true') Overview
-                            li.nav-item
-                                a.nav-link#activities-pill(href='#activities', data-toggle='tab', role='tab', aria-controls='activities', aria-selected='false') Activities
-                    .card-body
-                        .tab-content#dashboardNavContent
-                            // Dashboard Tab Pane 1
-                            .tab-pane.fade.show.active#overview(role='tabpanel', aria-labelledby='overview-pill')
-                                .chart-area.mb-4.mb-lg-0(style="height: 20rem;")
-                                    canvas#myAreaChart(width='100%', height='30')
-                            // Dashboard Tab Pane 2
-                            .tab-pane.fade#activities(role='tabpanel', aria-labelledby='activities-pill')
-                                include ../includes/datatable-activity-example.pug
+                        if jobs.length == 0
+                            p 진행중인 업무 없습니다.
+                        else
+                            canvas#myPieChart(width='100%')
+            
+    //chart script
+    script.
+        var ctx = document.getElementById("myPieChart");
+        var x = !{JSON.stringify(jobs)}
+        const colors = [
 
+        ]
+        var projLabel = [];
+        var projData = [];
+        var bgColor = [];
+        var bgColorlist = [
+            "rgba(255, 22, 103, 1)",
+            "rgba(0, 97, 242, 1)",
+            "rgba(255, 159, 63, 1)",
+            "rgba(0, 172, 105, 1)",
+            "rgba(255, 205, 86, 1)",
+            "rgba(88, 0, 232, 1)",
+            "rgba(153, 102, 255, 1)"
+        ];
+        
+        var HoverbgColor = [];
+        var HoverbgColorlist = [
+            "rgba(255, 22, 103, 0.9)",
+            "rgba(0, 97, 242, 0.9)",
+            "rgba(255, 159, 63, 0.9)",
+            "rgba(0, 172, 105, 0.9)",
+            "rgba(255, 205, 86, 0.9)",
+            "rgba(88, 0, 232, 0.9)",
+            "rgba(153, 102, 255, 0.9)"
+        ];
+
+        index = -1;
+        x.forEach(elements=>{
+            index += 1
+            projLabel.push(elements.TITLE);
+            projData.push(elements.NUM_TASKS);
+            bgColor.push(bgColorlist[index%7]);
+            HoverbgColor.push(HoverbgColorlist[index%7]);
+        })
+
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: projLabel,
+                datasets: [{
+                    data: projData,
+                    backgroundColor: bgColor,
+                    hoverBackgroundColor: HoverbgColor,
+                    hoverBorderColor: "rgba(234, 236, 244, 1)"
+                }]
+            },
+            options:{
+                legend: {
+                    display: true
+                }
+            }
+        });
 
 
 //- * * * * * * * *
@@ -172,11 +200,8 @@ block footer
 append scripts
     //- Load Chart.js via CDN
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', crossorigin='anonymous')
-    //- Load custom Chart.js styling and demo data
-    script(src='../assets/demo/chart-area-demo.js')
-    script(src='../assets/demo/chart-pie-demo.js')
-    //- Load dataTables via CDN
-    script(src='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js', crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js', crossorigin='anonymous')
-    //- Load dataTables demo data
-    script(src='../assets/demo/datatables.js')
+    //- Load custom Chart.js styling and demo dat   
+    //- Load Moment.js and Date Range Picker via CDN
+    script(src='https://cdn.jsdelivr.net/momentjs/latest/moment.min.js', crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js', crossorigin='anonymous')
+
