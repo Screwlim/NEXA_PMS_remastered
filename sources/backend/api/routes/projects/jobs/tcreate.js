@@ -25,16 +25,34 @@ router.post('/', function(req, res) {
     WEIGHT: 0,
     STATUS: 0
   }).then(data => {
-    JOBS.increment('NUM_TASKS', {
+    JOBS.findOne({
       where: {ID: req.jid}
-    })
-  }).then(data=> {
-    PROJECTS.increment('NUM_TASKS', {
-      where: {ID: req.pid}
-    })
-  })
-
-  res.redirect('/projects/'+req.pid+'/jobs/'+req.jid);
+    }).then(data => {
+      data.NUM_TASKS = data.NUM_TASKS + 1;
+      data.save();
+      PROJECTS.findOne({
+        where: {ID : req.pid}
+      }).then(data => {
+        date = data.END_DATE - data.START_DATE;
+        data.NUM_TASKS = data.NUM_TASKS + 1;
+        data.save();
+        today = new Date();
+        time_passed = today - data.START_DATE
+        expect = Math.round((time_passed / date)*100);
+        current = Math.round((data.NUM_DONE_TASKS/ data.NUM_TASKS)*100);
+        if( expect > current){
+          data.STATUS = -1;
+          data.save();
+        }else if(expect <= current){
+          data.STATUS = 0;
+          data.save();
+        }
+        console.log(expect);
+        console.log(current);
+      });
+    });
+    res.redirect('/projects/'+req.pid+'/jobs/'+req.jid);
+  });
 });
 
 

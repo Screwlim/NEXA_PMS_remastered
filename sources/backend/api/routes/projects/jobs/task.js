@@ -170,6 +170,23 @@ router.get('/done', function(req,res){
       }).then(data => {
         data.NUM_DONE_TASKS = data.NUM_DONE_TASKS + 1;
         data.save();
+        date = data.END_DATE - data.START_DATE;
+        today = new Date();
+        time_passed = today - data.START_DATE;
+        expect = Math.round((time_passed / date)*100);
+        if(expect > 100){
+          expect = 100;
+        }
+        current = Math.round((data.NUM_DONE_TASKS/ data.NUM_TASKS)*100);
+        if( expect > current){
+          data.STATUS = -1;
+          data.save();
+        }else if(expect <= current){
+          data.STATUS = 0;
+          data.save();
+        }
+        console.log(expect);
+        console.log(current);
       })
     })
   }).then(data=> {
@@ -201,6 +218,20 @@ router.get('/notDone', function(req,res){
       }).then(data => {
         data.NUM_DONE_TASKS = data.NUM_DONE_TASKS - 1;
         data.save();
+        date = data.END_DATE - data.START_DATE;
+        today = new Date();
+        time_passed = today - data.START_DATE
+        expect = Math.round((time_passed / date)*100);
+        current = Math.round((data.NUM_DONE_TASKS/ data.NUM_TASKS)*100);
+        if( expect > current){
+          data.STATUS = -1;
+          data.save();
+        }else if(expect <= current){
+          data.STATUS = 0;
+          data.save();
+        }
+        console.log(expect);
+        console.log(current);
       })
     })
   }).then(data=> {
