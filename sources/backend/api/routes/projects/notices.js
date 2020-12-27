@@ -19,7 +19,7 @@ const upload = multer({
 });
 
 
-/* GET users listing. */
+/* GET notice list */
 router.get('/', function(req, res) {
   console.log("project notice list process");
 
@@ -39,7 +39,7 @@ router.get('/', function(req, res) {
 });
 
 
-
+/* GET notice create page */
 router.get('/notice-create', function(req, res){
   res.render('project/notice-create',{
     user: req.user, 
@@ -49,7 +49,7 @@ router.get('/notice-create', function(req, res){
   });
 });
 
-
+/* GET notice detail */
 router.get('/:nid', function(req, res) {
   console.log("project notice detail process");
   NOTICES.findOne({
@@ -85,6 +85,19 @@ router.get('/:nid', function(req, res) {
   });
 });
 
+/* DELETE notice */
+router.delete('/:nid', function(req, res) {
+  console.log("delete notice");
+  NOTICES.destroy({
+    where: {
+      ID: req.params.nid
+    }
+  }).then(()=>{
+    res.send(200);
+  })
+})
+
+/* GET notice update page */
 router.get('/:nid/fix', function(req, res) {
   console.log("project notice detail process");
   NOTICES.findOne({
@@ -100,7 +113,7 @@ router.get('/:nid/fix', function(req, res) {
   })
 });
 
-
+/* POST notice update */
 router.post('/:nid/fix', function(req, res) {
   console.log('notice update')
   NOTICES.findOne({
@@ -116,6 +129,7 @@ router.post('/:nid/fix', function(req, res) {
   })
 });
 
+/* POST create notice*/
 router.post('/',upload.array('noticeFiles'),function(req,res) {
   console.log('create notice');
   console.log(req.body)
