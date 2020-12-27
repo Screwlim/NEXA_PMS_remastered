@@ -15,17 +15,19 @@ router.get('/', function(req, res) {
     JOBS.findAll({
       where: {PROJECT_ID: proj.ID}
     }).then(data=>{
-        date = proj.END_DATE - proj.START_DATE;
-        today = new Date();
-        time_passed = today - proj.START_DATE
-        expect = Math.round((time_passed / date)*100);
-        current = Math.round((proj.NUM_DONE_TASKS/ proj.NUM_TASKS)*100);
-        if( expect > current){
-          proj.STATUS = -1;
-          proj.save();
-        }else if(expect <= current){
-          proj.STATUS = 0;
-          proj.save();
+        if(proj.STATUS == 0 || proj.STATUS == -1){
+          date = proj.END_DATE - proj.START_DATE;
+          today = new Date();
+          time_passed = today - proj.START_DATE
+          expect = Math.round((time_passed / date)*100);
+          current = Math.round((proj.NUM_DONE_TASKS/ proj.NUM_TASKS)*100);
+          if( expect > current){
+            proj.STATUS = -1;
+            proj.save();
+          }else if(expect <= current){
+            proj.STATUS = 0;
+            proj.save();
+          }
         }
       res.render('project/proj_dashboard', {
         proj: proj,
