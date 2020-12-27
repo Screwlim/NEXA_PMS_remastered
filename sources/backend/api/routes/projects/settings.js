@@ -27,6 +27,17 @@ router.get('/status/:status', function(req, res){
       }).then(()=>{
         res.redirect('/proj_list');
       })
+    }else if(req.params.status == 'Uncomplete'){
+      PROJECTS.findOne({
+        where : {
+          ID: req.pid
+        }
+      }).then(data=>{
+        data.STATUS = 0; // Canceled status value = -2
+        data.save()
+      }).then(()=>{
+        res.redirect('/proj_list');
+      })
     }
   }
 });

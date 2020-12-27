@@ -120,9 +120,18 @@ block content
                             a.btn.btn-danger.text-white(data-toggle="modal", href='#projCancel') #{proj.NAME}을 중단합니다.
         else if proj.STATUS == 1
             p 해당 프로젝트는 완료된 상태입니다
+            .card.mb-4
+                .card-header 프로젝트 완료 취소
+                .card-body
+                    p 프로젝트 완료를 취소합니다. 
+                    a.btn.btn-success.text-white(data-toggle="modal", href='#projUnDone') #{proj.NAME}을 다시 진행합니다.
         else if proj.STATUS == -2
             p 해당 프로젝트는 취소된 상태입니다
-
+            .card.mb-4
+                .card-header 프로젝트 재개
+                .card-body
+                    p 프로젝트를 재개합니다. 
+                    a.btn.btn-success.text-white(data-toggle="modal", href='#projUnCancel') #{proj.NAME}을 재개합니다.
 
     #projDone.modal.fade(data-backdrop='static', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
         .modal-dialog.modal-lg.modal-dialog-centered(role='document')            
@@ -152,16 +161,45 @@ block content
                     p #{proj.NAME}을 현재 상태에서 취소합니다.
                     |  * 주의사항 *
                     li 프로젝트를 취소한 후에는 추가적인 멤버 초대, 업무 진행 및 작성을 진행할 수 없습니다.
-                    li 취소된 프로젝트는 자신의 프로젝트 목록 조회에서 확인및 개별 삭제를 진행할 수 있습니다.
-                    li 프로젝트 취소는 7일이 지난 후에 정상적으로 적용됩니다. (취소가 완료된 이후에는 상태를 변경할 수 없습니다.)
-                    p 위 사항을 모두 인지하고 취소를 진행하는 경우 아래의 버튼을 클릭해 주십시오.
+                    p 위 사항을 인지하고 취소를 진행하는 경우 아래의 버튼을 클릭해 주십시오.
                     p
                     a.btn.btn-danger.text-white(type='submit', href='/projects/'+proj.ID+'/settings/status/cancel') #{proj.NAME}을 중단합니다.
 
                 .modal-footer
                     //- button.btn.btn-secondary(type='button') 수정
                     button.btn.btn-primary(type='button', data-dismiss='modal') 닫기
-            
+    
+    #projUnDone.modal.fade(data-backdrop='static', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-centered(role='document')            
+            .modal-content
+                .modal-header
+                    h5#exampleModalScrollableTitle.modal-title #{proj.NAME}
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') × 
+                .modal-body
+                    p #{proj.NAME}을 현재 상태에서 완료처리 철회합니다.
+                    a.btn.btn-success.text-white(type='button', href='/projects/'+proj.ID+'/settings/status/Uncomplete') #{proj.NAME}을 재개합니다.
+
+                .modal-footer
+                    //- button.btn.btn-secondary(type='button') 수정
+                    button.btn.btn-primary(type='button', data-dismiss='modal') 닫기 
+
+    #projUnCancel.modal.fade(data-backdrop='static', role='dialog', aria-labelledby='exampleModalScrollableTitle', aria-hidden='true')
+        .modal-dialog.modal-lg.modal-dialog-centered(role='document')            
+            .modal-content
+                .modal-header
+                    h5#exampleModalScrollableTitle.modal-title #{proj.NAME}
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') × 
+                .modal-body
+                    p #{proj.NAME}을 현재 상태에서 다시 재개합니다.
+                    a.btn.btn-success.text-white(type='button', href='/projects/'+proj.ID+'/settings/status/Uncomplete') #{proj.NAME}을 재개합니다.
+
+                .modal-footer
+                    //- button.btn.btn-secondary(type='button') 수정
+                    button.btn.btn-primary(type='button', data-dismiss='modal') 닫기 
+
+
 //- * * * * * * * *
 //- * * Footer  * *
 //- * * * * * * * *
