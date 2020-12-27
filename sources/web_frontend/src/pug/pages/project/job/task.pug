@@ -337,11 +337,11 @@ block content
         job: job
     })
 
-    if proj.STATUS == 0 || proj.STATUS == -1
-        if task.STATUS != 0
-            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/notDone') 완료 취소        
-        else
-            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/Done') 완료하기
+        if proj.STATUS == 0 || proj.STATUS == -1
+            if task.STATUS != 0
+                a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/notDone') 완료 취소        
+            else
+                a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/'+jid+'/tasks/'+task.ID+'/Done') 완료하기
 
     // Main page content
     .container.mt-n10
