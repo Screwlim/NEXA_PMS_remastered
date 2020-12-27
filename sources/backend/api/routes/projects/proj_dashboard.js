@@ -14,18 +14,22 @@ router.get('/', function(req, res) {
     proj = data
     JOBS.findAll({
       where: {PROJECT_ID: proj.ID}
-    }).then(data => {
-      if (data === undefined){
-        console.log('no job data');
-        jobs = []
-      }
-      else{
-        jobs = data
-      }
     }).then(data=>{
+        date = proj.END_DATE - proj.START_DATE;
+        today = new Date();
+        time_passed = today - proj.START_DATE
+        expect = Math.round((time_passed / date)*100);
+        current = Math.round((proj.NUM_DONE_TASKS/ proj.NUM_TASKS)*100);
+        if( expect > current){
+          proj.STATUS = -1;
+          proj.save();
+        }else if(expect <= current){
+          proj.STATUS = 0;
+          proj.save();
+        }
       res.render('project/proj_dashboard', {
         proj: proj,
-        jobs: jobs,
+        jobs: data,
         user: req.user,
         pid: proj.ID,
         isPM: req.isPM,
