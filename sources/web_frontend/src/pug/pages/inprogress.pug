@@ -87,10 +87,16 @@ block content
                                     .card-header.bg-yellow.text-white
                                         | #{proj.NAME}
                                 .card-body
+                                    .progress
+                                        if proj.STATUS == 0
+                                            .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                        else if proj.STATUS == -1
+                                            .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                    
                                     if proj.NUM_TASKS == '0'
-                                        | 현재 진행도 : 0%
+                                        | 업무 달설도 : 0%
                                     else
-                                        | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                        | 업무 달성도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                     br
                                     if proj.STATUS  == '0'
                                         | 현재 상태 : 정상
@@ -102,8 +108,8 @@ block content
                                         | 현재 상태 : 완료
                                     br
                                     | 기간 :#{proj.START_DATE.getFullYear()}/#{proj.START_DATE.getMonth()+1}/#{proj.START_DATE.getDate()}  -  #{proj.END_DATE.getFullYear()}/#{proj.END_DATE.getMonth()+1}/#{proj.END_DATE.getDate()}
-                                    br
                                     | 최근 업데이트 : #{proj.updatedAt.getFullYear()}/#{proj.updatedAt.getMonth()+1}/#{proj.updatedAt.getDate()} #{proj.updatedAt.getHours()}:#{proj.updatedAt.getMinutes()}:#{proj.updatedAt.getSeconds()}
+                                        
                                 a.card-footer(href='/projects/'+proj.ID)
                                     .d-flex.align-items-center.justify-content-between.small.text-body
                                         | 프로젝트로 이동

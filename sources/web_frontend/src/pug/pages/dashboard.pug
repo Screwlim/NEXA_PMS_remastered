@@ -152,12 +152,15 @@ block content
                             each proj in projs
                                 a(href='projects/'+proj.ID)
                                     h4.small
-                                        | #{proj.NAME} :
-                                        span.float-right.font-weight-bold 
-                                        if proj.NUM_TASKS == '0'
-                                            | 0%
-                                        else
-                                            | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                        .row
+                                            if proj.STATUS == -1
+                                                span.badge.badge-danger.mr-2 지연
+                                            | #{proj.NAME} :
+                                            span.float-right.font-weight-bold 
+                                            if proj.NUM_TASKS == '0'
+                                                | 0%
+                                            else
+                                                | #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                     .progress.mb-4
                                         if proj.STATUS == 0
                                             .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
