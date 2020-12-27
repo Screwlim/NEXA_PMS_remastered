@@ -128,10 +128,15 @@ block content
                                                             .card-header.bg-blue.text-white
                                                                 | #{proj.NAME}
                                                             .card-body
+                                                                .progress
+                                                                    if proj.STATUS == 0
+                                                                        .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                                                    else if proj.STATUS == -1
+                                                                        .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')                                                            
                                                                 if proj.NUM_TASKS == '0'
-                                                                    | 현재 진행도 : 0%
+                                                                    | 업무 달성도 : 0%
                                                                 else
-                                                                    | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                                                    |  업무 달성도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 정상
                                                                 br
@@ -157,10 +162,15 @@ block content
                                                             .card-header.bg-yellow.text-white
                                                                 | #{proj.NAME}
                                                             .card-body
+                                                                .progress
+                                                                    if proj.STATUS == 0
+                                                                        .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                                                    else if proj.STATUS == -1
+                                                                        .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')                                                            
                                                                 if proj.NUM_TASKS == '0'
-                                                                    | 현재 진행도 : 0%
+                                                                    | 업무 달성도 : 0%
                                                                 else
-                                                                    | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                                                    |  업무 달성도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 지연
                                                                 br
@@ -186,10 +196,15 @@ block content
                                                             .card-header.bg-dark.text-white
                                                                 | #{proj.NAME}
                                                             .card-body
+                                                                .progress
+                                                                    if proj.STATUS == 0
+                                                                        .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                                                    else if proj.STATUS == -1
+                                                                        .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')                                                            
                                                                 if proj.NUM_TASKS == '0'
-                                                                    | 현재 진행도 : 0%
+                                                                    | 업무 달성도 : 0%
                                                                 else
-                                                                    | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                                                    |  업무 달성도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 취소
                                                                 br
@@ -215,10 +230,15 @@ block content
                                                             .card-header.bg-green.text-white
                                                                 | #{proj.NAME}
                                                             .card-body
+                                                                .progress
+                                                                    if proj.STATUS == 0
+                                                                        .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                                                    else if proj.STATUS == -1
+                                                                        .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')                                                            
                                                                 if proj.NUM_TASKS == '0'
-                                                                    | 현재 진행도 : 0%
+                                                                    | 업무 달성도 : 0%
                                                                 else
-                                                                    | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                                                    |  업무 달성도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                                 br
                                                                 | 현재 상태 : 완료
                                                                 br
@@ -253,10 +273,15 @@ block content
                                                             .card-header.bg-green.text-white
                                                                 | #{proj.NAME}
                                                         .card-body
+                                                            .progress
+                                                                if proj.STATUS == 0
+                                                                    .progress-bar.bg-primary(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')
+                                                                else if proj.STATUS == -1
+                                                                    .progress-bar.bg-danger(role='progressbar', style='width: '+Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)+'%', aria-valuenow=proj.NUM_DONE_TASKS/proj.NUM_TASKS, aria-valuemin='0', aria-valuemax='100')                                                            
                                                             if proj.NUM_TASKS == '0'
                                                                 | 현재 진행도 : 0%
                                                             else
-                                                                | 현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
+                                                                |  현재 진행도 : #{Math.round((proj.NUM_DONE_TASKS*100)/proj.NUM_TASKS)}%
                                                             br
                                                             if proj.STATUS  == '0'
                                                                 | 현재 상태 : 정상
