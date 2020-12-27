@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
   }).then(Jobs => {
     console.log(Jobs);
     res.render('project/jobs',{
+      proj: req.proj,
       pid: req.pid,
       user: req.user,
       jobs: Jobs,
@@ -58,6 +59,7 @@ router.get('/:jid', function(req, res) {
           }
         }).then((data)=>{
           res.render('project/job/job',{
+            proj: req.proj,
             user: req.user,
             pid: req.pid,
             jid: req.params.jid,

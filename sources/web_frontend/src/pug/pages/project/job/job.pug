@@ -238,16 +238,18 @@ block content
                             p 등록된 Post가 없습니다.
                         
                     //- a.card-footer.small.text-muted(data-toggle='modal', data-target='#createActivity') 새로운 post 등록
-                    a.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
+                    if proj.STATUS == 0 || proj.STATUS == -1
+                        a.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
  
         .row
             .col-xxl-12.col-xl-12.mb-6
                 .card.card-header-actions.mb-4
                     .card-header
                         | task 목록
-                        a.small.mb-1small.text-arrow-icon(href='/projects/'+pid+'/jobs/'+job.ID+'/task-create')
-                            | 새로운 task 생성
-                            i(data-feather='arrow-right')
+                        if proj.STATUS == 0 || proj.STATUS == -1
+                            a.small.mb-1small.text-arrow-icon(href='/projects/'+pid+'/jobs/'+job.ID+'/task-create')
+                                | 새로운 task 생성
+                                i(data-feather='arrow-right')
                     .card-body
                         .datatable
                             table#dataTable.table.table-bordered.table-hover(width='100%', cellspacing='0')

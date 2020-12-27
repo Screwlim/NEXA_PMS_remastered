@@ -30,6 +30,7 @@ router.get('/', function(req, res) {
         }
       }).then(data => {
         res.render('project/members', {
+          proj: req.proj,
           pid: req.pid,
           user: req.user,
           members: data, 

@@ -34,6 +34,13 @@ block content
         breadcrumbs: false,
     })
 
+    script.
+        function deleteNotice(pid, nid){
+            fetch('/projects/'+pid+'/notices/'+nid,{
+                method: 'delete'
+            })
+        }
+
     // Main page content
     .container
 
@@ -49,14 +56,14 @@ block content
                         button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                             i.text-primary(data-feather='more-vertical')
                         .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
-                                a.dropdown-item(href=notice.ID+'/fix') 수정하기
-                                a.dropdown-item(href='') 삭제하기
+                            a.dropdown-item(href=notice.ID+'/fix') 수정하기
+                            a.dropdown-item(onclick='deleteNotice('+pid+','+notice.ID+')', href='/projects/'+pid+'/notices') 삭제하기
                 else if isPM
                     .ml-auto.p-2.dropdown.no-caret
                         button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                             i.text-primary(data-feather='more-vertical')
                         .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='dropdownMenuButton')
-                                a.dropdown-item(href='') 삭제하기
+                            a.dropdown-item(onclick='deleteNotice('+pid+','+notice.ID+')', href='/projects/'+pid+'/notices') 삭제하기
             .card-body
                 h4 작성자 : #{notice.AUTHOR}
                 h5 작성일 : #{notice.updatedAt.getFullYear()}/#{notice.updatedAt.getMonth()+1}/#{notice.updatedAt.getDate()} #{notice.updatedAt.getHours()}:#{notice.updatedAt.getMinutes()}:#{notice.updatedAt.getSeconds()}  

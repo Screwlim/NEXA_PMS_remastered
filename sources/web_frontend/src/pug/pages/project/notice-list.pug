@@ -37,7 +37,8 @@ block content
         breadcrumbs: false
     })
 
-        a.btn.btn-light.btn-sm(href='notices/notice-create') 새로운 공지사항 등록
+        if (proj.STATUS == 0) || (proj.STATUS == -1)
+            a.btn.btn-light.btn-sm(href='notices/notice-create') 새로운 공지사항 등록
 
     // Main page content
     .container.mt-n10

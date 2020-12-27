@@ -32,20 +32,11 @@ router.get('/status/:status', function(req, res){
 });
 
 router.get('/', function(req, res) {
-  console.log("프로젝트 관리 page");
-  console.log(req);
-  PROJECTS.findOne({
-    where: {
-      ID: req.pid
-    }
-  }).then(data =>{
-    console.log(data)
-    res.render('project/settings',{
-      user: req.user,
-      proj: data,
-      isPM: req.isPM,
-      invites: req.invites
-    });
+  res.render('project/settings',{
+    user: req.user,
+    proj: req.proj,
+    isPM: req.isPM,
+    invites: req.invites
   });
 });
 

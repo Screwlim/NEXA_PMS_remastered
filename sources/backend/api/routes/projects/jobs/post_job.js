@@ -21,6 +21,7 @@ const upload = multer({
 router.get('/', function(req, res) {
   console.log("post 생성 page");
   res.render('project/job/job_post_create',{
+    proj: req.proj,
     user: req.user,
     pid: req.query.pid,
     jid: req.query.jid,

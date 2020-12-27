@@ -102,7 +102,8 @@ block content
                         img.img-fluid.mb-4(src='/assets/img/freepik/team-spirit-pana.svg', alt='', style='max-width: 16.25rem')
                         h5 팀원 초대하기
                         p.mb-4 새로운 멤버를 초대합니다.
-                        a.btn.btn-sm.btn-primary.p-3.line-height-normal(data-toggle="modal", href='#inviteModal') Invite
+                        if proj.STATUS == 0 || proj.STATUS == -1
+                            a.btn.btn-sm.btn-primary.p-3.line-height-normal(data-toggle="modal", href='#inviteModal') Invite
                 
             .col-xxl-12.col-xl-12.mb-6
                 .card.mb-4

@@ -72,7 +72,8 @@ block content
         breadcrumbs: false
     })
 
-        a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/job-create') 새로운 업무 생성
+        if proj.STATUS == 0 || proj.STATUS == -1
+            a.btn.btn-light.btn-sm.line-height-normal.p-3(href='/projects/'+pid+'/jobs/job-create') 새로운 업무 생성
 
 
     // Main page content

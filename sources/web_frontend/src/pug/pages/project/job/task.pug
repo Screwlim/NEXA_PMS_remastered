@@ -358,12 +358,14 @@ block content
                                             i.flex-shrink-0.ml-4(data-feather='chevron-right')
                         else
                             p 등록된 Post가 없습니다.
-                    button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
+                    if proj.STATUS == 0 || proj.STATUS == -1
+                        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createPost') 새로운 post 등록
             .col-xxl-12.col-xl-12.mb-6
                 .card.card-header-actions.h-100.card-scrollable
                     .card-header 
                         | activity 기록
-                        button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createActivity') 새로운 activity 등록
+                        if proj.STATUS == 0 || proj.STATUS == -1
+                            button.btn.btn-light.btn-sm(type='button', data-toggle='modal', data-target='#createActivity') 새로운 activity 등록
                         //- .dropdown.no-caret
                         //-     button#dropdownMenuButton.btn.btn-transparent-dark.btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                         //-         i.text-gray-500(data-feather='more-vertical')

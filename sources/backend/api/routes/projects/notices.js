@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
     where: {PROJECT_ID: req.pid}
   }).then(data => {
     res.render('project/notice-list',{
+      proj: req.proj,
       user: req.user,
       pid: req.pid,
       notices: data,
@@ -72,6 +73,7 @@ router.get('/:nid', function(req, res) {
         }
       }).then(data=>{
         res.render('project/notice-detail',{
+          proj: req.proj,
           user: req.user,
           pid: req.pid,
           notice: notice,

@@ -60,6 +60,7 @@ router.get('/', function(req, res) {
               where: {ID: Act_ids}
             }).then(data =>{
               res.render('project/job/task',{
+                proj: req.proj,
                 user: req.user,
                 pid: req.pid,
                 jid: req.jid,
