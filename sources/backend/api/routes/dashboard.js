@@ -18,9 +18,6 @@ router.get('/', isLoggedIn,function(req, res) {
       LOG.findAll({
         where: {USER_ID : req.user.ID}
       }).then(data => {
-        console.log(proj);
-        console.log(data);
-        console.log(req.invites)
         res.render('./dashboard',{
           user : req.user,
           projs : proj,
